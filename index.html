@@ -3,542 +3,424 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bannusha Shaik — Backend &amp; Platform Engineer</title>
-<meta name="description" content="Bannusha Shaik — Software Engineer. Python/FastAPI, Node.js, Docker, Observability, GenAI. Building production systems end-to-end.">
+<title>Bannusha Shaik — Software Engineer &amp; AI Engineer</title>
+<meta name="description" content="Software Engineer intern in Bangalore. SKF (Fortune 500). Ships Python/FastAPI systems, search at 1,000+ QPS, realtime collaboration, and GenAI apps. Open to SWE intern and 0–1 year AI Engineer roles.">
+<meta name="keywords" content="Software Engineer Intern, SDE Intern, Backend Engineer, AI Engineer, Python, FastAPI, REST APIs, Docker, PostgreSQL, Redis, LLM, Prompt Engineering, Information Retrieval, Bangalore, GenAI, SKF">
+<meta name="author" content="Bannusha Shaik">
+<link rel="canonical" href="https://bannusha.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bannusha.com/">
+<meta property="og:title" content="Bannusha Shaik — Software Engineer">
+<meta property="og:description" content="I ship backend systems and GenAI features that hold up in production. SKF intern. 1,000+ QPS search. Open to intern and 0–1 year roles.">
+<meta property="og:site_name" content="bannusha.com">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#09090b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Bannusha Shaik",
+  "url": "https://bannusha.com",
+  "email": "bannushashaik85@gmail.com",
+  "telephone": "+918074671779",
+  "jobTitle": "Software Engineer Intern",
+  "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "PES College of Engineering" },
+  "sameAs": [
+    "https://github.com/bannushaxddd",
+    "https://www.linkedin.com/in/bannushashaik400"
+  ],
+  "knowsAbout": ["Python","FastAPI","REST APIs","PostgreSQL","Redis","Docker","CI/CD","LLMs","Prompt Engineering","Information Retrieval","BM25","WebSockets","Observability"]
+}
+</script>
 <style>
 :root{
-  --bg:#070b12;
-  --bg2:#0a101b;
-  --panel:#0d1522;
-  --panel2:#111b2c;
-  --line:#1b2a42;
-  --line2:#24395c;
-  --text:#d9e4f2;
-  --muted:#8aa1bf;
-  --dim:#5d7391;
-  --green:#3ddc84;
-  --green-dim:#1e9e5f;
-  --cyan:#5cc9ff;
-  --amber:#ffb454;
-  --red:#ff6b6b;
-  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --bg:#09090b;
+  --bg2:#111113;
+  --card:#141416;
+  --line:#232329;
+  --line2:#2e2e36;
+  --text:#f4f1ea;
+  --soft:#c9c4b8;
+  --mute:#8a857a;
+  --dim:#5e5a53;
+  --acc:#b6f36a;
+  --acc2:#8fd94a;
+  --ink:#07140a;
+  --cyan:#9ad7ff;
+  --warn:#f0c674;
+  --serif:'Instrument Serif',Georgia,serif;
   --sans:'Inter',system-ui,sans-serif;
-  --display:'Space Grotesk',var(--sans);
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   background:var(--bg);color:var(--text);font-family:var(--sans);
-  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased;
 }
-/* subtle grid backdrop */
-.bg-grid{
-  position:fixed;inset:0;z-index:-1;pointer-events:none;
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   background:
-    linear-gradient(rgba(61,220,132,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(61,220,132,.035) 1px,transparent 1px);
-  background-size:44px 44px;
-  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 40%,transparent 100%);
-  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 40%,transparent 100%);
+    radial-gradient(900px 420px at 12% -10%, rgba(182,243,106,.08), transparent 55%),
+    radial-gradient(700px 380px at 90% 0%, rgba(154,215,255,.05), transparent 50%);
 }
-::selection{background:rgba(61,220,132,.28)}
-a{color:var(--cyan);text-decoration:none;transition:color .15s}
-a:hover{color:var(--green)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-
-/* ── top bar ─────────────────────────────── */
-.topbar{
-  position:sticky;top:0;z-index:50;
-  background:rgba(7,11,18,.85);backdrop-filter:blur(10px);
+a{color:var(--acc);text-decoration:none}
+a:hover{color:#d4ffa0}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+nav{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:blur(14px);background:rgba(9,9,11,.78);
   border-bottom:1px solid var(--line);
 }
-.topbar-inner{display:flex;align-items:center;justify-content:space-between;height:52px}
-.prompt{font-family:var(--mono);font-size:13px;color:var(--muted);white-space:nowrap}
-.prompt b{color:var(--green);font-weight:600}
-.prompt .path{color:var(--cyan)}
-.prompt .caret{color:var(--green);animation:blink 1.1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.nav{display:flex;gap:22px;font-family:var(--mono);font-size:13px}
-.nav a{color:var(--muted)}
-.nav a:hover{color:var(--green)}
-.status-pill{
-  display:inline-flex;align-items:center;gap:7px;
-  font-family:var(--mono);font-size:12px;color:var(--green);
-  border:1px solid rgba(61,220,132,.35);border-radius:999px;
-  padding:4px 12px;background:rgba(61,220,132,.07);white-space:nowrap;
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:58px;gap:16px}
+.brand{font-family:var(--mono);font-size:13px;color:var(--soft);letter-spacing:.02em}
+.brand b{color:var(--acc);font-weight:600}
+.nav-links{display:flex;gap:22px;font-family:var(--mono);font-size:12px}
+.nav-links a{color:var(--mute)}
+.nav-links a:hover{color:var(--text)}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11.5px;color:var(--acc);
+  border:1px solid rgba(182,243,106,.32);background:rgba(182,243,106,.07);
+  border-radius:999px;padding:5px 12px;white-space:nowrap;
 }
-.status-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{50%{opacity:.35}}
-@media(max-width:760px){.nav{display:none}}
-
-/* ── hero ───────────────────────────────── */
-.hero{padding:84px 0 56px;border-bottom:1px solid var(--line)}
-.term{
-  font-family:var(--mono);font-size:14px;color:var(--dim);
-  margin-bottom:20px;min-height:22px;
-}
-.term .cursor{color:var(--green);animation:blink 1.1s steps(1) infinite}
-.term .out{color:var(--green)}
-h1{
-  font-family:var(--display);font-weight:700;font-size:clamp(40px,7vw,64px);
-  line-height:1.05;letter-spacing:-.02em;
-  background:linear-gradient(100deg,#eef4fc 20%,var(--green) 55%,var(--cyan) 90%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  margin-bottom:14px;
-}
-.role{
-  font-family:var(--mono);font-size:clamp(14px,2.2vw,18px);color:var(--cyan);
-  margin-bottom:22px;
-}
-.role .sep{color:var(--dim);margin:0 8px}
-.blurb{max-width:660px;color:var(--muted);font-size:16px;margin-bottom:30px}
-.blurb b{color:var(--text);font-weight:600}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:44px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(182,243,106,.15)}
+.hero{padding:88px 0 72px}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--acc);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,8vw,84px);line-height:.95;letter-spacing:-.03em;margin-bottom:18px}
+h1 em{font-style:italic;color:var(--acc)}
+.lede{max-width:640px;font-size:18px;color:var(--soft);margin-bottom:28px}
+.lede strong{color:var(--text);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px}
 .btn{
-  font-family:var(--mono);font-size:13.5px;font-weight:600;
-  padding:11px 20px;border-radius:8px;border:1px solid var(--line2);
-  color:var(--text);background:var(--panel);cursor:pointer;transition:all .15s;
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  padding:11px 16px;border-radius:8px;border:1px solid var(--line2);
+  color:var(--text);background:var(--card);transition:transform .15s,border-color .15s;
 }
-.btn:hover{border-color:var(--green);color:var(--green);transform:translateY(-1px)}
-.btn.primary{background:var(--green);border-color:var(--green);color:#04120a}
-.btn.primary:hover{background:#57e89b;color:#04120a}
-.btn .arr{color:var(--dim);transition:color .15s}
-.btn:hover .arr{color:var(--green)}
-.metrics{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:14px;
+.btn:hover{transform:translateY(-1px);border-color:var(--acc);color:var(--acc)}
+.btn.primary{background:var(--acc);border-color:var(--acc);color:var(--ink)}
+.btn.primary:hover{background:#c8ff86;color:var(--ink)}
+.proof{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.proof article{
+  background:linear-gradient(180deg,var(--card),var(--bg2));
+  border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;
 }
-.metric{
-  border:1px solid var(--line);border-radius:10px;padding:18px 20px;
-  background:linear-gradient(180deg,var(--panel),var(--bg2));
+.proof .n{font-family:var(--serif);font-size:28px;line-height:1;color:var(--acc)}
+.proof .l{font-family:var(--mono);font-size:11px;color:var(--mute);margin-top:8px}
+section{padding:72px 0;border-top:1px solid var(--line)}
+.sec-k{font-family:var(--mono);font-size:12px;color:var(--acc);margin-bottom:8px}
+h2{font-family:var(--serif);font-size:clamp(28px,4vw,40px);font-weight:400;letter-spacing:-.02em;margin-bottom:12px}
+.sec-p{max-width:640px;color:var(--soft);margin-bottom:28px}
+.grid-2{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.job-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 6px}
+.job-grid h4{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);font-weight:500;margin-bottom:10px}
+.skf-lead{color:var(--soft);font-size:15.5px;margin:10px 0 4px;max-width:720px}
+@media(max-width:860px){.job-grid{grid-template-columns:1fr}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;
 }
-.metric .num{font-family:var(--display);font-size:26px;font-weight:700;color:var(--green);letter-spacing:-.01em}
-.metric .lbl{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}
-
-/* ── sections ───────────────────────────── */
-section{padding:64px 0;border-bottom:1px solid var(--line)}
-.sec-head{
-  font-family:var(--mono);font-size:14px;color:var(--green);
-  margin-bottom:8px;
-}
-.sec-head .path{color:var(--dim)}
-.sec-title{font-family:var(--display);font-size:30px;font-weight:600;letter-spacing:-.01em;margin-bottom:30px}
-
-/* experience */
-.job{
-  border:1px solid var(--line);border-radius:12px;padding:24px 26px;margin-bottom:16px;
-  background:var(--panel);transition:border-color .15s;
-}
-.job:hover{border-color:var(--line2)}
-.job-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px;margin-bottom:4px}
-.job-title{font-family:var(--display);font-size:18px;font-weight:600}
-.job-title .co{color:var(--green)}
-.job-meta{font-family:var(--mono);font-size:12.5px;color:var(--dim)}
-.job-sub{font-family:var(--mono);font-size:12.5px;color:var(--amber);margin-bottom:14px}
-.job ul{list-style:none}
-.job li{
-  position:relative;padding-left:20px;color:var(--muted);font-size:14.5px;margin-bottom:9px;
-}
-.job li::before{content:"▸";position:absolute;left:0;color:var(--green-dim)}
-
-/* projects */
-.proj{
-  border:1px solid var(--line);border-radius:12px;padding:24px 26px;margin-bottom:16px;
-  background:var(--panel);transition:border-color .15s,transform .15s;
-}
-.proj:hover{border-color:var(--line2);transform:translateY(-2px)}
-.proj-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
-.proj-name{font-family:var(--display);font-size:19px;font-weight:600}
-.proj-stack{font-family:var(--mono);font-size:12px;color:var(--cyan);margin-bottom:12px}
-.proj p{color:var(--muted);font-size:14.5px;margin-bottom:14px}
-.status{font-family:var(--mono);font-size:11px;padding:3px 10px;border-radius:999px;border:1px solid}
-.status.live{color:var(--green);border-color:rgba(61,220,132,.4);background:rgba(61,220,132,.08)}
-.status.repo{color:var(--amber);border-color:rgba(255,180,84,.4);background:rgba(255,180,84,.07)}
-.status.repo::before{content:"repo";text-transform:lowercase}
-.status.live::before{content:"● live"}
-.proj-links{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:13px}
-.proj-links a{color:var(--muted)}
-.proj-links a:hover{color:var(--green)}
-.proj-links a::before{content:"→ ";color:var(--green-dim)}
-.proj-metrics{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.chip{font-family:var(--mono);font-size:11.5px;color:var(--muted);border:1px solid var(--line2);border-radius:6px;padding:3px 9px;background:var(--bg2)}
-
-/* skills */
-.skill-group{margin-bottom:22px}
-.skill-group h3{font-family:var(--mono);font-size:13px;color:var(--amber);margin-bottom:10px}
-.skill-group h3::before{content:"# ";color:var(--dim)}
+.card h3{font-size:17px;font-weight:600;margin-bottom:6px}
+.card .meta{font-family:var(--mono);font-size:12px;color:var(--mute);margin-bottom:14px}
+.card ul{list-style:none}
+.card li{position:relative;padding-left:16px;color:var(--soft);font-size:14.5px;margin-bottom:9px}
+.card li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--acc)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--cyan);border:1px solid var(--line2);border-radius:999px;padding:3px 9px;margin:0 6px 8px 0}
+.proj{margin-bottom:14px}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.live{font-family:var(--mono);font-size:11px;color:var(--acc);border:1px solid rgba(182,243,106,.3);border-radius:999px;padding:3px 9px}
+.repo{font-family:var(--mono);font-size:11px;color:var(--warn);border:1px solid rgba(240,198,116,.3);border-radius:999px;padding:3px 9px}
+.links{display:flex;gap:16px;font-family:var(--mono);font-size:12.5px;margin-top:12px}
+.links a{color:var(--mute)}
+.links a:hover{color:var(--acc)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-family:var(--mono);font-size:11px;color:var(--mute);border:1px solid var(--line2);border-radius:6px;padding:3px 8px}
 .skills{display:flex;flex-wrap:wrap;gap:8px}
 .skill{
-  font-family:var(--mono);font-size:13px;color:var(--text);
-  border:1px solid var(--line2);border-radius:6px;padding:6px 12px;
-  background:var(--panel);transition:all .15s;
+  font-family:var(--mono);font-size:12.5px;color:var(--text);
+  border:1px solid var(--line2);background:var(--bg2);border-radius:8px;padding:7px 11px;
 }
-.skill:hover{border-color:var(--green);color:var(--green)}
-
-/* education */
-.edu{
-  border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin-bottom:14px;background:var(--panel);
+.sg{margin-bottom:22px}
+.sg h3{font-family:var(--mono);font-size:12px;color:var(--warn);margin-bottom:10px;font-weight:500}
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.work article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.work h3{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:8px}
+.work p{color:var(--soft);font-size:14.5px}
+footer{padding:56px 0 72px;border-top:1px solid var(--line)}
+.contact{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0 36px}
+.contact a,.contact div{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;color:inherit;
 }
-.edu b{font-family:var(--display);font-size:16.5px;font-weight:600;display:block;margin-bottom:2px}
-.edu .meta{font-family:var(--mono);font-size:12.5px;color:var(--dim);margin-bottom:10px}
-.edu p{color:var(--muted);font-size:14px}
-.edu p b{font-family:var(--sans);font-weight:600;font-size:14px;display:inline;color:var(--text)}
-.cert-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-
-/* footer */
-footer{padding:56px 0 64px}
-.foot-prompt{font-family:var(--mono);font-size:14px;color:var(--dim);margin-bottom:26px}
-.foot-prompt .green{color:var(--green)}
-.contact-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:40px;
-}
-.contact{
-  border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:var(--panel);
-  transition:border-color .15s;
-}
-.contact:hover{border-color:var(--green)}
-.contact .k{font-family:var(--mono);font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-.contact .v{font-family:var(--mono);font-size:13.5px;color:var(--text);word-break:break-all}
-.contact a.v:hover{color:var(--green)}
-.foot-note{font-family:var(--mono);font-size:12px;color:var(--dim);border-top:1px solid var(--line);padding-top:22px}
-.foot-note .green{color:var(--green)}
-
-/* scroll reveal */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
-.reveal.visible{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-  .term .cursor,.status-pill .dot{animation:none}
+.contact a:hover{border-color:var(--acc)}
+.contact .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.contact .v{font-family:var(--mono);font-size:13px;color:var(--text);word-break:break-all}
+.fine{font-family:var(--mono);font-size:12px;color:var(--dim)}
+@media(max-width:860px){
+  .nav-links{display:none}
+  .proof,.grid-2,.work,.contact{grid-template-columns:1fr}
+  .hero{padding:56px 0 48px}
 }
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand"><b>bannusha</b>.com</div>
+    <div class="nav-links">
+      <a href="#work">work</a>
+      <a href="#projects">projects</a>
+      <a href="#method">method</a>
+      <a href="#stack">stack</a>
+      <a href="#contact">contact</a>
+    </div>
+    <span class="pill"><i></i> open to intern / 0–1 yr roles</span>
+  </div>
+</nav>
 
-<header class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="prompt"><b>bannusha</b><span class="path">@dev:~$</span><span class="caret">▊</span></div>
-    <nav class="nav">
-      <a href="#experience">~/experience</a>
-      <a href="#projects">~/projects</a>
-      <a href="#stack">~/stack</a>
-      <a href="#education">~/education</a>
-      <a href="#contact">~/contact</a>
-    </nav>
-    <span class="status-pill"><span class="dot"></span>open to work</span>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Software Engineer · Bangalore · B.Tech AIML ’27</div>
+    <h1>I ship systems<br>that hold up <em>in production.</em></h1>
+    <p class="lede">
+      I’m <strong>Bannusha Shaik</strong>. Intern at <strong>SKF (Fortune 500)</strong>.
+      I build backend services, search, realtime, and GenAI features end-to-end —
+      API design, data modeling, caching, deployment, monitoring.
+      Recruiters: I can explain every number on this page.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="resume.pdf">Download résumé</a>
+      <a class="btn" href="https://github.com/bannushaxddd" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="mailto:bannushashaik85@gmail.com">Email me</a>
+    </div>
+    <div class="proof">
+      <article><div class="n">1,000+</div><div class="l">QPS on NEXORA search</div></article>
+      <article><div class="n">&lt;10ms</div><div class="l">p95 latency, cached ~2ms</div></article>
+      <article><div class="n">100+</div><div class="l">concurrent OT sessions</div></article>
+      <article><div class="n">F500</div><div class="l">SKF intern · live factory app</div></article>
+    </div>
   </div>
 </header>
 
-<main>
-  <section class="hero">
-    <div class="wrap">
-      <div class="term" id="termline"><span class="cursor">▊</span></div>
-      <h1>Bannusha Shaik</h1>
-      <div class="role">Backend Engineer <span class="sep">/</span> Platform &amp; DevOps <span class="sep">/</span> GenAI &amp; ML</div>
-      <p class="blurb">
-        Software Engineer (B.Tech AIML) building systems end-to-end — API design, data modeling,
-        caching, real-time features (WebSockets / SSE), deployment and monitoring.
-        Fortune 500 internship at <b>SKF</b>; production projects sustained at <b>1,000+ QPS</b> with
-        <b>&lt;10ms p95</b> latency. Currently shipping a live observability stack and AI tooling.
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="#projects">view projects <span class="arr">↓</span></a>
-        <a class="btn" href="resume.pdf" download>download résumé <span class="arr">↓</span></a>
-        <a class="btn" href="#contact">contact <span class="arr">→</span></a>
-      </div>
-      <div class="metrics">
-        <div class="metric"><div class="num">1,000+</div><div class="lbl">QPS · NEXORA search</div></div>
-        <div class="metric"><div class="num">&lt;10ms</div><div class="lbl">p95 latency</div></div>
-        <div class="metric"><div class="num">4</div><div class="lbl">live systems on Render</div></div>
-        <div class="metric"><div class="num">100+</div><div class="lbl">concurrent OT sessions</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="path">bannusha@dev</span>:~/experience $ ls -la</div>
-      <h2 class="sec-title reveal">Experience</h2>
-
-      <div class="job reveal">
-        <div class="job-head">
-          <div class="job-title">Software &amp; Digital Developer Intern — <span class="co">SKF</span> <span class="dim" style="font-family:var(--mono);font-size:12.5px;color:var(--dim)">(Fortune 500, Industrial Technology)</span></div>
-          <div class="job-meta">Jan 2025 – Present · Bangalore</div>
-        </div>
-        <div class="job-sub">Microsoft Power Platform · Power Apps · SharePoint · Office 365</div>
+<section id="hire">
+  <div class="wrap">
+    <div class="sec-k">01 — for hiring managers</div>
+    <h2>What you actually get.</h2>
+    <p class="sec-p">I interned at SKF shipping a factory-floor product. I also build backend and GenAI systems you can click. That is the work.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Hire me for</h3>
+        <div class="meta">roles I can defend in an interview tomorrow</div>
         <ul>
-          <li>Delivered a production <b>5S Audit Management app</b> replacing paper-based factory compliance workflows — digital audits, photo evidence capture, scoring and action tracking across manufacturing teams.</li>
-          <li>Designed an 11-screen canvas app across all five 5S pillars with per-pillar question banks, department/zone selection and weighted qualification-scoring logic.</li>
-          <li>Modeled SharePoint-backed data on the SKF O365 tenant with write-back via <code>Patch</code> and identity-aware, department-scoped audit flows.</li>
-          <li>Built score-card and compliance-trend views for factory leadership; partnered with shop-floor stakeholders on requirements and deployment readiness.</li>
+          <li>Software Engineer Intern / SDE Intern / Backend Engineer (Python, FastAPI, REST)</li>
+          <li>AI Engineer Intern / GenAI Engineer — LLM features inside real products, not model research</li>
+          <li>Full-stack intern where the backend is the hard part (Node, React, JWT, Postgres)</li>
         </ul>
       </div>
-
-      <div class="job reveal">
-        <div class="job-head">
-          <div class="job-title">GenAI Data Analytics Job Simulation — <span class="co">Tata Group</span> <span class="dim" style="font-family:var(--mono);font-size:12.5px;color:var(--dim)">(Forage)</span></div>
-          <div class="job-meta">2024</div>
-        </div>
-        <div class="job-sub">GenAI · Data Analytics · Executive Communication</div>
+      <div class="card">
+        <h3>Available</h3>
+        <div class="meta">batch 2027 · Bangalore / hybrid / remote India</div>
         <ul>
-          <li>Modeled delinquency risk on structured financial datasets with GenAI-assisted analytics.</li>
-          <li>Produced executive-ready business recommendations from the analysis.</li>
+          <li>Internships: now</li>
+          <li>Full-time: May 2027 (intern-to-PPO welcome)</li>
+          <li>I do not claim years I do not have. SKF is an internship. Forage is a simulation. Projects are mine and deployed.</li>
         </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="projects">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="path">bannusha@dev</span>:~/projects $ ls -la</div>
-      <h2 class="sec-title reveal">Projects — live in production</h2>
-
-      <div class="proj reveal">
-        <div class="proj-top">
-          <div class="proj-name">Observability Platform</div>
-          <span class="status live"></span>
+<section id="work">
+  <div class="wrap">
+    <div class="sec-k">02 — experience</div>
+    <h2>Work that had users.</h2>
+    <div class="card" style="margin-bottom:14px">
+      <div class="proj-top">
+        <h3>Software &amp; Digital Developer Intern — SKF</h3>
+        <span class="live">Fortune 500 · May 2026 – Aug 2026</span>
+      </div>
+      <div class="meta">Bangalore, on-site · Power Apps · SharePoint · Office 365 · factory operations</div>
+      <p class="skf-lead">Owned the <strong style="color:var(--text);font-weight:600">5S Audit Management</strong> app — the system plant teams use instead of clipboards. Live on SKF’s Office 365 tenant. Real users, real audits, real scores.</p>
+      <div class="job-grid">
+        <div>
+          <h4>What shipped</h4>
+          <ul>
+            <li>Replaced paper 5S audits with a production Power Apps + SharePoint system: digital checklists, photo evidence, scoring, and action tracking.</li>
+            <li>11-screen canvas app across all five pillars — question banks, zone and department selection, draft resume, leadership score-card.</li>
+            <li>Score-card for factory leads: circle typeahead, department filter, per-pillar totals, pass / fail against a qualifying bar.</li>
+          </ul>
         </div>
-        <div class="proj-stack">Prometheus · Grafana · Alertmanager · Loki · Docker Compose · Render</div>
-        <p>
-          End-to-end monitoring stack — Prometheus scraping, Grafana dashboards with auto-provisioned
-          datasources, Alertmanager routing, Loki log correlation, and custom app instrumentation
-          (Node.js <code>/metrics</code> with counters, histograms, gauges). Deployed as 5 cross-wired
-          services on Render: metrics flow app → Prometheus → Grafana while you watch.
-        </p>
-        <div class="proj-links">
-          <a href="https://monitoring-app-9qo8.onrender.com" target="_blank" rel="noopener">demo app</a>
-          <a href="https://monitoring-grafana-h0hf.onrender.com" target="_blank" rel="noopener">grafana (admin/AdminMonitor2024)</a>
-          <a href="https://monitoring-prometheus-p60c.onrender.com" target="_blank" rel="noopener">prometheus</a>
-          <a href="https://github.com/bannushaxddd/prometheus-grafana-stack" target="_blank" rel="noopener">source</a>
-        </div>
-        <div class="proj-metrics">
-          <span class="chip">5 live services</span>
-          <span class="chip">auto-provisioned dashboards</span>
-          <span class="chip">alerting rules + runbooks</span>
-          <span class="chip">file-based service discovery</span>
+        <div>
+          <h4>What I owned</h4>
+          <ul>
+            <li>Data model on the SKF tenant — audit drafts, zones, circles — with write-back and identity-aware create / resume rules (circle lead ≠ zone lead).</li>
+            <li>Scoring engine: weighted pillars, qualifying threshold, rounded totals. Weakest-pillar and pass-rate so leadership can see bottlenecks.</li>
+            <li>Requirements and rollout with shop-floor leads. Shipped into a live plant, not a sandbox.</li>
+          </ul>
         </div>
       </div>
-
-      <div class="proj reveal">
-        <div class="proj-top">
-          <div class="proj-name">NEXORA — Production Search Engine</div>
-          <span class="status live"></span>
-        </div>
-        <div class="proj-stack">Python · FastAPI · Redis · BM25 · pytest · Render</div>
-        <p>
-          Search service at <b>1,000+ QPS</b> with sub-10ms p95 — custom Okapi BM25 over a hand-built
-          inverted index, Redis caching (~85% hit rate), async REST APIs for search, corpus management
-          and live analytics. ~2ms cached / ~5ms uncached latency, benchmarked with a pytest + pytest-asyncio
-          suite.
-        </p>
-        <div class="proj-links">
-          <a href="https://nexora-1kjq.onrender.com" target="_blank" rel="noopener">live</a>
-          <a href="https://github.com/bannushaxddd/NEXORA" target="_blank" rel="noopener">source</a>
-        </div>
-        <div class="proj-metrics">
-          <span class="chip">1,000+ QPS</span>
-          <span class="chip">&lt;10ms p95</span>
-          <span class="chip">85% cache hit</span>
-          <span class="chip">inverted index</span>
-        </div>
-      </div>
-
-      <div class="proj reveal">
-        <div class="proj-top">
-          <div class="proj-name">SYNCOUT — Real-Time Collab Code Editor</div>
-          <span class="status live"></span>
-        </div>
-        <div class="proj-stack">Python · FastAPI · WebSockets · Operational Transform · Docker · GitHub Actions</div>
-        <p>
-          Operational-Transform collaboration for <b>100+ concurrent sessions</b> with sub-50ms sync —
-          live cursors, conflict resolution, session isolation. Dockerized with a GitHub Actions CI/CD
-          pipeline.
-        </p>
-        <div class="proj-links">
-          <a href="https://syncout-x.onrender.com" target="_blank" rel="noopener">live</a>
-          <a href="https://github.com/bannushaxddd/SYNCOUT" target="_blank" rel="noopener">source</a>
-        </div>
-        <div class="proj-metrics">
-          <span class="chip">100+ sessions</span>
-          <span class="chip">&lt;50ms sync</span>
-          <span class="chip">OT conflict resolution</span>
-          <span class="chip">CI/CD</span>
-        </div>
-      </div>
-
-      <div class="proj reveal">
-        <div class="proj-top">
-          <div class="proj-name">GETYOQUERY — AI SQL Generator</div>
-          <span class="status repo"></span>
-        </div>
-        <div class="proj-stack">Node.js · Express · React · Google Gemini API · SSE · PostgreSQL · JWT</div>
-        <p>
-          Natural-language-to-SQL across 8 SQL dialects with JWT auth (bcrypt), PostgreSQL-backed query
-          history, structured JSON generation via Gemini streaming (SSE), and hallucination-reduction
-          prompting. Previously deployed on Render; source and docs in the repo.
-        </p>
-        <div class="proj-links">
-          <a href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">source</a>
-        </div>
-        <div class="proj-metrics">
-          <span class="chip">8 SQL dialects</span>
-          <span class="chip">SSE streaming</span>
-          <span class="chip">JWT auth</span>
-        </div>
+      <div class="chips">
+        <span class="chip">production on O365 tenant</span>
+        <span class="chip">data modeling</span>
+        <span class="chip">scoring rules</span>
+        <span class="chip">identity-aware access</span>
+        <span class="chip">shop-floor rollout</span>
       </div>
     </div>
-  </section>
+    <div class="card">
+      <div class="proj-top">
+        <h3>GenAI Data Analytics — Tata Group (Forage)</h3>
+        <span class="repo">job simulation · 2024</span>
+      </div>
+      <div class="meta">Labeled as a simulation on purpose. Recruiters can verify it.</div>
+      <ul>
+        <li>Modeled delinquency risk on structured financial datasets with GenAI-assisted analytics.</li>
+        <li>Wrote executive-ready recommendations — interpretability over buzzwords.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <section id="stack">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="path">bannusha@dev</span>:~/stack $ cat skills.json</div>
-      <h2 class="sec-title reveal">Technical Stack</h2>
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-k">03 — proof of work</div>
+    <h2>Four systems. Live or source. No toy TODOs.</h2>
+    <p class="sec-p">Each project exists to answer a hiring question: can she design APIs, retrieve information, handle concurrency, wrap an LLM, and operate what she ships.</p>
 
-      <div class="skill-group reveal">
-        <h3>Backend &amp; Languages</h3>
-        <div class="skills">
-          <span class="skill">Python</span><span class="skill">FastAPI</span><span class="skill">Node.js</span>
-          <span class="skill">JavaScript</span><span class="skill">REST APIs</span><span class="skill">Async Programming</span>
-          <span class="skill">WebSockets</span><span class="skill">SSE</span><span class="skill">Microservices</span>
-          <span class="skill">System Design</span>
-        </div>
+    <div class="card proj">
+      <div class="proj-top">
+        <h3>NEXORA — search engine</h3>
+        <span class="live">live</span>
       </div>
-      <div class="skill-group reveal">
-        <h3>Databases &amp; Caching</h3>
-        <div class="skills">
-          <span class="skill">PostgreSQL</span><span class="skill">MySQL</span><span class="skill">MongoDB</span>
-          <span class="skill">Redis</span><span class="skill">SQL</span><span class="skill">Schema Design</span>
-          <span class="skill">Query Optimization</span><span class="skill">Indexing</span><span class="skill">Caching</span>
-          <span class="skill">BM25</span>
-        </div>
+      <div class="meta">Python · FastAPI · Redis · Okapi BM25 · pytest</div>
+      <p style="color:var(--soft);font-size:14.5px">Custom BM25 over a hand-built inverted index. No Elasticsearch. 1,000+ QPS, sub-10ms p95, ~85% cache hit. This is information retrieval — the same primitive RAG systems sit on.</p>
+      <div class="links">
+        <a href="https://nexora-1kjq.onrender.com" target="_blank" rel="noopener">live demo</a>
+        <a href="https://nexora-1kjq.onrender.com/docs" target="_blank" rel="noopener">API docs</a>
+        <a href="https://github.com/bannushaxddd/NEXORA" target="_blank" rel="noopener">source</a>
       </div>
-      <div class="skill-group reveal">
-        <h3>DevOps &amp; Cloud</h3>
-        <div class="skills">
-          <span class="skill">Docker</span><span class="skill">Docker Compose</span><span class="skill">CI/CD</span>
-          <span class="skill">GitHub Actions</span><span class="skill">Linux</span><span class="skill">Nginx</span>
-          <span class="skill">Git</span><span class="skill">Render</span><span class="skill">Deployment Automation</span>
-        </div>
+      <div class="chips"><span class="chip">1,000+ QPS</span><span class="chip">&lt;10ms p95</span><span class="chip">85% cache hit</span><span class="chip">inverted index</span></div>
+    </div>
+
+    <div class="card proj">
+      <div class="proj-top">
+        <h3>SYNCOUT — realtime collaborative editor</h3>
+        <span class="live">live</span>
       </div>
-      <div class="skill-group reveal">
-        <h3>Observability</h3>
-        <div class="skills">
-          <span class="skill">Prometheus</span><span class="skill">Grafana</span><span class="skill">Alertmanager</span>
-          <span class="skill">Loki</span><span class="skill">Metrics</span><span class="skill">Logging</span>
-          <span class="skill">Dashboards</span><span class="skill">Alerting</span><span class="skill">SLI/SLO</span>
-          <span class="skill">Runbooks</span>
-        </div>
+      <div class="meta">Python · FastAPI · WebSockets · Operational Transform · Docker · GitHub Actions</div>
+      <p style="color:var(--soft);font-size:14.5px">OT implemented from scratch so two people can type at once without clobbering each other. 100+ sessions, sub-50ms sync, live cursors, session isolation. CI/CD because “works on my machine” is not a release plan.</p>
+      <div class="links">
+        <a href="https://syncout-x.onrender.com" target="_blank" rel="noopener">live demo</a>
+        <a href="https://github.com/bannushaxddd/SYNCOUT" target="_blank" rel="noopener">source</a>
       </div>
-      <div class="skill-group reveal">
-        <h3>AI/ML &amp; GenAI</h3>
-        <div class="skills">
-          <span class="skill">LLMs</span><span class="skill">Google Gemini API</span><span class="skill">Prompt Engineering</span>
-          <span class="skill">Machine Learning</span><span class="skill">NLP</span><span class="skill">Transformers</span>
-          <span class="skill">Information Retrieval</span><span class="skill">Pandas</span><span class="skill">NumPy</span>
-          <span class="skill">scikit-learn</span><span class="skill">Power BI</span>
-        </div>
+      <div class="chips"><span class="chip">100+ sessions</span><span class="chip">&lt;50ms sync</span><span class="chip">conflict resolution</span><span class="chip">CI/CD</span></div>
+    </div>
+
+    <div class="card proj">
+      <div class="proj-top">
+        <h3>GETYOQUERY — natural language to SQL</h3>
+        <span class="repo">source</span>
       </div>
-      <div class="skill-group reveal">
-        <h3>Enterprise Platforms</h3>
-        <div class="skills">
-          <span class="skill">Power Apps</span><span class="skill">SharePoint</span><span class="skill">Office 365</span>
-        </div>
+      <div class="meta">Node.js · Express · React · Google Gemini · SSE · PostgreSQL · JWT</div>
+      <p style="color:var(--soft);font-size:14.5px">An LLM is not a product. Auth, history, streaming, dialect constraints, and hallucination-reduction prompts are. Eight SQL dialects. Token streaming over SSE. Passwords hashed. Queries parameterized.</p>
+      <div class="links">
+        <a href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">source</a>
+      </div>
+      <div class="chips"><span class="chip">8 dialects</span><span class="chip">SSE streaming</span><span class="chip">JWT + bcrypt</span><span class="chip">prompt patterns</span></div>
+    </div>
+
+    <div class="card proj">
+      <div class="proj-top">
+        <h3>Observability stack</h3>
+        <span class="live">live</span>
+      </div>
+      <div class="meta">Prometheus · Grafana · Alertmanager · Loki · Docker Compose</div>
+      <p style="color:var(--soft);font-size:14.5px">If you cannot see it, you cannot operate it. Scrape configs, dashboards, alert routing, log correlation, custom /metrics. Five services wired together so latency and errors are visible, not guessed.</p>
+      <div class="links">
+        <a href="https://monitoring-app-9qo8.onrender.com" target="_blank" rel="noopener">demo app</a>
+        <a href="https://github.com/bannushaxddd/prometheus-grafana-stack" target="_blank" rel="noopener">source</a>
+      </div>
+      <div class="chips"><span class="chip">metrics</span><span class="chip">logs</span><span class="chip">alerts</span><span class="chip">runbooks</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="sec-k">04 — how I work</div>
+    <h2>Hard problems. Honest numbers.</h2>
+    <div class="work">
+      <article>
+        <h3>Build the hard part.</h3>
+        <p>I would rather implement BM25 than wrap Elasticsearch and call it search. Same for Operational Transform, scoring, and auth. If I cannot walk a whiteboard through it, it is not mine.</p>
+      </article>
+      <article>
+        <h3>Measure what I claim.</h3>
+        <p>QPS, p95, cache hit, sync latency. Click the demos. A number without a URL is just an adjective.</p>
+      </article>
+      <article>
+        <h3>Constrain the model.</h3>
+        <p>GETYOQUERY exists because unconstrained NL→SQL invents columns. The product is the schema, the dialect, the prompts, and parameterized queries — not the model call.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-k">05 — stack I can be grilled on</div>
+    <h2>Keywords I will not hide behind.</h2>
+    <p class="sec-p">These are on the résumé because I have used them in shipped work. I do not list Kubernetes, LangChain, or PyTorch. I have not earned those yet.</p>
+    <div class="sg"><h3>Backend &amp; languages</h3><div class="skills">
+      <span class="skill">Python</span><span class="skill">FastAPI</span><span class="skill">JavaScript</span><span class="skill">Node.js</span><span class="skill">Express</span><span class="skill">REST APIs</span><span class="skill">API design</span><span class="skill">Async</span><span class="skill">WebSockets</span><span class="skill">SSE</span><span class="skill">JWT</span><span class="skill">OOP</span><span class="skill">DSA</span>
+    </div></div>
+    <div class="sg"><h3>Data</h3><div class="skills">
+      <span class="skill">SQL</span><span class="skill">PostgreSQL</span><span class="skill">Redis</span><span class="skill">MySQL</span><span class="skill">MongoDB</span><span class="skill">Schema design</span><span class="skill">Indexing</span><span class="skill">Caching</span><span class="skill">BM25</span><span class="skill">Inverted index</span>
+    </div></div>
+    <div class="sg"><h3>DevOps &amp; observability</h3><div class="skills">
+      <span class="skill">Git</span><span class="skill">GitHub</span><span class="skill">Docker</span><span class="skill">Docker Compose</span><span class="skill">CI/CD</span><span class="skill">GitHub Actions</span><span class="skill">Linux</span><span class="skill">Nginx</span><span class="skill">pytest</span><span class="skill">Prometheus</span><span class="skill">Grafana</span><span class="skill">Loki</span>
+    </div></div>
+    <div class="sg"><h3>AI / GenAI</h3><div class="skills">
+      <span class="skill">LLMs</span><span class="skill">Google Gemini API</span><span class="skill">Prompt engineering</span><span class="skill">Generative AI</span><span class="skill">NLP</span><span class="skill">Information retrieval</span><span class="skill">scikit-learn</span><span class="skill">Pandas</span><span class="skill">NumPy</span>
+    </div></div>
+    <div class="sg"><h3>Enterprise (SKF)</h3><div class="skills">
+      <span class="skill">Power Apps</span><span class="skill">SharePoint</span><span class="skill">Office 365</span><span class="skill">Power BI</span>
+    </div></div>
+  </div>
+</section>
+
+<section id="edu">
+  <div class="wrap">
+    <div class="sec-k">06 — education</div>
+    <h2>B.Tech AIML, PES College of Engineering.</h2>
+    <div class="card">
+      <h3>Artificial Intelligence &amp; Machine Learning</h3>
+      <div class="meta">Bangalore · expected May 2027</div>
+      <p style="color:var(--soft);font-size:14.5px">Coursework: Data Structures &amp; Algorithms, Operating Systems, DBMS, Computer Networks, OOP, Generative AI, Machine Learning, Deep Learning, NLP, Statistics &amp; Probability, Linear Algebra, Cloud Computing.</p>
+      <div class="chips" style="margin-top:14px">
+        <span class="chip">IBM — Prompt Engineering Basics</span>
+        <span class="chip">Tata Group / Forage — GenAI Data Analytics simulation</span>
       </div>
     </div>
-  </section>
-
-  <section id="education">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="path">bannusha@dev</span>:~/education $ cat diploma.txt</div>
-      <h2 class="sec-title reveal">Education &amp; Certifications</h2>
-
-      <div class="edu reveal">
-        <b>B.Tech — Artificial Intelligence &amp; Machine Learning</b>
-        <div class="meta">PES College of Engineering, Bangalore · Expected May 2027</div>
-        <p>
-          Coursework: <b>DSA</b> · <b>Operating Systems</b> · <b>DBMS</b> · <b>Computer Networks</b> · <b>OOP</b> ·
-          <b>Generative AI</b> · <b>Machine Learning</b> · <b>Deep Learning</b> · <b>NLP</b> · <b>Statistics &amp; Probability</b> ·
-          <b>Linear Algebra</b> · <b>Cloud Computing</b>
-        </p>
-      </div>
-
-      <div class="edu reveal">
-        <b>Certifications</b>
-        <div class="cert-list">
-          <span class="skill">GenAI Powered Data Analytics Job Simulation — Tata Group (Forage)</span>
-          <span class="skill">Generative AI: Prompt Engineering Basics — IBM</span>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+  </div>
+</section>
 
 <footer id="contact">
   <div class="wrap">
-    <div class="foot-prompt"><span class="green">$</span> echo "let's build something" <span class="green">→</span> contact me</div>
-    <div class="contact-grid">
-      <a class="contact" href="mailto:bannushashaik85@gmail.com">
-        <div class="k">email</div><div class="v">bannushashaik85@gmail.com</div>
-      </a>
-      <a class="contact" href="https://github.com/bannushaxddd" target="_blank" rel="noopener">
-        <div class="k">github</div><div class="v">github.com/bannushaxddd</div>
-      </a>
-      <a class="contact" href="https://linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">
-        <div class="k">linkedin</div><div class="v">linkedin.com/in/bannushashaik400</div>
-      </a>
-      <a class="contact" href="tel:+918074671779">
-        <div class="k">phone</div><div class="v">+91 80746 71779</div>
-      </a>
+    <div class="sec-k">07 — contact</div>
+    <h2>If the work looks like your team, write.</h2>
+    <p class="sec-p">I reply fast. I would rather do a take-home or a live debug than send another generic cover letter.</p>
+    <div class="contact">
+      <a href="mailto:bannushashaik85@gmail.com"><div class="k">email</div><div class="v">bannushashaik85@gmail.com</div></a>
+      <a href="https://github.com/bannushaxddd" target="_blank" rel="noopener"><div class="k">github</div><div class="v">bannushaxddd</div></a>
+      <a href="https://www.linkedin.com/in/bannushashaik400" target="_blank" rel="noopener"><div class="k">linkedin</div><div class="v">bannushashaik400</div></a>
+      <a href="tel:+918074671779"><div class="k">phone</div><div class="v">+91 80746 71779</div></a>
     </div>
-    <div class="foot-note"><span class="green">bannusha@dev</span>:~$ © 2026 Bannusha Shaik · built with vanilla HTML/CSS/JS · deployed on GitHub Pages</div>
+    <p class="fine">© 2026 Bannusha Shaik · bannusha.com · résumé is a one-page PDF, same facts as this site, no contradictions.</p>
   </div>
 </footer>
-
-<script>
-(function(){
-  var lines = [
-    "$ whoami",
-    "> bannusha — software engineer, building observable systems"
-  ];
-  var term = document.getElementById('termline');
-  var li = 0, ci = 0, typing = false;
-
-  function tick(){
-    var line = lines[li];
-    if(!typing){
-      typing = true;
-      ci = 0;
-      term.innerHTML = '';
-    }
-    if(ci <= line.length){
-      term.innerHTML = line.slice(0, ci).replace(/</g,'&lt;') + '<span class="cursor">▊</span>';
-      ci++;
-      setTimeout(tick, 26);
-    } else {
-      term.innerHTML = line.replace(/</g,'&lt;') + '<span class="cursor">▊</span>';
-      typing = false;
-      li++;
-      if(li < lines.length){
-        setTimeout(function(){ term.innerHTML = ''; tick(); }, 450);
-      } else {
-        setTimeout(function(){
-          term.innerHTML = '<span class="out">$ whoami</span> — bannusha, software engineer building observable systems';
-        }, 900);
-      }
-    }
-  }
-  tick();
-
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, {threshold: .08});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-})();
-</script>
 </body>
 </html>
