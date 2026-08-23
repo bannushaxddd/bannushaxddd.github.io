@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bannusha Shaik</title>
-<meta name="description" content="Bannusha Shaik, Software Engineer in Bangalore. Looking for a Software Engineer role.">
+<title>Bannusha Shaik — Data Analyst</title>
+<meta name="description" content="Data Analyst in Bangalore. SKF (Fortune 500) data engineering intern. Built Indian Creator Lab — score a YouTube draft against 3,500 videos. SQL, Python, dashboards.">
 <meta name="author" content="Bannusha Shaik">
 <meta name="theme-color" content="#fcfcfc">
 <link rel="canonical" href="https://bannusha.com/">
@@ -15,23 +15,39 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
 <meta property="og:url" content="https://bannusha.com/">
-<meta property="og:title" content="Bannusha Shaik">
-<meta property="og:description" content="Software Engineer in Bangalore. Looking for a Software Engineer role.">
+<meta property="og:title" content="Bannusha Shaik — Data Analyst">
+<meta property="og:description" content="SQL, Python, dashboards. SKF data intern. Live YouTube analytics product.">
 <meta property="og:image" content="https://bannusha.com/og.jpg">
-<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="1200">
 <meta property="og:image:alt" content="Bannusha Shaik">
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bannusha Shaik">
-<meta name="twitter:description" content="Software Engineer in Bangalore. Looking for a Software Engineer role.">
+<meta name="twitter:title" content="Bannusha Shaik — Data Analyst">
+<meta name="twitter:description" content="SQL, Python, dashboards. SKF data intern. Live YouTube analytics product.">
 <meta name="twitter:image" content="https://bannusha.com/og.jpg">
-<meta name="twitter:image:alt" content="Bannusha Shaik">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Bannusha Shaik",
+  "url": "https://bannusha.com",
+  "email": "bannushashaik85@gmail.com",
+  "telephone": "+918074671779",
+  "jobTitle": "Data Analyst",
+  "worksFor": { "@type": "Organization", "name": "SKF" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN" },
+  "sameAs": [
+    "https://github.com/bannushaxddd",
+    "https://www.linkedin.com/in/bannushashaik400"
+  ],
+  "knowsAbout": ["SQL","Python","pandas","scikit-learn","Power BI","SharePoint","PostgreSQL","Data visualization","YouTube Data API","Streamlit"]
+}
+</script>
 <style>
   :root {
     --bg: #fcfcfc;
@@ -40,6 +56,7 @@
     --mute: #8a8a8a;
     --soft: #ededed;
     --hover: #425a5c;
+    --line: #e8e8e8;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,227 +65,112 @@
     background: var(--bg);
     color: var(--ink);
     font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 1.3;
+    line-height: 1.45;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
-  body {
-    min-height: 100vh;
-    padding: 80px 24px 96px;
-  }
+  body { min-height: 100vh; padding: 72px 24px 96px; }
 
-  main {
-    width: min(436px, 100%);
-    margin: 0 auto;
-  }
+  main { width: min(640px, 100%); margin: 0 auto; }
 
-  .intro-row {
-    display: flex;
-    align-items: flex-end;
-    gap: 14px;
-  }
-
+  .intro-row { display: flex; align-items: flex-end; gap: 14px; }
   .avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 10px;
-    object-fit: cover;
-    flex-shrink: 0;
-    display: block;
+    width: 72px; height: 72px; border-radius: 10px;
+    object-fit: cover; flex-shrink: 0; display: block;
   }
+  h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; }
+  .loc { font-size: 13px; color: var(--mute); margin-top: 3px; }
 
-  .who { min-width: 0; }
-
-  h1 {
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.3;
-  }
-
-  .loc {
-    font-size: 14px;
-    color: var(--mute);
-    letter-spacing: -0.011em;
-    line-height: 1.3;
-    margin-top: 2px;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
-  }
-
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
   .tags a {
-    display: inline-flex;
-    align-items: center;
-    height: 24px;
-    padding: 0 12px;
-    border-radius: 999px;
-    background: var(--soft);
-    color: var(--mute);
-    font-size: 12px;
-    line-height: 1.3;
-    letter-spacing: -0.011em;
-    text-decoration: none;
-    transition: color .1s cubic-bezier(.86, 0, .16, 1.01), background .1s cubic-bezier(.86, 0, .16, 1.01);
+    display: inline-flex; align-items: center; height: 26px; padding: 0 12px;
+    border-radius: 999px; background: var(--soft); color: var(--mute);
+    font-size: 12px; text-decoration: none;
   }
-
   .tags a:hover { color: var(--ink); background: #e4e4e4; }
+  .tags a.hi { background: #151515; color: #fcfcfc; }
+  .tags a.hi:hover { background: var(--hover); color: #fff; }
 
-  p {
-    font-size: 14px;
-    line-height: 1.3;
-    color: var(--body);
+  .lede { margin-top: 22px; color: var(--body); font-size: 14.5px; line-height: 1.5; }
+  .lede strong { color: var(--ink); font-weight: 500; }
+
+  .proof {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+    margin-top: 22px;
   }
-
-  .lede {
-    margin-top: 20px;
-    color: var(--body);
+  .proof article {
+    border: 1px solid var(--line); border-radius: 10px; padding: 12px 12px 10px;
   }
+  .proof .n { font-size: 16px; font-weight: 600; letter-spacing: -0.03em; }
+  .proof .l { font-size: 11px; color: var(--mute); margin-top: 4px; line-height: 1.3; }
 
-  section { margin-top: 36px; }
-
+  section { margin-top: 40px; }
   h2 {
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: -0.011em;
-    color: var(--mute);
-    margin-bottom: 12px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--mute); margin-bottom: 14px;
   }
 
-  .jobs, .projects { display: flex; flex-direction: column; }
+  .skills { display: flex; flex-direction: column; gap: 10px; }
+  .sk-row { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: baseline; }
+  .sk-row b { font-size: 13px; font-weight: 600; }
+  .sk-row span { font-size: 13px; color: var(--body); }
 
-  .jobs { gap: 18px; }
-
-  .job { display: flex; flex-direction: column; gap: 2px; }
-
-  .job h3 {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.011em;
-    line-height: 1.3;
+  .jobs, .projects { display: flex; flex-direction: column; gap: 18px; }
+  .job h3, .proj h3, .feat h3 {
+    font-size: 15px; font-weight: 600; letter-spacing: -0.015em;
   }
-
-  .job .role,
-  .edu .where {
-    font-size: 12px;
-    letter-spacing: -0.011em;
-    color: var(--mute);
+  .role { font-size: 12px; color: var(--mute); margin-top: 2px; }
+  .job p, .proj p, .feat p, .edu p { margin-top: 6px; color: var(--body); font-size: 13.5px; line-height: 1.45; }
+  .job ul {
+    margin: 8px 0 0 16px; color: var(--body); font-size: 13.5px;
   }
+  .job li { margin-bottom: 4px; }
 
-  .job p, .edu p {
-    margin-top: 4px;
-    color: var(--body);
+  .feat {
+    border: 1px solid var(--line); border-radius: 12px; padding: 16px 16px 14px;
   }
-
-  .projects { gap: 12px; }
+  .feat .meta { font-size: 12px; color: var(--mute); margin-top: 2px; }
+  .feat-links { display: flex; gap: 14px; margin-top: 10px; }
+  .feat-links a {
+    font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none;
+  }
+  .feat-links a:hover { color: var(--hover); text-decoration: underline; }
 
   .proj {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    column-gap: 16px;
-    row-gap: 2px;
-    align-items: baseline;
+    display: grid; grid-template-columns: 1fr auto; column-gap: 16px; row-gap: 2px; align-items: baseline;
   }
-
-  .proj h3 {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.011em;
-    line-height: 1.3;
+  .proj p { grid-column: 1 / -1; }
+  .src {
+    font-size: 12px; color: var(--mute); text-decoration: none; white-space: nowrap;
   }
+  .src:hover { color: var(--hover); text-decoration: underline; }
 
-  .proj .src {
-    font-size: 12px;
-    letter-spacing: -0.011em;
-    color: var(--mute);
-    text-decoration: none;
-    transition: color .1s cubic-bezier(.86, 0, .16, 1.01);
-  }
-
-  .proj .src:hover {
-    color: var(--hover);
-    text-decoration: underline;
-  }
-
-  .proj p {
-    grid-column: 1 / -1;
-    color: var(--body);
-  }
-
-  .edu { display: flex; flex-direction: column; gap: 2px; }
-
-  .edu h3 {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.011em;
-    line-height: 1.3;
-  }
-
-  .contact {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+  a.in { color: inherit; text-decoration: none; }
+  a.in:hover { color: var(--hover); text-decoration: underline; }
 
   .contact a {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.011em;
-    line-height: 1.3;
-    color: var(--ink);
-    text-decoration: none;
-    width: fit-content;
-    transition: color .1s cubic-bezier(.86, 0, .16, 1.01);
+    font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none;
   }
+  .contact a:hover { text-decoration: underline; }
+  .contact .note { font-size: 12px; color: var(--mute); margin-top: 6px; }
 
-  .contact a:hover {
-    color: var(--hover);
-    text-decoration: underline;
-  }
+  a:focus-visible { outline: 1px solid var(--ink); outline-offset: 2px; }
 
-  .contact .note {
-    font-size: 12px;
-    letter-spacing: -0.011em;
-    color: var(--mute);
-  }
-
-  a.in {
-    color: inherit;
-    text-decoration: none;
-    transition: color .1s cubic-bezier(.86, 0, .16, 1.01);
-  }
-
-  a.in:hover {
-    color: var(--hover);
-    text-decoration: underline;
-  }
-
-  a:focus-visible {
-    outline: 1px solid var(--ink);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
-
-  .rise { animation: rise .85s cubic-bezier(.16, 1, .3, 1) both; }
+  .rise { animation: rise .75s cubic-bezier(.16, 1, .3, 1) both; }
   .d1 { animation-delay: .04s; }
-  .d2 { animation-delay: .14s; }
-  .d3 { animation-delay: .24s; }
-  .d4 { animation-delay: .34s; }
-
+  .d2 { animation-delay: .12s; }
+  .d3 { animation-delay: .2s; }
+  .d4 { animation-delay: .28s; }
   @keyframes rise {
-    from { opacity: 0; transform: translateY(50px); }
-    to   { opacity: 1; transform: none; }
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: none; }
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    .rise { animation: none; }
+  @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+  @media (max-width: 640px) {
+    .proof { grid-template-columns: 1fr 1fr; }
+    .sk-row { grid-template-columns: 1fr; gap: 2px; }
   }
 </style>
 </head>
@@ -277,78 +179,132 @@
     <header class="rise d1">
       <div class="intro-row">
         <img class="avatar" src="photo.jpg" alt="Bannusha Shaik" width="72" height="72">
-        <div class="who">
+        <div>
           <h1>Bannusha Shaik</h1>
-          <p class="loc">Software Engineer · Bangalore</p>
+          <p class="loc">Data Analyst · Bangalore</p>
         </div>
       </div>
       <nav class="tags" aria-label="Links">
+        <a class="hi" href="https://know-stats.streamlit.app" target="_blank" rel="noopener">Live dashboard</a>
         <a href="https://github.com/bannushaxddd" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:bannushashaik85@gmail.com">Email</a>
-        <a href="resume.pdf" download="Bannusha_Shaik_Software_Engineer.pdf">Resume</a>
+        <a href="resume.pdf" download="Bannusha_Shaik.pdf">Resume</a>
       </nav>
     </header>
 
     <p class="lede rise d2">
-      Software engineer building systems end-to-end: API design, data modeling,
-      caching, realtime, deployment and monitoring. Fortune 500 internship at SKF.
-      Production search at 1,000+ QPS with &lt;10ms p95.
+      I take messy product data, put it in a schema, and turn it into a number a manager can use.
+      At <strong>SKF</strong> that meant factory audits becoming rows, scores, and trend views.
+      On my own time that meant a live YouTube lab: <strong>3,500 videos, 100 Indian creators</strong>,
+      score a draft before it publishes.
     </p>
 
+    <div class="proof rise d2">
+      <article><div class="n">3,500</div><div class="l">YouTube videos in the lab</div></article>
+      <article><div class="n">100</div><div class="l">Indian tech &amp; fashion creators</div></article>
+      <article><div class="n">8</div><div class="l">SQL dialects in GETYOQUERY</div></article>
+      <article><div class="n">SKF</div><div class="l">Fortune 500 plant data, live</div></article>
+    </div>
+
     <section class="rise d3">
+      <h2>Skills I get hired on</h2>
+      <div class="skills">
+        <div class="sk-row"><b>SQL</b><span>PostgreSQL, MySQL, SQLite, parameterized queries, 8-dialect generation, query history</span></div>
+        <div class="sk-row"><b>Python</b><span>pandas, scikit-learn, API collectors, feature tables, Streamlit</span></div>
+        <div class="sk-row"><b>BI / viz</b><span>Streamlit product dashboards, Power BI / SharePoint scorecards, Grafana</span></div>
+        <div class="sk-row"><b>Modeling</b><span>snapshot grain, creator/video keys, SharePoint operational models, rates not vanity totals</span></div>
+        <div class="sk-row"><b>Stats / ML</b><span>medians, engagement rates, outlier vs creator baseline, gradient boosting for view ranges</span></div>
+      </div>
+    </section>
+
+    <section class="rise d3">
+      <h2>The project to open first</h2>
+      <article class="feat">
+        <h3>Indian Creator Lab</h3>
+        <p class="meta">Python · pandas · scikit-learn · YouTube Data API · SQLite · Streamlit</p>
+        <p>
+          Recruiters keep asking for “a dashboard and a story.” This is that.
+          Upload a title and a cut (or a file). The app compares it to an Indian watchlist
+          and returns a view range, engagement, typical-vs-outlier, and the closest real videos.
+          Totals are stored as <em>snapshots</em>, so trending is a curve. Engagement is
+          (likes + comments) / views. Outlier is this video vs <em>that creator’s median</em> —
+          so a 10k channel and Technical Guruji are not ranked the same way.
+        </p>
+        <div class="feat-links">
+          <a href="https://know-stats.streamlit.app" target="_blank" rel="noopener">Live demo →</a>
+          <a href="https://github.com/bannushaxddd/indian-creator-lab" target="_blank" rel="noopener">Source</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="rise d4">
       <h2>Experience</h2>
       <div class="jobs">
         <article class="job">
           <h3><a class="in" href="https://www.skf.com" target="_blank" rel="noopener">SKF</a></h3>
-          <p class="role">Software intern · May 2026 – Aug 2026</p>
-          <p>
-            Production 5S Audit Management app on Power Platform. Digital audits,
-            photo evidence, scoring, and SharePoint-backed compliance views for factory teams.
-          </p>
+          <p class="role">Data Engineer Intern · Fortune 500 industrial · Bangalore · May 2026 – present</p>
+          <p>Paper 5S audits on a plant floor. I helped turn that into a production system whose output is data leadership actually uses.</p>
+          <ul>
+            <li>Modeled SharePoint-backed operational data on the SKF O365 tenant: drafts, zones, identity-aware write-back.</li>
+            <li>Structured capture across five 5S pillars so an audit is a row — scores, photos, actions — not a PDF in email.</li>
+            <li>Shipped score-card and compliance-trend views: per-pillar totals, pass/fail bar, weakest-pillar for plant leads.</li>
+            <li>11-screen Power Platform app in production with factory teams, not a sandbox.</li>
+          </ul>
         </article>
         <article class="job">
           <h3>Tata Group</h3>
-          <p class="role">GenAI Data Analytics simulation · 2024</p>
-          <p>
-            Modeled delinquency risk on structured financial datasets and wrote
-            executive-ready recommendations.
-          </p>
+          <p class="role">GenAI Data Analytics (Forage simulation) · 2024</p>
+          <p>Modeled delinquency risk on financial datasets. Wrote recommendations a stakeholder could act on. Labeled a simulation on purpose.</p>
         </article>
       </div>
     </section>
 
     <section class="rise d4">
-      <h2>Projects</h2>
+      <h2>Other work that belongs on a data desk</h2>
       <div class="projects">
         <article class="proj">
-          <h3><a class="in" href="https://nexora-1kjq.onrender.com" target="_blank" rel="noopener">Nexora</a></h3>
-          <a class="src" href="https://github.com/bannushaxddd/NEXORA" target="_blank" rel="noopener">GitHub</a>
-          <p>Production search at 1,000+ QPS, sub-10ms p95. Custom BM25, Redis cache, async REST.</p>
-        </article>
-        <article class="proj">
-          <h3><a class="in" href="https://syncout-x.onrender.com" target="_blank" rel="noopener">Syncout</a></h3>
-          <a class="src" href="https://github.com/bannushaxddd/SYNCOUT" target="_blank" rel="noopener">GitHub</a>
-          <p>Realtime collaborative editor for 100+ sessions, sub-50ms sync, live cursors, CI/CD.</p>
+          <h3><a class="in" href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">GETYOQUERY</a></h3>
+          <a class="src" href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">GitHub</a>
+          <p>English → SQL for eight dialects. Schema-aware prompts so the model cannot invent columns. PostgreSQL history, JWT, parameterized queries. This is SQL product work, not a chatbot demo.</p>
         </article>
         <article class="proj">
           <h3><a class="in" href="https://monitoring-app-9qo8.onrender.com" target="_blank" rel="noopener">Observability stack</a></h3>
           <a class="src" href="https://github.com/bannushaxddd/prometheus-grafana-stack" target="_blank" rel="noopener">GitHub</a>
-          <p>Prometheus, Grafana, Alertmanager, Loki. Five instrumented services on Render.</p>
+          <p>Prometheus, Grafana, Alertmanager, Loki. Dashboards as an operating surface: metrics, logs, alerts.</p>
         </article>
         <article class="proj">
-          <h3>Getyoquery</h3>
-          <a class="src" href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">GitHub</a>
-          <p>Natural language to SQL across eight dialects, with JWT auth and streaming generation.</p>
+          <h3><a class="in" href="https://nexora-1kjq.onrender.com" target="_blank" rel="noopener">NEXORA</a></h3>
+          <a class="src" href="https://github.com/bannushaxddd/NEXORA" target="_blank" rel="noopener">GitHub</a>
+          <p>Search + ranking (BM25, inverted index, Redis). Live analytics endpoints. Useful if you care how retrieval and caches show up in numbers.</p>
+        </article>
+        <article class="proj">
+          <h3><a class="in" href="https://github.com/bannushaxddd/order-frequency-case-study" target="_blank" rel="noopener">Order frequency case</a></h3>
+          <a class="src" href="https://github.com/bannushaxddd/order-frequency-case-study" target="_blank" rel="noopener">GitHub</a>
+          <p>Metric tree and a falsifiable experiment for +20% order frequency. How I write about a KPI.</p>
+        </article>
+        <article class="proj">
+          <h3><a class="in" href="https://github.com/bannushaxddd/food-delivery-competitive-analysis" target="_blank" rel="noopener">Food delivery analysis</a></h3>
+          <a class="src" href="https://github.com/bannushaxddd/food-delivery-competitive-analysis" target="_blank" rel="noopener">GitHub</a>
+          <p>Swiggy / Zomato / Zepto / ONDC on a speed-vs-selection matrix.</p>
         </article>
       </div>
+    </section>
+
+    <section class="rise d4">
+      <h2>How I treat numbers</h2>
+      <p class="lede" style="margin-top:0">
+        Rates and baselines over raw counts. Snapshots over a one-time scrape.
+        If a model can invent a column name, the product is unfinished.
+        A dashboard that does not change a decision is decoration.
+      </p>
     </section>
 
     <section class="rise d4">
       <h2>Education</h2>
       <article class="edu">
         <h3>B.Tech, Artificial Intelligence &amp; Machine Learning</h3>
-        <p class="where">PES College of Engineering, Bangalore · Expected 2027</p>
+        <p>PES College of Engineering, Bangalore · IBM Prompt Engineering · Tata GenAI Data Analytics</p>
       </article>
     </section>
 
@@ -356,7 +312,7 @@
       <h2>Contact</h2>
       <div class="contact">
         <a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a>
-        <p class="note">Looking for a Software Engineer role</p>
+        <p class="note">Open to Data Analyst and BI Analyst roles · Bangalore / hybrid / remote India</p>
       </div>
     </section>
   </main>
