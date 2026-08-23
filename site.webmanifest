@@ -1,0 +1,16 @@
+{
+  "name": "Bannusha Shaik",
+  "short_name": "Bannusha",
+  "description": "Software Engineer in Bangalore. Looking for a Software Engineer role.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#fcfcfc",
+  "theme_color": "#fcfcfc",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
