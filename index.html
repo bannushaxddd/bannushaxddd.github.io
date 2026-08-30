@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bannusha Shaik — Data Analyst</title>
-<meta name="description" content="Data Analyst in Bangalore. SKF (Fortune 500) data engineering intern. Built Indian Creator Lab — score a YouTube draft against 3,500 videos. SQL, Python, dashboards.">
+<meta name="description" content="Data Analyst in Bangalore. Data engineering intern at SKF. SQL, Python, and BI — data modeling, dashboards, and analysis that supports business decisions.">
 <meta name="author" content="Bannusha Shaik">
 <meta name="theme-color" content="#fcfcfc">
 <link rel="canonical" href="https://bannusha.com/">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_IN">
 <meta property="og:url" content="https://bannusha.com/">
 <meta property="og:title" content="Bannusha Shaik — Data Analyst">
-<meta property="og:description" content="SQL, Python, dashboards. SKF data intern. Live YouTube analytics product.">
+<meta property="og:description" content="Data Analyst in Bangalore. SQL, Python, and BI — data modeling, dashboards, and analysis that supports business decisions.">
 <meta property="og:image" content="https://bannusha.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="1200">
@@ -24,7 +24,7 @@
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bannusha Shaik — Data Analyst">
-<meta name="twitter:description" content="SQL, Python, dashboards. SKF data intern. Live YouTube analytics product.">
+<meta name="twitter:description" content="Data Analyst in Bangalore. SQL, Python, and BI — data modeling, dashboards, and analysis that supports business decisions.">
 <meta name="twitter:image" content="https://bannusha.com/og.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -96,16 +96,6 @@
   .lede { margin-top: 22px; color: var(--body); font-size: 14.5px; line-height: 1.5; }
   .lede strong { color: var(--ink); font-weight: 500; }
 
-  .proof {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
-    margin-top: 22px;
-  }
-  .proof article {
-    border: 1px solid var(--line); border-radius: 10px; padding: 12px 12px 10px;
-  }
-  .proof .n { font-size: 16px; font-weight: 600; letter-spacing: -0.03em; }
-  .proof .l { font-size: 11px; color: var(--mute); margin-top: 4px; line-height: 1.3; }
-
   section { margin-top: 40px; }
   h2 {
     font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
@@ -169,7 +159,6 @@
   }
   @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
   @media (max-width: 640px) {
-    .proof { grid-template-columns: 1fr 1fr; }
     .sk-row { grid-template-columns: 1fr; gap: 2px; }
   }
 </style>
@@ -194,42 +183,35 @@
     </header>
 
     <p class="lede rise d2">
-      I take messy product data, put it in a schema, and turn it into a number a manager can use.
-      At <strong>SKF</strong> that meant factory audits becoming rows, scores, and trend views.
-      On my own time that meant a live YouTube lab: <strong>3,500 videos, 100 Indian creators</strong>,
-      score a draft before it publishes.
+      Data analyst working across the full analytics workflow — data collection and cleaning,
+      SQL and data modeling, statistical analysis, and dashboarding. Currently a data engineering
+      intern at <strong>SKF</strong>, building the data models and reporting views behind plant
+      audit and compliance workflows. I focus on well-defined metrics, reliable data pipelines,
+      and analysis that is clear enough for stakeholders to act on.
     </p>
 
-    <div class="proof rise d2">
-      <article><div class="n">3,500</div><div class="l">YouTube videos in the lab</div></article>
-      <article><div class="n">100</div><div class="l">Indian tech &amp; fashion creators</div></article>
-      <article><div class="n">8</div><div class="l">SQL dialects in GETYOQUERY</div></article>
-      <article><div class="n">SKF</div><div class="l">Fortune 500 plant data, live</div></article>
-    </div>
-
     <section class="rise d3">
-      <h2>Skills I get hired on</h2>
+      <h2>Core skills</h2>
       <div class="skills">
-        <div class="sk-row"><b>SQL</b><span>PostgreSQL, MySQL, SQLite, parameterized queries, 8-dialect generation, query history</span></div>
-        <div class="sk-row"><b>Python</b><span>pandas, scikit-learn, API collectors, feature tables, Streamlit</span></div>
-        <div class="sk-row"><b>BI / viz</b><span>Streamlit product dashboards, Power BI / SharePoint scorecards, Grafana</span></div>
-        <div class="sk-row"><b>Modeling</b><span>snapshot grain, creator/video keys, SharePoint operational models, rates not vanity totals</span></div>
-        <div class="sk-row"><b>Stats / ML</b><span>medians, engagement rates, outlier vs creator baseline, gradient boosting for view ranges</span></div>
+        <div class="sk-row"><b>SQL</b><span>PostgreSQL, MySQL, SQLite — querying, parameterized queries, working across dialects</span></div>
+        <div class="sk-row"><b>Python</b><span>pandas, scikit-learn, API data collection, feature engineering, Streamlit</span></div>
+        <div class="sk-row"><b>BI / viz</b><span>Streamlit dashboards, Power BI and SharePoint scorecards, Grafana</span></div>
+        <div class="sk-row"><b>Data modeling</b><span>schema design, snapshot-based models, operational data models on SharePoint</span></div>
+        <div class="sk-row"><b>Stats / ML</b><span>descriptive statistics, engagement metrics, baseline-relative outlier detection, gradient boosting</span></div>
       </div>
     </section>
 
     <section class="rise d3">
-      <h2>The project to open first</h2>
+      <h2>Featured project</h2>
       <article class="feat">
         <h3>Indian Creator Lab</h3>
         <p class="meta">Python · pandas · scikit-learn · YouTube Data API · SQLite · Streamlit</p>
         <p>
-          Recruiters keep asking for “a dashboard and a story.” This is that.
-          Upload a title and a cut (or a file). The app compares it to an Indian watchlist
-          and returns a view range, engagement, typical-vs-outlier, and the closest real videos.
-          Totals are stored as <em>snapshots</em>, so trending is a curve. Engagement is
-          (likes + comments) / views. Outlier is this video vs <em>that creator’s median</em> —
-          so a 10k channel and Technical Guruji are not ranked the same way.
+          An end-to-end analytics application: automated data collection from the YouTube Data API,
+          a snapshot-based data model, and an interactive dashboard. It benchmarks a draft video
+          against a curated dataset and returns an estimated view range, engagement rate, and the
+          closest comparable videos. Performance is measured against each creator’s own median
+          rather than raw view counts, so channels of different sizes are evaluated fairly.
         </p>
         <div class="feat-links">
           <a href="https://know-stats.streamlit.app" target="_blank" rel="noopener">Live demo →</a>
@@ -244,29 +226,29 @@
         <article class="job">
           <h3><a class="in" href="https://www.skf.com" target="_blank" rel="noopener">SKF</a></h3>
           <p class="role">Data Engineer Intern · Fortune 500 industrial · Bangalore · May 2026 – present</p>
-          <p>Paper 5S audits on a plant floor. I helped turn that into a production system whose output is data leadership actually uses.</p>
+          <p>Replaced paper-based 5S factory audits with a production data system used by plant leadership for compliance reporting.</p>
           <ul>
             <li>Modeled SharePoint-backed operational data on the SKF O365 tenant: drafts, zones, identity-aware write-back.</li>
-            <li>Structured capture across five 5S pillars so an audit is a row — scores, photos, actions — not a PDF in email.</li>
-            <li>Shipped score-card and compliance-trend views: per-pillar totals, pass/fail bar, weakest-pillar for plant leads.</li>
-            <li>11-screen Power Platform app in production with factory teams, not a sandbox.</li>
+            <li>Structured audit capture across the five 5S pillars — scores, photo evidence, and corrective actions as queryable records.</li>
+            <li>Shipped scorecard and compliance-trend views: per-pillar totals, pass/fail rates, and weakest-pillar analysis for plant leads.</li>
+            <li>Delivered an 11-screen Power Platform app now in production use by factory teams.</li>
           </ul>
         </article>
         <article class="job">
           <h3>Tata Group</h3>
           <p class="role">GenAI Data Analytics (Forage simulation) · 2024</p>
-          <p>Modeled delinquency risk on financial datasets. Wrote recommendations a stakeholder could act on. Labeled a simulation on purpose.</p>
+          <p>Modeled delinquency risk on structured financial datasets and presented actionable recommendations for stakeholders.</p>
         </article>
       </div>
     </section>
 
     <section class="rise d4">
-      <h2>Other work that belongs on a data desk</h2>
+      <h2>Selected projects</h2>
       <div class="projects">
         <article class="proj">
           <h3><a class="in" href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">GETYOQUERY</a></h3>
           <a class="src" href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">GitHub</a>
-          <p>English → SQL for eight dialects. Schema-aware prompts so the model cannot invent columns. PostgreSQL history, JWT, parameterized queries. This is SQL product work, not a chatbot demo.</p>
+          <p>Natural language to SQL across eight dialects, with schema-aware generation to prevent invented columns, PostgreSQL-backed query history, and parameterized queries.</p>
         </article>
         <article class="proj">
           <h3><a class="in" href="https://monitoring-app-9qo8.onrender.com" target="_blank" rel="noopener">Observability stack</a></h3>
@@ -276,28 +258,19 @@
         <article class="proj">
           <h3><a class="in" href="https://nexora-1kjq.onrender.com" target="_blank" rel="noopener">NEXORA</a></h3>
           <a class="src" href="https://github.com/bannushaxddd/NEXORA" target="_blank" rel="noopener">GitHub</a>
-          <p>Search + ranking (BM25, inverted index, Redis). Live analytics endpoints. Useful if you care how retrieval and caches show up in numbers.</p>
+          <p>Search and ranking engine (BM25, inverted index, Redis caching) with live analytics endpoints for query performance.</p>
         </article>
         <article class="proj">
           <h3><a class="in" href="https://github.com/bannushaxddd/order-frequency-case-study" target="_blank" rel="noopener">Order frequency case</a></h3>
           <a class="src" href="https://github.com/bannushaxddd/order-frequency-case-study" target="_blank" rel="noopener">GitHub</a>
-          <p>Metric tree and a falsifiable experiment for +20% order frequency. How I write about a KPI.</p>
+          <p>Metric-tree breakdown and experiment design for improving order frequency — an example of structured KPI analysis.</p>
         </article>
         <article class="proj">
           <h3><a class="in" href="https://github.com/bannushaxddd/food-delivery-competitive-analysis" target="_blank" rel="noopener">Food delivery analysis</a></h3>
           <a class="src" href="https://github.com/bannushaxddd/food-delivery-competitive-analysis" target="_blank" rel="noopener">GitHub</a>
-          <p>Swiggy / Zomato / Zepto / ONDC on a speed-vs-selection matrix.</p>
+          <p>Competitive analysis of Swiggy, Zomato, Zepto, and ONDC across delivery speed and selection.</p>
         </article>
       </div>
-    </section>
-
-    <section class="rise d4">
-      <h2>How I treat numbers</h2>
-      <p class="lede" style="margin-top:0">
-        Rates and baselines over raw counts. Snapshots over a one-time scrape.
-        If a model can invent a column name, the product is unfinished.
-        A dashboard that does not change a decision is decoration.
-      </p>
     </section>
 
     <section class="rise d4">
