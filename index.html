@@ -158,6 +158,16 @@
     font-size: clamp(18px, 2.4vw, 22px);
     color: #d4d4d8;
   }
+  .portrait {
+    width: 148px;
+    height: 178px;
+    object-fit: cover;
+    object-position: center 12%;
+    border-radius: 16px;
+    border: 1px solid rgba(34, 211, 238, 0.45);
+    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.08), 0 16px 40px rgba(0, 0, 0, 0.4);
+    margin-bottom: 18px;
+  }
   .cta { display: flex; justify-content: center; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
@@ -369,6 +379,7 @@
   </nav>
 
   <header class="hero" id="top">
+    <img class="portrait" src="photo.jpg" alt="Bannusha Shaik" width="148" height="178">
     <div class="role-chip">Data Engineer <i class="blink"></i></div>
     <h1>Bannusha Shaik</h1>
     <p class="tagline">Building scalable data pipelines and turning raw data into tables people can query.</p>
