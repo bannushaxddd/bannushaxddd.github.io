@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bannusha Shaik — Data Analyst</title>
-<meta name="description" content="Data Analyst in Bangalore. Data engineering intern at SKF. SQL, Python, and BI — data modeling, dashboards, and analysis that supports business decisions.">
+<title>Bannusha Shaik — Data Engineer</title>
+<meta name="description" content="Data Engineer in Bangalore. AI and Machine Learning background. Pipelines, SQL, and data models — SKF intern, YouTube snapshot pipeline, schema-locked SQL.">
 <meta name="author" content="Bannusha Shaik">
 <meta name="theme-color" content="#fcfcfc">
 <link rel="canonical" href="https://bannusha.com/">
@@ -15,16 +15,16 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
 <meta property="og:url" content="https://bannusha.com/">
-<meta property="og:title" content="Bannusha Shaik — Data Analyst">
-<meta property="og:description" content="Data Analyst in Bangalore. SQL, Python, and BI — data modeling, dashboards, and analysis that supports business decisions.">
+<meta property="og:title" content="Bannusha Shaik — Data Engineer">
+<meta property="og:description" content="Pipelines, SQL, and data models. SKF intern. YouTube snapshot pipeline. Schema-locked SQL.">
 <meta property="og:image" content="https://bannusha.com/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="1200">
 <meta property="og:image:alt" content="Bannusha Shaik">
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bannusha Shaik — Data Analyst">
-<meta name="twitter:description" content="Data Analyst in Bangalore. SQL, Python, and BI — data modeling, dashboards, and analysis that supports business decisions.">
+<meta name="twitter:title" content="Bannusha Shaik — Data Engineer">
+<meta name="twitter:description" content="Pipelines, SQL, and data models. SKF intern. YouTube snapshot pipeline. Schema-locked SQL.">
 <meta name="twitter:image" content="https://bannusha.com/og.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,14 +38,14 @@
   "url": "https://bannusha.com",
   "email": "bannushashaik85@gmail.com",
   "telephone": "+918074671779",
-  "jobTitle": "Data Analyst",
+  "jobTitle": "Data Engineer",
   "worksFor": { "@type": "Organization", "name": "SKF" },
   "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN" },
   "sameAs": [
     "https://github.com/bannushaxddd",
     "https://www.linkedin.com/in/bannushashaik400"
   ],
-  "knowsAbout": ["SQL","Python","pandas","scikit-learn","Power BI","SharePoint","PostgreSQL","Data visualization","YouTube Data API","Streamlit"]
+  "knowsAbout": ["SQL","Python","ETL","Data modeling","PostgreSQL","APIs","pandas","Power BI","Docker","YouTube Data API"]
 }
 </script>
 <style>
@@ -81,7 +81,14 @@
     object-fit: cover; flex-shrink: 0; display: block;
   }
   h1 { font-size: 18px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; }
-  .loc { font-size: 13px; color: var(--mute); margin-top: 3px; }
+  .title {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+  .loc { font-size: 13px; color: var(--mute); margin-top: 2px; }
+  .rail {
+    margin-top: 14px; font-size: 12.5px; color: var(--body); line-height: 1.45;
+  }
 
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
   .tags a {
@@ -95,6 +102,16 @@
 
   .lede { margin-top: 22px; color: var(--body); font-size: 14.5px; line-height: 1.5; }
   .lede strong { color: var(--ink); font-weight: 500; }
+
+  .proof {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+    margin-top: 22px;
+  }
+  .proof article {
+    border: 1px solid var(--line); border-radius: 10px; padding: 12px 12px 10px;
+  }
+  .proof .n { font-size: 16px; font-weight: 600; letter-spacing: -0.03em; }
+  .proof .l { font-size: 11px; color: var(--mute); margin-top: 4px; line-height: 1.3; }
 
   section { margin-top: 40px; }
   h2 {
@@ -122,6 +139,10 @@
     border: 1px solid var(--line); border-radius: 12px; padding: 16px 16px 14px;
   }
   .feat .meta { font-size: 12px; color: var(--mute); margin-top: 2px; }
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.92em; color: var(--ink);
+  }
   .feat-links { display: flex; gap: 14px; margin-top: 10px; }
   .feat-links a {
     font-size: 13px; font-weight: 500; color: var(--ink); text-decoration: none;
@@ -159,6 +180,7 @@
   }
   @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
   @media (max-width: 640px) {
+    .proof { grid-template-columns: 1fr 1fr; }
     .sk-row { grid-template-columns: 1fr; gap: 2px; }
   }
 </style>
@@ -170,52 +192,56 @@
         <img class="avatar" src="photo.jpg" alt="Bannusha Shaik" width="72" height="72">
         <div>
           <h1>Bannusha Shaik</h1>
-          <p class="loc">Data Analyst · Bangalore</p>
+          <p class="title">Data Engineer</p>
+          <p class="loc">AI &amp; Machine Learning background · Bangalore</p>
         </div>
       </div>
       <nav class="tags" aria-label="Links">
-        <a class="hi" href="https://know-stats.streamlit.app" target="_blank" rel="noopener">Live dashboard</a>
+        <a class="hi" href="https://know-stats.streamlit.app" target="_blank" rel="noopener">Live pipeline</a>
         <a href="https://github.com/bannushaxddd" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">LinkedIn</a>
         <a href="mailto:bannushashaik85@gmail.com">Email</a>
-        <a href="resume.pdf" download="Bannusha_Shaik_Data_Analyst.pdf">Resume</a>
+        <a href="resume.pdf" download="Bannusha_Shaik_Data_Engineer.pdf">Resume</a>
       </nav>
+      <p class="rail">Python · SQL · ETL · Data modeling · PostgreSQL · APIs · Docker · Power BI</p>
     </header>
 
     <p class="lede rise d2">
-      Data analyst experienced across the full analytics workflow — collecting and cleaning data,
-      modeling it in SQL, and building dashboards that answer business questions. Currently a
-      data engineering intern at <strong>SKF</strong>, where I design the data models and reporting
-      views behind plant audit and compliance workflows. I care about well-defined metrics,
-      reliable pipelines, and analysis that stakeholders can act on without a follow-up meeting.
+      I build data pipelines, data applications, and analytics systems using Python, SQL, and modern data tools — with a foundation in Artificial Intelligence and Machine Learning.
+      The work is the path from a source system to a table someone can trust: collect, model, store, then serve.
     </p>
 
+    <div class="proof rise d2">
+      <article><div class="n">3,500</div><div class="l">videos snapshotted, not scraped once</div></article>
+      <article><div class="n">100</div><div class="l">creator keys in the model</div></article>
+      <article><div class="n">8</div><div class="l">SQL dialects, schema-locked</div></article>
+      <article><div class="n">SKF</div><div class="l">plant audits as rows, in production</div></article>
+    </div>
+
     <section class="rise d3">
-      <h2>Core skills</h2>
+      <h2>What I build with</h2>
       <div class="skills">
-        <div class="sk-row"><b>SQL</b><span>PostgreSQL, MySQL, SQLite — writing parameterized queries and working across dialects</span></div>
-        <div class="sk-row"><b>Python</b><span>pandas, scikit-learn, data collection from APIs, cleaning and feature engineering</span></div>
-        <div class="sk-row"><b>BI / viz</b><span>dashboards in Streamlit and Grafana, Power BI and SharePoint scorecards</span></div>
-        <div class="sk-row"><b>Data modeling</b><span>schema design, snapshot-based models for trend analysis, operational data models</span></div>
-        <div class="sk-row"><b>Stats / ML</b><span>descriptive statistics, metric design, outlier detection against baselines, gradient boosting</span></div>
+        <div class="sk-row"><b>Pipelines</b><span>API collectors, snapshot loads, idempotent keys, ETL from source to a table a query can trust</span></div>
+        <div class="sk-row"><b>SQL</b><span>PostgreSQL, MySQL, SQLite, joins, grain, parameterized queries, 8-dialect generation</span></div>
+        <div class="sk-row"><b>Modeling</b><span>creator / video keys, time-series snapshots, SharePoint operational models, rates over raw totals</span></div>
+        <div class="sk-row"><b>Python</b><span>pandas, API clients, feature tables, scikit-learn where the table needs a model on top</span></div>
+        <div class="sk-row"><b>Serve &amp; run</b><span>Streamlit, Power BI, Grafana, Docker, PostgreSQL, Redis</span></div>
       </div>
     </section>
 
     <section class="rise d3">
-      <h2>Featured project</h2>
+      <h2>Open this first</h2>
       <article class="feat">
         <h3>Indian Creator Lab</h3>
-        <p class="meta">Python · pandas · scikit-learn · YouTube Data API · SQLite · Streamlit</p>
+        <p class="meta">YouTube Data API · SQLite · snapshot tables · pandas · scikit-learn · Streamlit</p>
         <p>
-          An end-to-end analytics application covering the full workflow: automated data collection
-          from the YouTube Data API, a snapshot-based data model in SQLite, and an interactive
-          Streamlit dashboard. It benchmarks a draft video against a curated dataset and returns
-          an estimated view range, engagement rate, and the closest comparable videos. Performance
-          is measured against each creator’s own median rather than raw view counts, so channels
-          of different sizes are evaluated fairly.
+          A watchlist of 100 Indian creators was a moving target: view counts change, and a one-time scrape cannot show a trend.
+          I ingested the YouTube Data API into SQLite with a video key and a snapshot grain — views, likes, and comments captured over time, about 3,500 videos.
+          Engagement is (likes + comments) / views. Outlier is this video against that creator’s median, so a small channel is not ranked against a large one.
+          Streamlit is the serving layer: score a draft title and cut, return a view range, and show the nearest videos already in the table.
         </p>
         <div class="feat-links">
-          <a href="https://know-stats.streamlit.app" target="_blank" rel="noopener">Live demo →</a>
+          <a href="https://know-stats.streamlit.app" target="_blank" rel="noopener">Live app →</a>
           <a href="https://github.com/bannushaxddd/indian-creator-lab" target="_blank" rel="noopener">Source</a>
         </div>
       </article>
@@ -226,52 +252,58 @@
       <div class="jobs">
         <article class="job">
           <h3><a class="in" href="https://www.skf.com" target="_blank" rel="noopener">SKF</a></h3>
-          <p class="role">Data Engineer Intern · Fortune 500 manufacturer · Bangalore · May 2026 – present</p>
-          <p>Replaced paper-based 5S factory audits with a production data system used by plant leadership for compliance reporting.</p>
+          <p class="role">Data Engineer Intern · Fortune 500 industrial · Bangalore · May 2026 – present</p>
+          <p>Factory 5S audits lived on paper. The useful output had to be a row a plant lead could query, not a photo in a chat.</p>
           <ul>
-            <li>Designed the SharePoint data model behind audit records — drafts, plant zones, and identity-aware write-back — on SKF's Office 365 tenant.</li>
-            <li>Structured audit capture across the five 5S pillars — scores, photo evidence, and corrective actions as queryable records.</li>
-            <li>Shipped scorecard and compliance-trend views: per-pillar totals, pass/fail rates, and weakest-pillar analysis for plant leads.</li>
-            <li>Delivered an 11-screen Power Platform app now in production use by factory teams.</li>
+            <li>Modeled operational data on the SKF Office 365 tenant: audit drafts, zone lists, and identity-aware, zone-scoped write-back into SharePoint.</li>
+            <li>Defined the grain as one audit across five 5S pillars — scores, photo evidence, and actions — so compliance is a table, not a file in email.</li>
+            <li>Served score-card and compliance-trend views to plant leadership: per-pillar totals, pass/fail against a qualifying bar, weakest pillar called out.</li>
+            <li>Shipped an 11-screen Power Apps system in production with factory teams.</li>
           </ul>
         </article>
         <article class="job">
           <h3>Tata Group</h3>
-          <p class="role">GenAI Data Analytics (Forage simulation) · 2024</p>
-          <p>Analyzed delinquency risk on structured financial datasets and summarized the findings into recommendations a business stakeholder could act on.</p>
+          <p class="role">GenAI Data Analytics job simulation · 2024</p>
+          <p>Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take. Labeled a simulation on purpose.</p>
         </article>
       </div>
     </section>
 
     <section class="rise d4">
-      <h2>Selected projects</h2>
+      <h2>Data systems</h2>
       <div class="projects">
         <article class="proj">
           <h3><a class="in" href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">GETYOQUERY</a></h3>
           <a class="src" href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">GitHub</a>
-          <p>Natural-language-to-SQL tool supporting eight dialects. Generation is schema-aware so queries only reference real columns, with parameterized output and PostgreSQL-backed query history.</p>
+          <p>English in, SQL out, across eight dialects. The schema is a constraint, not a hint: paste <code>CREATE TABLE</code> and the generator may use only those names. Query history lands in PostgreSQL. Queries on the app side are parameterized. JWT on the API. Unconstrained text-to-SQL invents columns. This one is built not to.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="rise d4">
+      <h2>Platform</h2>
+      <div class="projects">
         <article class="proj">
           <h3><a class="in" href="https://monitoring-app-9qo8.onrender.com" target="_blank" rel="noopener">Observability stack</a></h3>
           <a class="src" href="https://github.com/bannushaxddd/prometheus-grafana-stack" target="_blank" rel="noopener">GitHub</a>
-          <p>Monitoring stack built with Prometheus, Grafana, Alertmanager, and Loki — dashboards, log aggregation, and alerting across five instrumented services.</p>
+          <p>Docker Compose stack a pipeline needs once it leaves a laptop: Prometheus metrics, Loki logs, Alertmanager routing, Grafana boards for system, app, and database. A demo API exposes custom <code>/metrics</code>. MySQL and Mongo exporters included.</p>
         </article>
         <article class="proj">
           <h3><a class="in" href="https://nexora-1kjq.onrender.com" target="_blank" rel="noopener">NEXORA</a></h3>
           <a class="src" href="https://github.com/bannushaxddd/NEXORA" target="_blank" rel="noopener">GitHub</a>
-          <p>Search and ranking engine using BM25 and an inverted index, with Redis caching and live analytics endpoints for query performance.</p>
-        </article>
-        <article class="proj">
-          <h3><a class="in" href="https://github.com/bannushaxddd/order-frequency-case-study" target="_blank" rel="noopener">Order frequency case study</a></h3>
-          <a class="src" href="https://github.com/bannushaxddd/order-frequency-case-study" target="_blank" rel="noopener">GitHub</a>
-          <p>Breaks an order-frequency growth target into a metric tree, identifies the highest-leverage driver, and proposes a testable experiment — structured KPI analysis in writing.</p>
-        </article>
-        <article class="proj">
-          <h3><a class="in" href="https://github.com/bannushaxddd/food-delivery-competitive-analysis" target="_blank" rel="noopener">Food delivery competitive analysis</a></h3>
-          <a class="src" href="https://github.com/bannushaxddd/food-delivery-competitive-analysis" target="_blank" rel="noopener">GitHub</a>
-          <p>Market analysis positioning Swiggy, Zomato, Zepto, and ONDC on delivery speed versus selection, with takeaways on where each player competes.</p>
+          <p>Search service with BM25 and an inverted index written from scratch, Redis in front of repeated queries, and a <code>/stats</code> endpoint so latency is a number, not a feeling. Cached reads under 2ms; uncached around 5ms in the repo’s own benchmarks.</p>
         </article>
       </div>
+    </section>
+
+    <section class="rise d4">
+      <h2>How I treat data</h2>
+      <p class="lede" style="margin-top:0">
+        Store snapshots, not a single scrape. Define grain before you write the query.
+        Prefer a rate against a baseline over a raw total.
+        If a generator can invent a column name, the data product is unfinished.
+        A view that does not change a decision is decoration.
+      </p>
     </section>
 
     <section class="rise d4">
@@ -279,7 +311,7 @@
       <article class="edu">
         <h3>B.Tech, Artificial Intelligence &amp; Machine Learning</h3>
         <p>PES College of Engineering, Bangalore · Expected 2027</p>
-        <p>Certifications: IBM Prompt Engineering · Tata GenAI Data Analytics (Forage)</p>
+        <p>IBM Prompt Engineering · Tata GenAI Data Analytics</p>
       </article>
     </section>
 
@@ -287,7 +319,7 @@
       <h2>Contact</h2>
       <div class="contact">
         <a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a>
-        <p class="note">Open to Data Analyst and BI Analyst roles · Bangalore, hybrid, or remote within India</p>
+        <p class="note">Open to Data Engineer roles · Bangalore / hybrid / remote India</p>
       </div>
     </section>
   </main>
