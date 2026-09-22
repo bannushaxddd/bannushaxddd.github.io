@@ -327,6 +327,75 @@
   .links a:hover { text-decoration: underline; }
   .wide { grid-column: 1 / -1; }
 
+  .role-card {
+    position: relative;
+    background: linear-gradient(180deg, #161b27 0%, #12151c 100%);
+    border: 1px solid rgba(34, 211, 238, 0.45);
+    border-radius: 18px;
+    padding: 26px 26px 22px;
+    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.06), 0 24px 60px rgba(0, 0, 0, 0.35);
+  }
+  .role-card.secondary {
+    margin-top: 14px;
+    border-color: var(--line);
+    background: var(--card);
+    box-shadow: none;
+    padding: 18px 22px;
+  }
+  .role-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .when {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    white-space: nowrap;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    background: var(--cyan-dim);
+    border-radius: 999px;
+    padding: 6px 10px;
+  }
+  .role-lede { color: #d4d4d8; font-size: 15.5px; margin-top: 14px; max-width: 760px; }
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .flow span {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--ink);
+    background: #0e1016;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 7px 10px;
+  }
+  .flow span.arr { background: none; border: 0; color: var(--cyan); padding: 0 2px; }
+  .exp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .exp-grid article {
+    background: #0e1016;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .exp-grid h3 {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .exp-grid p { color: var(--body); font-size: 13.5px; margin-top: 4px; }
+
   .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .skill {
     background: var(--card);
@@ -360,7 +429,8 @@
   @media (max-width: 800px) {
     nav { padding: 12px 16px; flex-wrap: wrap; }
     .nav-links { gap: 14px; flex-wrap: wrap; }
-    .about, .cards, .skill-grid { grid-template-columns: 1fr; }
+    .about, .cards, .skill-grid, .exp-grid { grid-template-columns: 1fr; }
+    .role-top { flex-direction: column; }
     .stats { grid-template-columns: repeat(2, 1fr); }
     .wide { grid-column: auto; }
   }
@@ -371,6 +441,7 @@
   <nav>
     <a class="logo" href="#top"><span>~/</span>bannusha<span>/portfolio</span></a>
     <div class="nav-links">
+      <a href="#experience">experience</a>
       <a href="#projects">projects</a>
       <a href="#stack">stack</a>
       <a href="#contact">contact</a>
@@ -384,7 +455,7 @@
     <h1>Bannusha Shaik</h1>
     <p class="tagline">Building scalable data pipelines and turning raw data into tables people can query.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="#projects">View projects</a>
+      <a class="btn btn-primary" href="#experience">Experience</a>
       <a class="btn btn-ghost" href="mailto:bannushashaik85@gmail.com">Get in touch</a>
     </div>
     <div class="stack" aria-label="Stack">
@@ -432,10 +503,72 @@
     </div>
   </div>
 
+  <section id="experience">
+    <div class="sec-head">
+      <i></i>
+      <h2>// experience<strong>The system a plant lead opens</strong></h2>
+    </div>
+    <article class="role-card">
+      <div class="role-top">
+        <div>
+          <div class="badge">CURRENT · IN PRODUCTION</div>
+          <h3>Data Engineer Intern, SKF</h3>
+          <p class="sub">Fortune 500 industrial · Bangalore</p>
+        </div>
+        <div class="when">May 2026 — Present</div>
+      </div>
+      <p class="role-lede">Factory 5S audits lived on paper, so compliance could not be trended. I modeled them as operational data: one audit is a row, drafts stay out of the trend, and a user can write only the zones their identity is allowed to touch. Plant leads read the score-card. Factory teams use the app.</p>
+      <div class="flow" aria-label="Data path">
+        <span>Paper audit</span><span class="arr">→</span>
+        <span>Structured capture</span><span class="arr">→</span>
+        <span>SharePoint model</span><span class="arr">→</span>
+        <span>Score-card</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>11</b><span>Screens in production</span></div>
+        <div class="stat"><b>5</b><span>Pillars in the grain</span></div>
+        <div class="stat"><b>1</b><span>Row per audit</span></div>
+        <div class="stat"><b>Live</b><span>Factory teams</span></div>
+      </div>
+      <div class="exp-grid">
+        <article>
+          <h3>Ingest</h3>
+          <p>Replaced a paper form with structured capture: scores, photo evidence, and actions, on the SKF Office 365 tenant.</p>
+        </article>
+        <article>
+          <h3>Model</h3>
+          <p>Grain is one audit across five 5S pillars. Drafts and submitted audits are different states. Only submitted rows enter the trend.</p>
+        </article>
+        <article>
+          <h3>Access</h3>
+          <p>Write-back is identity-aware and zone-scoped. A user updates the zones their role allows, not the whole plant list.</p>
+        </article>
+        <article>
+          <h3>Serve</h3>
+          <p>Score-card and compliance-trend views for plant leads: per-pillar totals, pass/fail against a qualifying bar, weakest pillar called out.</p>
+        </article>
+      </div>
+      <div class="chips">
+        <span>Data modeling</span><span>SharePoint</span><span>Power Apps</span><span>Power BI</span><span>Office 365</span>
+      </div>
+    </article>
+    <article class="role-card secondary">
+      <div class="role-top">
+        <div>
+          <div class="badge">SIMULATION</div>
+          <h3>GenAI Data Analytics, Tata Group</h3>
+          <p class="sub">Forage job simulation · not employment</p>
+        </div>
+        <div class="when">2024</div>
+      </div>
+      <p class="role-lede">Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take.</p>
+    </article>
+  </section>
+
   <section id="projects">
     <div class="sec-head">
       <i></i>
-      <h2>// projects<strong>Featured pipelines</strong></h2>
+      <h2>// projects<strong>Pipelines I built around the job</strong></h2>
     </div>
     <div class="cards">
       <article class="card">
@@ -489,27 +622,6 @@
         </div>
       </article>
 
-      <article class="card wide">
-        <div class="badge">IN PRODUCTION</div>
-        <h3>SKF plant audit warehouse</h3>
-        <p class="sub">Data Engineer Intern · Fortune 500 · Bangalore · May 2026 – present</p>
-        <p>Paper 5S audits became a row a plant lead can query. Drafts stay out of the trend. Write-back is limited to the zones that identity is allowed to touch.</p>
-        <ul class="feats">
-          <li>Source: paper audit, remodeled as structured submissions on the SKF Office 365 tenant</li>
-          <li>Grain: one audit across five 5S pillars — scores, photos, actions</li>
-          <li>Score-card is the consumer: per-pillar totals, pass/fail, weakest pillar</li>
-          <li>11-screen Power Apps system used by factory teams</li>
-        </ul>
-        <div class="stats">
-          <div class="stat"><b>11</b><span>Screens</span></div>
-          <div class="stat"><b>5</b><span>Pillars</span></div>
-          <div class="stat"><b>1</b><span>Fact grain</span></div>
-          <div class="stat"><b>Live</b><span>Factory teams</span></div>
-        </div>
-        <div class="chips">
-          <span>Data modeling</span><span>SharePoint</span><span>Power BI</span><span>Office 365</span>
-        </div>
-      </article>
     </div>
   </section>
 
