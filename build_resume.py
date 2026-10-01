@@ -129,14 +129,6 @@ def main():
     r = sub.add_run("Data Engineer")
     set_run_font(r, size=12)
 
-    blurb = header.cell(0, 0).add_paragraph()
-    blurb.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(blurb, before=1, after=1, line=200)
-    r = blurb.add_run(
-        "I build the path from a source to a table someone can trust: collect, model, then serve."
-    )
-    set_run_font(r, size=10)
-
     contact = header.cell(0, 0).add_paragraph()
     contact.alignment = WD_ALIGN_PARAGRAPH.CENTER
     set_spacing(contact, before=1, after=0, line=190)
@@ -157,6 +149,19 @@ def main():
     rule = doc.add_paragraph()
     set_spacing(rule, before=2, after=2, line=80)
     add_bottom_border(rule, "12", "000000")
+
+    heading(doc, "Summary")
+    sm = doc.add_paragraph()
+    set_spacing(sm, before=2, after=1, line=210)
+    r = sm.add_run(
+        "Data Engineer who would rather own the table than the chart on top of it. At SKF, a Fortune 500 "
+        "plant in Bangalore, paper 5S audits are now a production system: 11 screens, one row per audit "
+        "across five pillars, and write-back limited to the zones an identity is allowed to touch. "
+        "Plant leads read the score-card. On my own time I built Creator Lab, a snapshot pipeline of "
+        "100 Indian creators and about 3,500 videos, and GETYOQUERY, schema-locked SQL across 8 dialects. "
+        "Python, SQL, PostgreSQL, and ETL are the tools. Data Engineer is the role I want."
+    )
+    set_run_font(r, size=10.5)
 
     heading(doc, "Professional Experience")
     job_line(
