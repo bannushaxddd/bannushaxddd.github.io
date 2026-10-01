@@ -1,11 +1,11 @@
-"""One-page ATS Data Engineer resume. Calibri, single column, standard headings."""
+"""One-page Data Engineer resume. Photo header, summary under the title, education after skills."""
 from pathlib import Path
 
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING, WD_TAB_ALIGNMENT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Inches, Pt, RGBColor, Twips
+from docx.shared import Inches, Pt, RGBColor, Emu
 
 OUT = Path(__file__).resolve().parent / "Bannusha_Shaik_Data_Engineer.docx"
 
@@ -105,45 +105,58 @@ def main():
         s.left_margin = Inches(0.55)
         s.right_margin = Inches(0.55)
 
-    name = doc.add_paragraph()
-    name.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(name, before=0, after=2, line=220)
-    r = name.add_run("BANNUSHA SHAIK")
+    header = doc.add_table(rows=1, cols=2)
+    header.autofit = False
+    tbl = header._tbl
+    tblPr = tbl.tblPr if tbl.tblPr is not None else OxmlElement("w:tblPr")
+    borders = OxmlElement("w:tblBorders")
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        el = OxmlElement(f"w:{edge}")
+        el.set(qn("w:val"), "nil")
+        borders.append(el)
+    tblPr.append(borders)
+    header.columns[0].width = Inches(6.15)
+    header.columns[1].width = Inches(1.25)
+    left = header.cell(0, 0).paragraphs[0]
+    left.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    set_spacing(left, before=0, after=0, line=200)
+    r = left.add_run("BANNUSHA SHAIK")
     set_run_font(r, size=18, bold=True)
 
-    sub = doc.add_paragraph()
+    sub = header.cell(0, 0).add_paragraph()
     sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(sub, before=0, after=2, line=200)
-    r = sub.add_run("Data Engineer  |  Python  ·  SQL  ·  ETL  ·  Data Modeling  ·  PostgreSQL")
-    set_run_font(r, size=11)
+    set_spacing(sub, before=1, after=1, line=200)
+    r = sub.add_run("Data Engineer")
+    set_run_font(r, size=12)
 
-    contact = doc.add_paragraph()
+    blurb = header.cell(0, 0).add_paragraph()
+    blurb.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    set_spacing(blurb, before=1, after=1, line=200)
+    r = blurb.add_run(
+        "I build the path from a source to a table someone can trust: collect, model, then serve."
+    )
+    set_run_font(r, size=10)
+
+    contact = header.cell(0, 0).add_paragraph()
     contact.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(contact, before=0, after=0, line=200)
-    r = contact.add_run(
-        "Bangalore, India  ·  +91 8074671779  ·  bannushashaik85@gmail.com"
-    )
-    set_run_font(r, size=9.5)
-    contact2 = doc.add_paragraph()
-    contact2.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(contact2, before=0, after=6, line=200)
-    add_bottom_border(contact2, "12", "000000")
-    r = contact2.add_run(
-        "linkedin.com/in/bannushashaik400  ·  github.com/bannushaxddd  ·  bannusha.com"
-    )
-    set_run_font(r, size=9.5)
+    set_spacing(contact, before=1, after=0, line=190)
+    r = contact.add_run("Bangalore  |  +91 8074671779  |  bannushashaik85@gmail.com")
+    set_run_font(r, size=9)
+    links = header.cell(0, 0).add_paragraph()
+    links.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    set_spacing(links, before=0, after=0, line=190)
+    r = links.add_run("GitHub  |  LinkedIn  |  bannusha.com")
+    set_run_font(r, size=9)
 
-    heading(doc, "Summary")
-    sm = doc.add_paragraph()
-    set_spacing(sm, before=2, after=1, line=210)
-    r = sm.add_run(
-        "Data Engineer building ETL pipelines, operational data models, and the tables downstream "
-        "teams query. At SKF (Fortune 500), replaced paper factory audits with an 11-screen production "
-        "system: each audit is 1 queryable row across 5 pillars, with zone-scoped write-back and "
-        "score-card views plant leads use. Skills: Python, SQL, PostgreSQL, pandas, data modeling, "
-        "API ingestion, ETL, and Power BI. Seeking a Data Engineer role."
-    )
-    set_run_font(r, size=10.5)
+    photo_p = header.cell(0, 1).paragraphs[0]
+    photo_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    set_spacing(photo_p, before=0, after=0, line=200)
+    run = photo_p.add_run()
+    run.add_picture(str(Path(__file__).resolve().parent / "photo.jpg"), width=Inches(0.95), height=Inches(1.15))
+
+    rule = doc.add_paragraph()
+    set_spacing(rule, before=2, after=2, line=80)
+    add_bottom_border(rule, "12", "000000")
 
     heading(doc, "Professional Experience")
     job_line(
@@ -205,6 +218,12 @@ def main():
 
 
 
+    heading(doc, "Technical Skills")
+    skill_line(doc, "Data engineering: ", "ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality")
+    skill_line(doc, "SQL & databases: ", "SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries")
+    skill_line(doc, "Python: ", "Python, pandas, NumPy, API clients, scikit-learn")
+    skill_line(doc, "BI & tools: ", "Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Office 365")
+
     heading(doc, "Education")
     job_line(
         doc,
@@ -212,20 +231,11 @@ def main():
         "2023 – Expected 2027",
     )
     loc_line(doc, "Bangalore, India")
-    p = doc.add_paragraph()
-    set_spacing(p, before=2, after=0, line=220)
-    r = p.add_run("Certifications: ")
-    set_run_font(r, size=10.5, bold=True)
-    r2 = p.add_run(
-        "Generative AI: Prompt Engineering Basics, IBM  ·  GenAI Powered Data Analytics, Tata Group (Forage), 2024"
-    )
-    set_run_font(r2, size=10.5)
 
-    heading(doc, "Technical Skills")
-    skill_line(doc, "Data engineering: ", "ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality")
-    skill_line(doc, "SQL & databases: ", "SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries")
-    skill_line(doc, "Python: ", "Python, pandas, NumPy, API clients, scikit-learn")
-    skill_line(doc, "BI & tools: ", "Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Office 365")
+    heading(doc, "Certifications")
+    job_line(doc, "Machine Learning Specialization, Coursera", "")
+    loc_line(doc, "coursera.org/account/accomplishments/specialization/F97RXO11QI47")
+    skill_line(doc, "Also: ", "Generative AI: Prompt Engineering Basics, IBM  ·  GenAI Powered Data Analytics, Tata Group (Forage), 2024")
 
     doc.save(OUT)
     print("Wrote", OUT)
