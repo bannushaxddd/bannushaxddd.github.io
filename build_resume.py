@@ -24,13 +24,13 @@ def styles():
         "name": ParagraphStyle("name", fontName="CalB", fontSize=16, leading=19, alignment=TA_CENTER, textColor=INK, spaceAfter=2),
         "title": ParagraphStyle("title", fontName="Cal", fontSize=9.5, leading=12, alignment=TA_CENTER, textColor=INK, spaceBefore=1),
         "contact": ParagraphStyle("contact", fontName="Cal", fontSize=8.4, leading=11, alignment=TA_CENTER, textColor=INK, spaceBefore=1),
-        "sec": ParagraphStyle("sec", fontName="CalB", fontSize=10, leading=12, textColor=INK, spaceBefore=10, spaceAfter=2),
+        "sec": ParagraphStyle("sec", fontName="CalB", fontSize=10, leading=12, textColor=INK, spaceBefore=6, spaceAfter=1),
         "job": ParagraphStyle("job", fontName="CalB", fontSize=9.4, leading=11.5, textColor=INK),
         "date": ParagraphStyle("date", fontName="Cal", fontSize=9, leading=11.5, alignment=TA_RIGHT, textColor=INK),
         "tools": ParagraphStyle("tools", fontName="CalI", fontSize=8.3, leading=10.6, textColor=INK, spaceBefore=1),
-        "body": ParagraphStyle("body", fontName="Cal", fontSize=8.7, leading=11.4, textColor=INK, alignment=TA_JUSTIFY),
-        "bullet": ParagraphStyle("bullet", fontName="Cal", fontSize=8.7, leading=11.2, textColor=INK, leftIndent=11, spaceBefore=1),
-        "skill": ParagraphStyle("skill", fontName="Cal", fontSize=8.7, leading=11.4, textColor=INK),
+        "body": ParagraphStyle("body", fontName="Cal", fontSize=8.8, leading=11.2, textColor=INK, alignment=TA_JUSTIFY),
+        "bullet": ParagraphStyle("bullet", fontName="Cal", fontSize=8.8, leading=11.1, textColor=INK, leftIndent=11, spaceBefore=0.6),
+        "skill": ParagraphStyle("skill", fontName="Cal", fontSize=8.8, leading=11.2, textColor=INK),
     }
 
 
@@ -59,7 +59,7 @@ def row(s, left, right):
         ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
         ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 5),
+        ("TOPPADDING", (0, 0), (-1, -1), 4),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
     ]))
     return t
@@ -79,7 +79,7 @@ def main():
 
     story += section(s, "SUMMARY")
     story.append(Paragraph(
-        "Data Engineer for operational models, pipelines, and the tables a team can query. Fortune 500 intern at SKF, Bangalore: paper 5S audits are now an 11-screen Power Apps and SharePoint system factory teams use, with Power BI score-cards against a qualifying bar. Outside the plant: snapshot pipelines, schema-locked SQL, and a city warehouse still in progress. Seeking a Data Engineer role.",
+        "Data Engineer for operational models, pipelines, and the tables a team can query. Fortune 500 intern at SKF, Bangalore: paper 5S audits are now an 11-screen Power Apps and SharePoint system factory teams use, with Power BI score-cards that flag a result against a qualifying bar. Independently shipped a snapshot pipeline of 100 creators and about 3,500 videos, and an English-to-SQL service locked to the pasted schema. A city warehouse is in progress. Seeking a Data Engineer role.",
         s["body"],
     ))
 
@@ -89,9 +89,11 @@ def main():
     story.append(bullet(s, "Replaced paper 5S plant audits with an 11-screen Power Apps and SharePoint system. Factory teams use it for scores, photos, and actions, not files in email."))
     story.append(bullet(s, "Set the grain as one audit across five pillars. Write-back is identity-aware and zone-scoped, so a submitted audit is a row plant leads can review."))
     story.append(bullet(s, "Built the score-card and Power BI views: per-pillar totals, pass/fail against the qualifying bar, and the weakest pillar flagged for leadership."))
+    story.append(bullet(s, "Support daily and weekly reporting to plant operations: summarize issues and keep the capture rules aligned so the table stays accurate."))
+    story.append(bullet(s, "Run several workstreams at once — capture, modeling, score-cards, and user support — with written updates non-technical plant leads can use."))
 
     story.append(row(s, "GenAI Data Analytics Job Simulation, Tata Group (Forage)", "2024"))
-    story.append(bullet(s, "Worked delinquency risk on structured financial data and wrote the next action for a stakeholder. A job simulation, not employment."))
+    story.append(bullet(s, "Worked delinquency risk on structured financial datasets and wrote the next action a stakeholder could take, tied to the fields in the data. A job simulation, not employment."))
 
     story.append(row(s, "Technical Support, IEEE Student Branch, PES College of Engineering", "Aug 2023 – Sep 2024"))
     story.append(bullet(s, "College club. Setup and troubleshooting for technical sessions so the room was ready before the talk started."))
@@ -106,12 +108,12 @@ def main():
     story.append(row(s, "Schema-Locked SQL &nbsp;|&nbsp; English to SQL across 8 dialects", "github.com/bannushaxddd/GETYOQUERY"))
     story.append(Paragraph("Node.js · PostgreSQL · parameterized execution · JWT · 8 SQL dialects", s["tools"]))
     story.append(bullet(s, "English to SQL for PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, and DuckDB. A pasted CREATE TABLE is the allowlist, so generation cannot invent a column."))
-    story.append(bullet(s, "Query history is stored in PostgreSQL. Execution is parameterized, and the API sits behind JWT."))
+    story.append(bullet(s, "Query history is stored in PostgreSQL. Execution is parameterized, and the API sits behind JWT, so a generated statement cannot invent a column or concatenate input into SQL."))
 
     story.append(row(s, "Bengaluru Urban Warehouse &nbsp;|&nbsp; city feeds into one model", "In progress"))
     story.append(Paragraph("Python · PostgreSQL · PostGIS · weather, air, and mobility", s["tools"]))
     story.append(bullet(s, "Not shipped. Three public feeds — weather, air, and mobility — that do not share a schema, a clock, or a location. Each raw payload is kept."))
-    story.append(bullet(s, "Invalid rows go to a reject table. Ward, station, and date are dimensions. An unknown location is surrogate key −1."))
+    story.append(bullet(s, "Invalid rows go to a reject table with the rule that failed. Ward, station, and date are dimensions in PostgreSQL and PostGIS. An unknown location is surrogate key −1, not a dropped row."))
 
     story += section(s, "TECHNICAL SKILLS")
     story.append(Paragraph("<b>Data engineering:</b> ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality", s["skill"]))
@@ -128,8 +130,8 @@ def main():
         pagesize=letter,
         leftMargin=0.5 * inch,
         rightMargin=0.5 * inch,
-        topMargin=0.42 * inch,
-        bottomMargin=0.36 * inch,
+        topMargin=0.4 * inch,
+        bottomMargin=0.34 * inch,
         title="Bannusha Shaik — Data Engineer",
         author="Bannusha Shaik",
     )
