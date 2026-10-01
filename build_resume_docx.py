@@ -223,7 +223,7 @@ def main():
 
     section(doc, "PROFESSIONAL EXPERIENCE")
     pair(doc, [("text", "Data Engineer Intern, SKF (Fortune 500 Industrial)", None)], "May 2026 – Present | Bangalore")
-    tools(doc, "Data modeling · one row per audit · zone-scoped write-back · Power BI · SharePoint · Power Apps")
+    tools(doc, "SQL · data modeling · ETL · data pipelines · schema design · data quality · Power BI")
     bullet(doc, "Replaced paper 5S plant audits with an 11-screen Power Apps and SharePoint system. Factory teams use it for scores, photos, and actions, not files in email.")
     bullet(doc, "Set the grain as one audit across five pillars. Write-back is identity-aware and zone-scoped, so a submitted audit is a row plant leads can review.")
     bullet(doc, "Built the score-card and Power BI views: per-pillar totals, pass/fail against the qualifying bar, and the weakest pillar flagged for leadership.")
