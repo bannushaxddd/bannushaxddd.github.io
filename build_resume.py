@@ -140,9 +140,10 @@ def main():
         "Data Engineer building ETL pipelines, operational data models, and the tables downstream "
         "teams query. At SKF (Fortune 500), replaced paper factory audits with an 11-screen production "
         "system: each audit is 1 queryable row across 5 pillars, with zone-scoped write-back and "
-        "score-card views plant leads use. Projects: NammaPulse, a Bengaluru weather, air, and mobility "
-        "warehouse; Creator Lab, a snapshot pipeline of 100 creators and about 3,500 videos; PlantLine, "
-        "the production audit model. Skills: Python, SQL, PostgreSQL, pandas, data modeling, API ingestion, "
+        "score-card views plant leads use. Also supported technical sessions for the IEEE student branch "
+        "at PES, Aug 2023 to Sep 2024. Projects: NammaPulse, a Bengaluru weather, air, and mobility "
+        "warehouse, and Creator Lab, a snapshot pipeline of 100 creators and about 3,500 videos. "
+        "Skills: Python, SQL, PostgreSQL, pandas, data modeling, API ingestion, "
         "ETL, and Power BI. Seeking a Data Engineer role."
     )
     set_run_font(r, size=10.5)
@@ -186,11 +187,7 @@ def main():
         "A watchlist of 100 Indian creators and about 3,500 videos, snapshotted over time, so a draft title can be scored against a table instead of a one-time scrape.",
     )
 
-    job_line(doc, "PlantLine  |  Data modeling, SharePoint, Power Apps", "In production")
-    bullet(
-        doc,
-        "Paper 5S audits became a row a plant lead can query. Drafts stay out of the trend. Write-back is limited to the zones an identity is allowed to touch.",
-    )
+
 
     heading(doc, "Education")
     job_line(
