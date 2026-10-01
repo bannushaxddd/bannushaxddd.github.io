@@ -103,7 +103,7 @@ def main():
 
     story += section(s, "PROFESSIONAL EXPERIENCE")
     story.append(row(s, "Data Engineer Intern, SKF (Fortune 500 Industrial)", "May 2026 – Present | Bangalore"))
-    story.append(Paragraph("Microsoft 365 · SharePoint · Power Apps · Power BI · operational data models", s["tools"]))
+    story.append(Paragraph("Data modeling · one row per audit · zone-scoped write-back · Power BI · SharePoint · Power Apps", s["tools"]))
     story.append(bullet(s, "Replaced paper 5S plant audits with an 11-screen Power Apps and SharePoint system. Factory teams use it for scores, photos, and actions, not files in email."))
     story.append(bullet(s, "Set the grain as one audit across five pillars. Write-back is identity-aware and zone-scoped, so a submitted audit is a row plant leads can review."))
     story.append(bullet(s, "Built the score-card and Power BI views: per-pillar totals, pass/fail against the qualifying bar, and the weakest pillar flagged for leadership."))
