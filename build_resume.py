@@ -174,18 +174,21 @@ def main():
     )
 
     heading(doc, "Projects")
-    job_line(doc, "NammaPulse  |  Python, PostgreSQL, PostGIS", "In progress")
-    bullet(
-        doc,
-        "Bengaluru weather, air, and mobility feeds that do not share a schema, a clock, or a location. Raw payload kept, bad rows rejected, three marts served.",
-    )
-
     job_line(doc, "Creator Lab  |  Python, SQLite, YouTube Data API, Streamlit", "Live")
     loc_line(doc, "know-stats.streamlit.app  ·  github.com/bannushaxddd/indian-creator-lab")
-    bullet(
-        doc,
-        "A watchlist of 100 Indian creators and about 3,500 videos, snapshotted over time, so a draft title can be scored against a table instead of a one-time scrape.",
-    )
+    for t in [
+        "Built a YouTube Data API pipeline into SQLite for 100 Indian creators (50 tech, 50 fashion) and about 3,500 videos, stored as snapshots so views, likes, and comments are a time series rather than a one-time scrape.",
+        "Defined engagement as (likes + comments) / views and outlier as views versus that creator's own median, so a small channel is not ranked against a large one.",
+        "Shipped a public Streamlit app that scores a draft title and cut against that table and returns a view range plus the nearest videos already stored.",
+    ]:
+        bullet(doc, t)
+
+    job_line(doc, "NammaPulse  |  Python, PostgreSQL, PostGIS", "In progress")
+    for t in [
+        "Building a Bengaluru warehouse for weather, air, and mobility feeds that do not share a schema, a clock, or a location model.",
+        "Landing each pull as a raw payload, writing invalid rows to a reject table, and modeling ward, station, and date dimensions in PostgreSQL and PostGIS.",
+    ]:
+        bullet(doc, t)
 
 
 
