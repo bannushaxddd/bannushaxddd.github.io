@@ -21,16 +21,16 @@ RULE = HexColor("#222222")
 
 def styles():
     return {
-        "name": ParagraphStyle("name", fontName="CalB", fontSize=16, leading=18, alignment=TA_CENTER, textColor=INK),
-        "title": ParagraphStyle("title", fontName="Cal", fontSize=9.5, leading=12, alignment=TA_CENTER, textColor=INK),
-        "contact": ParagraphStyle("contact", fontName="Cal", fontSize=8.4, leading=11, alignment=TA_CENTER, textColor=INK),
-        "sec": ParagraphStyle("sec", fontName="CalB", fontSize=10, leading=12, textColor=INK, spaceBefore=7, spaceAfter=1),
+        "name": ParagraphStyle("name", fontName="CalB", fontSize=16, leading=19, alignment=TA_CENTER, textColor=INK, spaceAfter=2),
+        "title": ParagraphStyle("title", fontName="Cal", fontSize=9.5, leading=12, alignment=TA_CENTER, textColor=INK, spaceBefore=1),
+        "contact": ParagraphStyle("contact", fontName="Cal", fontSize=8.4, leading=11, alignment=TA_CENTER, textColor=INK, spaceBefore=1),
+        "sec": ParagraphStyle("sec", fontName="CalB", fontSize=10, leading=12, textColor=INK, spaceBefore=10, spaceAfter=2),
         "job": ParagraphStyle("job", fontName="CalB", fontSize=9.4, leading=11.5, textColor=INK),
         "date": ParagraphStyle("date", fontName="Cal", fontSize=9, leading=11.5, alignment=TA_RIGHT, textColor=INK),
-        "tools": ParagraphStyle("tools", fontName="CalI", fontSize=8.3, leading=10.4, textColor=INK),
-        "body": ParagraphStyle("body", fontName="Cal", fontSize=8.7, leading=10.8, textColor=INK, alignment=TA_JUSTIFY),
-        "bullet": ParagraphStyle("bullet", fontName="Cal", fontSize=8.7, leading=10.8, textColor=INK, leftIndent=10),
-        "skill": ParagraphStyle("skill", fontName="Cal", fontSize=8.7, leading=10.8, textColor=INK),
+        "tools": ParagraphStyle("tools", fontName="CalI", fontSize=8.3, leading=10.6, textColor=INK, spaceBefore=1),
+        "body": ParagraphStyle("body", fontName="Cal", fontSize=8.7, leading=11.4, textColor=INK, alignment=TA_JUSTIFY),
+        "bullet": ParagraphStyle("bullet", fontName="Cal", fontSize=8.7, leading=11.2, textColor=INK, leftIndent=11, spaceBefore=1),
+        "skill": ParagraphStyle("skill", fontName="Cal", fontSize=8.7, leading=11.4, textColor=INK),
     }
 
 
@@ -59,7 +59,7 @@ def row(s, left, right):
         ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
         ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 3),
+        ("TOPPADDING", (0, 0), (-1, -1), 5),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
     ]))
     return t
@@ -79,43 +79,45 @@ def main():
 
     story += section(s, "SUMMARY")
     story.append(Paragraph(
-        "Data Engineer for operational data models, pipelines, and the tables a team can query. Fortune 500 intern at SKF: Microsoft 365, SharePoint, Power Apps, and Power BI score-cards that flag a result against a qualifying bar. Built snapshot pipelines and schema-locked SQL so a number is defended against a baseline, not a raw total. Seeking a Data Engineer role.",
+        "Data Engineer for operational models, pipelines, and the tables a team can query. Fortune 500 intern at SKF, Bangalore: paper 5S audits are now an 11-screen Power Apps and SharePoint system factory teams use, with Power BI score-cards against a qualifying bar. Outside the plant: snapshot pipelines, schema-locked SQL, and a city warehouse still in progress. Seeking a Data Engineer role.",
         s["body"],
     ))
 
     story += section(s, "PROFESSIONAL EXPERIENCE")
     story.append(row(s, "Data Engineer Intern, SKF (Fortune 500 Industrial)", "May 2026 – Present | Bangalore"))
     story.append(Paragraph("Microsoft 365 · SharePoint · Power Apps · Power BI · operational data models", s["tools"]))
-    story.append(bullet(s, "Own the operational data routine on the SKF tenant: replaced paper 5S plant audits with an 11-screen Power Apps and SharePoint system factory teams use for scores, photos, and actions."))
-    story.append(bullet(s, "Modeled the grain as one audit across five pillars, with identity-aware, zone-scoped write-back, so every submitted audit is a row plant leads can review."))
-    story.append(bullet(s, "Served score-card and compliance-trend views: per-pillar totals, pass/fail against a qualifying bar, and the weakest pillar flagged for leadership."))
+    story.append(bullet(s, "Replaced paper 5S plant audits with an 11-screen Power Apps and SharePoint system. Factory teams use it for scores, photos, and actions, not files in email."))
+    story.append(bullet(s, "Set the grain as one audit across five pillars. Write-back is identity-aware and zone-scoped, so a submitted audit is a row plant leads can review."))
+    story.append(bullet(s, "Built the score-card and Power BI views: per-pillar totals, pass/fail against the qualifying bar, and the weakest pillar flagged for leadership."))
 
     story.append(row(s, "GenAI Data Analytics Job Simulation, Tata Group (Forage)", "2024"))
-    story.append(bullet(s, "Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take. A job simulation."))
+    story.append(bullet(s, "Worked delinquency risk on structured financial data and wrote the next action for a stakeholder. A job simulation, not employment."))
 
     story.append(row(s, "Technical Support, IEEE Student Branch, PES College of Engineering", "Aug 2023 – Sep 2024"))
-    story.append(bullet(s, "College club role. Supported technical sessions: setup, troubleshooting, and keeping events running."))
+    story.append(bullet(s, "College club. Setup and troubleshooting for technical sessions so the room was ready before the talk started."))
 
     story += section(s, "PROJECTS")
     story.append(row(s, "Creator Lab &nbsp;|&nbsp; snapshot pipeline and scoring table", "know-stats.streamlit.app"))
-    story.append(Paragraph("Python · SQLite · YouTube Data API · pandas · Streamlit · 100 creators · about 3,500 videos", s["tools"]))
-    story.append(bullet(s, "Ingested the YouTube Data API into SQLite. Grain is one snapshot of one video, so views, likes, and comments are a time series rather than a one-time scrape."))
-    story.append(bullet(s, "Defined engagement as (likes + comments) / views and outlier as views versus that creator's own median, so a small channel is not ranked against a large one."))
-    story.append(bullet(s, "Shipped a public app that scores a draft title and cut against the table and returns a view range plus the nearest videos already stored."))
+    story.append(Paragraph("Python · SQLite · YouTube Data API · pandas · scikit-learn · Streamlit · 100 creators · about 3,500 videos", s["tools"]))
+    story.append(bullet(s, "Pulled the YouTube Data API into SQLite. Grain is one snapshot of one video, across 100 Indian creators (50 tech, 50 fashion) and about 3,500 videos."))
+    story.append(bullet(s, "Engagement is (likes + comments) / views. Outlier is views divided by that creator's own median, so a small channel is not ranked against a large one."))
+    story.append(bullet(s, "Streamlit scores a draft and returns a view range plus the nearest videos already stored. pandas and scikit-learn sit on the feature table."))
 
-    story.append(row(s, "Schema-Locked SQL &nbsp;|&nbsp; English to SQL across 8 dialects", "GitHub"))
-    story.append(Paragraph("SQL · PostgreSQL · Node.js · parameterized queries · JWT", s["tools"]))
-    story.append(bullet(s, "Built an English-to-SQL service for PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, and DuckDB. A pasted CREATE TABLE is the allowlist, so generation cannot invent a column. Query history is stored in PostgreSQL."))
+    story.append(row(s, "Schema-Locked SQL &nbsp;|&nbsp; English to SQL across 8 dialects", "github.com/bannushaxddd/GETYOQUERY"))
+    story.append(Paragraph("Node.js · PostgreSQL · parameterized execution · JWT · 8 SQL dialects", s["tools"]))
+    story.append(bullet(s, "English to SQL for PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, and DuckDB. A pasted CREATE TABLE is the allowlist, so generation cannot invent a column."))
+    story.append(bullet(s, "Query history is stored in PostgreSQL. Execution is parameterized, and the API sits behind JWT."))
 
     story.append(row(s, "Bengaluru Urban Warehouse &nbsp;|&nbsp; city feeds into one model", "In progress"))
     story.append(Paragraph("Python · PostgreSQL · PostGIS · weather, air, and mobility", s["tools"]))
-    story.append(bullet(s, "Designing a warehouse for three public city feeds that do not share a schema, a clock, or a location. Each pull lands untouched. Invalid rows go to a reject table. Ward, station, and date are dimensions. An unknown location is surrogate key −1."))
+    story.append(bullet(s, "Not shipped. Three public feeds — weather, air, and mobility — that do not share a schema, a clock, or a location. Each raw payload is kept."))
+    story.append(bullet(s, "Invalid rows go to a reject table. Ward, station, and date are dimensions. An unknown location is surrogate key −1."))
 
     story += section(s, "TECHNICAL SKILLS")
     story.append(Paragraph("<b>Data engineering:</b> ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality", s["skill"]))
     story.append(Paragraph("<b>SQL &amp; databases:</b> SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries", s["skill"]))
     story.append(Paragraph("<b>Python:</b> pandas, NumPy, API clients, scikit-learn", s["skill"]))
-    story.append(Paragraph("<b>Tools:</b> Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Microsoft 365", s["skill"]))
+    story.append(Paragraph("<b>Serve &amp; plant:</b> Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Microsoft 365", s["skill"]))
 
     story += section(s, "EDUCATION &amp; CERTIFICATIONS")
     story.append(row(s, "B.Tech, Artificial Intelligence &amp; Machine Learning, PES College of Engineering", "2023 – Expected 2027"))
@@ -126,8 +128,8 @@ def main():
         pagesize=letter,
         leftMargin=0.5 * inch,
         rightMargin=0.5 * inch,
-        topMargin=0.38 * inch,
-        bottomMargin=0.32 * inch,
+        topMargin=0.42 * inch,
+        bottomMargin=0.36 * inch,
         title="Bannusha Shaik — Data Engineer",
         author="Bannusha Shaik",
     )
