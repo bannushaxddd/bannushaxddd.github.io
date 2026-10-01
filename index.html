@@ -4,204 +4,267 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bannusha Shaik — Data Engineer</title>
-<meta name="description" content="Data Engineer in Bangalore. ETL, SQL, PostgreSQL, data modeling. SKF intern. Python pipelines.">
+<meta name="description" content="Bannusha Shaik is a Data Engineer in Bangalore. Pipelines, warehouses, and the applications that sit on them.">
 <meta name="author" content="Bannusha Shaik">
-<meta name="theme-color" content="#f4f1ea">
+<meta name="theme-color" content="#111111">
+<meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://bannusha.com/">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://bannusha.com/">
 <meta property="og:title" content="Bannusha Shaik — Data Engineer">
-<meta property="og:description" content="Data Engineer. ETL, SQL, PostgreSQL, data modeling. Bangalore.">
+<meta property="og:description" content="Data Engineer. Pipelines, warehouses, and the applications that sit on them.">
 <meta property="og:image" content="https://bannusha.com/og.jpg">
+<meta property="og:url" content="https://bannusha.com/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bannusha Shaik — Data Engineer">
-<meta name="twitter:description" content="Data Engineer. ETL, SQL, PostgreSQL, data modeling. Bangalore.">
-<meta name="twitter:image" content="https://bannusha.com/og.jpg">
+<meta name="twitter:description" content="Data Engineer. Pipelines, warehouses, and the applications that sit on them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f7f4ee;
-    --ink: #1c1a17;
-    --body: #3a342c;
-    --rule: #1c1a17;
-    --mute: #6d655c;
-    --link: #1a4f8b;
+    --bg: #111111;
+    --bg-2: #191919;
+    --ink: #f4f4f5;
+    --body: rgba(244,244,245,0.78);
+    --mute: rgba(244,244,245,0.52);
+    --line: rgba(244,244,245,0.14);
+    --cyan: #5ee7f0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: #e7e1d6;
+    background: var(--bg);
     color: var(--ink);
-    font-family: "Source Sans 3", Calibri, sans-serif;
-    font-size: 16px;
-    line-height: 1.45;
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
   }
-  .sheet {
-    max-width: 820px;
-    margin: 28px auto 48px;
-    background: var(--paper);
-    padding: 42px 48px 48px;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 18px 40px rgba(40, 30, 16, 0.08);
+  a { color: inherit; }
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 36px;
+    background: rgba(17,17,17,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
   }
-  header { text-align: center; padding-bottom: 10px; border-bottom: 1.5px solid var(--rule); }
-  .portrait {
-    width: 84px; height: 84px; object-fit: cover; object-position: center 12%;
-    border-radius: 50%; display: block; margin: 0 auto 10px;
+  .mark {
+    font-weight: 600; letter-spacing: -0.04em; font-size: 18px;
+    text-decoration: none;
   }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a {
+    color: var(--mute); text-decoration: none; font-size: 14px; font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  .intro {
+    min-height: 86vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 7vw 72px;
+  }
+  .kicker { color: var(--cyan); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; }
   h1 {
-    font-family: "Source Serif 4", Georgia, serif;
-    font-size: 32px; font-weight: 650; letter-spacing: 0.04em;
+    font-size: clamp(56px, 9vw, 128px);
+    font-weight: 500; letter-spacing: -0.055em; line-height: 0.92;
+    margin-top: 14px;
   }
-  .role { margin-top: 4px; font-weight: 600; font-size: 15px; }
-  .contact { margin-top: 6px; font-size: 13.5px; color: var(--body); }
-  .contact a { color: var(--link); text-decoration: none; }
-  .contact a:hover { text-decoration: underline; }
-  nav { margin-top: 8px; font-size: 13px; }
-  nav a { color: var(--mute); text-decoration: none; margin: 0 8px; }
-  nav a:hover { color: var(--ink); }
-  section { margin-top: 18px; }
-  h2 {
-    font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 2px; margin-bottom: 8px;
+  .roleline {
+    margin-top: 22px;
+    font-size: clamp(22px, 3vw, 40px);
+    font-weight: 500; letter-spacing: -0.03em; color: var(--body);
   }
-  .summary { font-size: 14.5px; color: var(--body); }
-  .job { margin-top: 11px; }
-  .job-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
-  .job h3 { font-size: 15.5px; font-weight: 700; }
-  .when { font-size: 13.5px; white-space: nowrap; }
-  .org { font-size: 13.5px; font-style: italic; color: var(--body); }
-  ul { margin: 4px 0 0 18px; }
-  li { font-size: 14.5px; color: var(--body); margin: 2px 0; }
-  .skills p { font-size: 14.5px; margin: 3px 0; color: var(--body); }
-  .skills b { color: var(--ink); }
-  .edu-top { display: flex; justify-content: space-between; gap: 12px; }
-  .edu-top h3 { font-size: 15.5px; }
+  .roleline span { color: var(--ink); }
+  .scroll {
+    margin-top: 48px; color: var(--mute); text-decoration: none; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 88px 7vw;
+    border-top: 1px solid var(--line);
+  }
+  .project.alt { direction: rtl; }
+  .project.alt > * { direction: ltr; }
+  .idx {
+    display: flex; align-items: center; gap: 14px;
+    color: var(--mute); font-size: 13px; letter-spacing: 0.14em;
+  }
+  .idx i { display: block; width: 48px; height: 2px; background: var(--cyan); }
+  .project h2 {
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 500; letter-spacing: -0.04em; line-height: 1.05;
+    margin-top: 14px;
+  }
+  .project p { color: var(--body); margin-top: 16px; max-width: 460px; font-size: 18px; }
+  .meta { margin-top: 14px; color: var(--mute); font-size: 13px; letter-spacing: 0.04em; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 22px; padding: 12px 16px;
+    border: 1px solid var(--line); border-radius: 999px;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+  }
+  .btn:hover { border-color: var(--cyan); color: var(--cyan); }
+  .frame {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    min-height: 320px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .frame::after {
+    content: "";
+    position: absolute; inset: auto -20% -30% 30%;
+    height: 180px;
+    background: radial-gradient(circle, rgba(94,231,240,0.16), transparent 70%);
+    pointer-events: none;
+  }
+  .frame .label { color: var(--cyan); font-size: 11px; letter-spacing: 0.16em; }
+  .path { margin-top: 22px; display: grid; gap: 8px; }
+  .path span {
+    display: block; font-size: 14px; color: var(--body);
+    border-left: 2px solid var(--cyan); padding-left: 12px;
+  }
+  .stats { display: flex; gap: 18px; margin-top: 26px; }
+  .stats b { display: block; font-size: 28px; letter-spacing: -0.04em; font-weight: 500; }
+  .stats span { color: var(--mute); font-size: 12px; }
+
+  .about {
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px;
+    padding: 96px 7vw; border-top: 1px solid var(--line); align-items: center;
+  }
+  .about h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 500; letter-spacing: -0.045em; }
+  .about p { color: var(--body); margin-top: 16px; font-size: 18px; max-width: 560px; }
+  .about strong { color: var(--ink); font-weight: 600; }
+  .about img {
+    width: min(100%, 380px); aspect-ratio: 3/4; object-fit: cover; object-position: center 12%;
+    border-radius: 18px; justify-self: end;
+  }
   footer {
-    margin-top: 22px; padding-top: 8px; border-top: 1px solid var(--rule);
-    text-align: center; font-size: 13px; color: var(--mute);
+    padding: 28px 7vw 40px; color: var(--mute); font-size: 13px;
+    border-top: 1px solid var(--line);
   }
-  footer a { color: var(--link); }
-  @media (max-width: 700px) {
-    .sheet { margin: 0; padding: 28px 18px 36px; }
-    .job-top, .edu-top { flex-direction: column; gap: 0; }
-    .when { white-space: normal; }
-    h1 { font-size: 26px; }
+  @media (max-width: 800px) {
+    nav { padding: 14px 16px; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: 13px; }
+    .intro { padding: 0 20px 48px; min-height: 78vh; }
+    .project, .about { grid-template-columns: 1fr; padding: 56px 20px; gap: 24px; }
+    .project.alt { direction: ltr; }
+    .about img { justify-self: start; width: 100%; max-width: 320px; }
+    .frame { min-height: 220px; }
   }
 </style>
 </head>
 <body>
-<main class="sheet">
-  <header>
-    <img class="portrait" src="photo.jpg" alt="Bannusha Shaik" width="84" height="84">
-    <h1>BANNUSHA SHAIK</h1>
-    <p class="role">Data Engineer | Python · SQL · ETL · Data Modeling · PostgreSQL</p>
-    <p class="contact">
-      <a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a>
-      · +91 8074671779 · Bangalore, India<br>
-      <a href="https://linkedin.com/in/bannushashaik400">LinkedIn</a>
-      · <a href="https://github.com/bannushaxddd">GitHub</a>
-      · <a href="https://bannusha.com">bannusha.com</a>
-    </p>
-    <nav>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
-      <a href="resume.pdf" download="Bannusha_Shaik_Data_Engineer.pdf">Resume</a>
-    </nav>
-  </header>
+<nav>
+  <a class="mark" href="#intro">BS</a>
+  <div class="nav-links">
+    <a href="#project-1">Projects</a>
+    <a href="#details">Details</a>
+    <a href="resume.pdf">Resume</a>
+    <a href="mailto:bannushashaik85@gmail.com">Contact</a>
+  </div>
+</nav>
 
-  <section id="summary">
-    <h2>SUMMARY</h2>
-    <p class="summary">Data Engineer building ETL pipelines, operational data models, and the tables downstream teams query. At SKF (Fortune 500), replaced paper factory audits with an 11-screen production system: each audit is 1 queryable row across 5 pillars, with zone-scoped write-back and score-card views plant leads use. Independently shipped a YouTube ingestion pipeline (100 creators, about 3,500 videos) and a schema-locked SQL generator across 8 dialects with PostgreSQL query history.</p>
-  </section>
+<header class="intro" id="intro">
+  <p class="kicker">Bangalore</p>
+  <h1>Bannusha<br>Shaik</h1>
+  <p class="roleline"><span>Data Engineer</span></p>
+  <a class="scroll" href="#project-1">Scroll to projects</a>
+</header>
 
-  <section id="experience">
-    <h2>PROFESSIONAL EXPERIENCE</h2>
-    <article class="job">
-      <div class="job-top">
-        <h3>Data Engineer Intern</h3>
-        <span class="when">May 2026 – Present | Bangalore</span>
-      </div>
-      <p class="org">SKF (Fortune 500 Industrial Technology)</p>
-      <ul>
-        <li>Replaced paper 5S factory audits with an 11-screen production Power Apps system on the SKF Office 365 tenant; factory teams now capture scores, photo evidence, and actions as structured records instead of paper forms.</li>
-        <li>Modeled audit drafts and zone lists with identity-aware, zone-scoped write-back into SharePoint, so each submitted audit is 1 queryable row rather than a file in email.</li>
-        <li>Defined the grain as 1 audit across 5 pillars and served score-card views to plant leads: per-pillar totals, pass/fail against a qualifying bar, and the weakest pillar on every audit.</li>
-      </ul>
-    </article>
-    <article class="job">
-      <div class="job-top">
-        <h3>GenAI Data Analytics Job Simulation</h3>
-        <span class="when">2024</span>
-      </div>
-      <p class="org">Tata Group (Forage) · simulation, not employment</p>
-      <ul>
-        <li>Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take.</li>
-      </ul>
-    </article>
-  </section>
-
-  <section id="projects">
-    <h2>PROJECTS</h2>
-    <article class="job">
-      <div class="job-top">
-        <h3>Indian Creator Lab</h3>
-        <span class="when">Python · SQL · SQLite</span>
-      </div>
-      <p class="org"><a href="https://know-stats.streamlit.app">know-stats.streamlit.app</a> · <a href="https://github.com/bannushaxddd/indian-creator-lab">github.com/bannushaxddd/indian-creator-lab</a></p>
-      <ul>
-        <li>Ingested the YouTube Data API into SQLite for 100 Indian creators and about 3,500 videos, keyed by video and collect time, so views, likes, and comments are a time series rather than a one-time scrape.</li>
-        <li>Defined engagement as (likes + comments) / views and outlier as views versus that creator's median, then served a Streamlit app that scores a draft against the table.</li>
-      </ul>
-    </article>
-    <article class="job">
-      <div class="job-top">
-        <h3>GETYOQUERY</h3>
-        <span class="when">SQL · PostgreSQL</span>
-      </div>
-      <p class="org"><a href="https://github.com/bannushaxddd/GETYOQUERY">github.com/bannushaxddd/GETYOQUERY</a></p>
-      <ul>
-        <li>Built an English-to-SQL service across 8 dialects (PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, DuckDB). CREATE TABLE is a hard allowlist, query history is stored in PostgreSQL, and execution is parameterized so generated SQL cannot invent column names.</li>
-      </ul>
-    </article>
-    <article class="job">
-      <div class="job-top">
-        <h3>Pipeline observability</h3>
-        <span class="when">Docker · Prometheus · Grafana</span>
-      </div>
-      <p class="org"><a href="https://github.com/bannushaxddd/prometheus-grafana-stack">github.com/bannushaxddd/prometheus-grafana-stack</a></p>
-      <ul>
-        <li>Stood up a Docker Compose metrics and log stack: Prometheus, Loki, Alertmanager, database exporters, custom application /metrics, and Grafana boards for system, app, and database health.</li>
-      </ul>
-    </article>
-  </section>
-
-  <section id="education">
-    <h2>EDUCATION</h2>
-    <div class="edu-top">
-      <h3>B.Tech, Artificial Intelligence &amp; Machine Learning</h3>
-      <span class="when">2023 – Expected 2027</span>
+<section class="project" id="project-1">
+  <div>
+    <div class="idx"><i></i> 01</div>
+    <h2>NammaPulse</h2>
+    <p>Real-time Bengaluru intelligence from weather, air, and mobility feeds that do not share a clock, a schema, or a location model.</p>
+    <p class="meta">Python · PostgreSQL · PostGIS · Docker · FastAPI</p>
+    <a class="btn" href="https://github.com/bannushaxddd">Build spec →</a>
+  </div>
+  <div class="frame">
+    <div class="label">BENGALURU / DATA PATH</div>
+    <div class="path">
+      <span>01 Sources — IMD weather, CPCB air, BMTC / metro GTFS</span>
+      <span>02 Retain — raw payload kept intact</span>
+      <span>03 Model — facts and dimensions in PostgreSQL</span>
+      <span>04 Serve — one city view, freshness in seconds</span>
     </div>
-    <p class="org">PES College of Engineering, Bangalore</p>
-    <p class="summary" style="margin-top:6px"><b>Certifications:</b> Generative AI: Prompt Engineering Basics, IBM · GenAI Powered Data Analytics, Tata Group (Forage), 2024</p>
-  </section>
+    <div class="stats">
+      <div><b>3</b><span>Feeds</span></div>
+      <div><b>1</b><span>City model</span></div>
+      <div><b>0</b><span>Invented numbers</span></div>
+    </div>
+  </div>
+</section>
 
-  <section class="skills" id="skills">
-    <h2>TECHNICAL SKILLS</h2>
-    <p><b>Data engineering:</b> ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality</p>
-    <p><b>SQL &amp; databases:</b> SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries</p>
-    <p><b>Python:</b> Python, pandas, NumPy, API clients, scikit-learn</p>
-    <p><b>BI &amp; tools:</b> Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Office 365</p>
-  </section>
+<section class="project alt" id="project-2">
+  <div>
+    <div class="idx"><i></i> 02</div>
+    <h2>Creator Lab</h2>
+    <p>A watchlist of 100 Indian creators, snapshotted over time, so a draft title can be scored against a table instead of a guess.</p>
+    <p class="meta">YouTube Data API · SQLite · Python · Streamlit · Live</p>
+    <a class="btn" href="https://know-stats.streamlit.app">View product →</a>
+  </div>
+  <div class="frame">
+    <div class="label">SNAPSHOT GRAIN</div>
+    <div class="path">
+      <span>API collect, keyed by video and time</span>
+      <span>Engagement = (likes + comments) / views</span>
+      <span>Outlier = this video vs that creator's median</span>
+      <span>Streamlit is the serving layer</span>
+    </div>
+    <div class="stats">
+      <div><b>3,500</b><span>Videos</span></div>
+      <div><b>100</b><span>Creators</span></div>
+      <div><b>Live</b><span>App</span></div>
+    </div>
+  </div>
+</section>
 
-  <footer>Open to Data Engineer roles · Bangalore / hybrid / remote India · <a href="resume.pdf">Download resume</a></footer>
-</main>
+<section class="project" id="project-3">
+  <div>
+    <div class="idx"><i></i> 03</div>
+    <h2>PlantLine</h2>
+    <p>The SKF 5S audit, modeled as a warehouse: paper in, one row per audit, a score-card a plant lead can defend.</p>
+    <p class="meta">In production · Fortune 500 · May 2026 – present</p>
+    <a class="btn" href="#details">The role →</a>
+  </div>
+  <div class="frame">
+    <div class="label">SKF / OPERATIONAL MODEL</div>
+    <div class="path">
+      <span>Paper audit → structured capture</span>
+      <span>Grain: 1 audit, 5 pillars</span>
+      <span>Drafts stay out of the trend</span>
+      <span>Write-back limited to allowed zones</span>
+    </div>
+    <div class="stats">
+      <div><b>11</b><span>Screens</span></div>
+      <div><b>5</b><span>Pillars</span></div>
+      <div><b>Live</b><span>Factory teams</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="details">
+  <div>
+    <p class="kicker">About</p>
+    <h2>Hi there</h2>
+    <p>I am a <strong>Data Engineer</strong>. I build the path from a source system to a table someone can query, then the small application that makes that table usable.</p>
+    <p>I am a Data Engineer Intern at <strong>SKF</strong>, a Fortune 500 plant in Bangalore. Factory audits used to live on paper. They are rows now.</p>
+    <p>The degree is Artificial Intelligence and Machine Learning, expected 2027. The job is data engineering.</p>
+    <a class="btn" href="mailto:bannushashaik85@gmail.com">Send a message →</a>
+  </div>
+  <img src="photo.jpg" alt="Bannusha Shaik" width="380" height="506">
+</section>
+
+<footer>© 2026 Bannusha Shaik · Bangalore · <a href="resume.pdf">Resume</a></footer>
 </body>
 </html>
