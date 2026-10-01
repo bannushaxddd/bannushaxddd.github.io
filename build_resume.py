@@ -111,16 +111,17 @@ def main():
 
     story += section(s, "Summary")
     story.append(Paragraph(
-        "Data Engineer who would rather own the table than the chart on top of it. At SKF, a Fortune 500 plant in Bangalore, paper factory audits are a production system plant leads use: 11 screens, one row per audit across five pillars, and a score-card. Independently built Creator Lab, a snapshot pipeline of 100 creators and about 3,500 videos, and GETYOQUERY, schema-locked SQL across 8 dialects.",
+        "Data Engineer for operational data models, pipelines, and the tables a team can query. Fortune 500 intern at SKF: Microsoft 365 (Excel, SharePoint, Forms), Power Apps, Power BI, and daily data-accuracy routines that flag a score against a qualifying bar. Built snapshot pipelines and schema-locked SQL so a number is defended against a baseline, not a raw total. Seeking a Data Engineer role.",
         s["body"],
     ))
 
     story += section(s, "Professional Experience")
     story.append(job_row(s, "SKF — Data Engineer Intern", "May 2026 – Present"))
-    story.append(Paragraph("Fortune 500 industrial &nbsp;·&nbsp; Bangalore", s["sub"]))
-    story.append(bullet(s, "Replaced paper 5S factory audits with an 11-screen production Power Apps system on the SKF Office 365 tenant. Factory teams capture scores, photo evidence, and actions as structured records."))
-    story.append(bullet(s, "Modeled audit drafts and zone lists with identity-aware, zone-scoped write-back into SharePoint, so each submitted audit is 1 queryable row rather than a file in email."))
-    story.append(bullet(s, "Defined the grain as 1 audit across 5 pillars and served score-card views to plant leads: per-pillar totals, pass/fail against a qualifying bar, and the weakest pillar."))
+    story.append(Paragraph("Fortune 500 industrial · Bangalore · Microsoft 365, SharePoint, Power Apps, Power BI", s["sub"]))
+    story.append(bullet(s, "Own the operational data routine on the SKF tenant: replaced paper 5S plant audits with an 11-screen Power Apps and SharePoint system factory teams use for scores, photos, and actions."))
+    story.append(bullet(s, "Modeled the grain as one audit across five pillars, with identity-aware, zone-scoped write-back, so every submitted audit is a row plant leads can review."))
+    story.append(bullet(s, "Served score-card and compliance-trend views: per-pillar totals, pass/fail against a qualifying bar, and the weakest pillar flagged for leadership."))
+    story.append(bullet(s, "Support daily and weekly reporting to plant operations: summarize issues and keep the capture rules aligned so the table stays accurate."))
 
     story.append(job_row(s, "Tata Group (Forage) — GenAI Data Analytics", "2024"))
     story.append(bullet(s, "Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take. A job simulation."))
@@ -135,10 +136,11 @@ def main():
     story.append(bullet(s, "Defined engagement as (likes + comments) / views and outlier as views versus that creator's own median, then shipped a public app that scores a draft and returns a view range plus the nearest videos in the table."))
     story.append(Paragraph("<b>Technologies:</b> Python, SQLite, YouTube Data API, pandas, Streamlit", s["tech"]))
 
-    story.append(job_row(s, "GETYOQUERY", "GitHub"))
-    story.append(Paragraph("github.com/bannushaxddd/GETYOQUERY", s["sub"]))
-    story.append(bullet(s, "Built an English-to-SQL service across 8 dialects. A pasted CREATE TABLE is the allowlist, so generation may use only those names. Query history is stored in PostgreSQL and execution is parameterized."))
-    story.append(Paragraph("<b>Technologies:</b> SQL, PostgreSQL, Node.js, JWT", s["tech"]))
+    story.append(job_row(s, "Bengaluru Civic Warehouse", "In progress"))
+    story.append(Paragraph("Weather, air, and mobility · one city model", s["sub"]))
+    story.append(bullet(s, "Designing a warehouse for three public city feeds that do not share a schema, a clock, or a location. Each pull lands as an untouched raw payload before any cleaning."))
+    story.append(bullet(s, "Invalid rows go to a reject table with the rule that failed. Ward, station, and date are dimensions in PostgreSQL and PostGIS. An unknown location is surrogate key −1, not a dropped row."))
+    story.append(Paragraph("<b>Technologies:</b> Python, PostgreSQL, PostGIS", s["tech"]))
 
     story += section(s, "Technical Skills")
     story.append(Paragraph("<b>Data engineering:</b> ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality", s["tech"]))
