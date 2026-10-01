@@ -155,11 +155,10 @@ def main():
     set_spacing(sm, before=2, after=1, line=210)
     r = sm.add_run(
         "Data Engineer who would rather own the table than the chart on top of it. At SKF, a Fortune 500 "
-        "plant in Bangalore, paper 5S audits are now a production system: 11 screens, one row per audit "
-        "across five pillars, and write-back limited to the zones an identity is allowed to touch. "
-        "Plant leads read the score-card. On my own time I built Creator Lab, a snapshot pipeline of "
-        "100 Indian creators and about 3,500 videos, and GETYOQUERY, schema-locked SQL across 8 dialects. "
-        "Python, SQL, PostgreSQL, and ETL are the tools. Data Engineer is the role I want."
+        "plant in Bangalore, paper 5S audits are a production system: 11 screens, one row per audit across "
+        "five pillars, write-back limited to allowed zones, and a score-card plant leads use. Independently "
+        "built Creator Lab, a snapshot pipeline of 100 creators and about 3,500 videos, and GETYOQUERY, "
+        "schema-locked SQL across 8 dialects. Python, SQL, PostgreSQL, ETL. Seeking a Data Engineer role."
     )
     set_run_font(r, size=10.5)
 
