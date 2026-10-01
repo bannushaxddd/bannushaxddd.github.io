@@ -245,11 +245,14 @@
   }
   footer a { color: var(--cyan); }
 
+  .band, .details { scroll-margin-top: 24px; }
   .band {
     background: #f7f7f7;
     color: #101010;
-    margin-left: calc(var(--outer) + var(--rail));
-    padding: 88px 64px 96px;
+    margin-left: calc(var(--outer) + var(--rail) + 36px);
+    margin-right: 36px;
+    padding: 88px 48px 96px;
+    overflow: visible;
   }
   .band h2 {
     font-family: "Sofia Sans Condensed", system-ui, sans-serif;
@@ -263,8 +266,9 @@
   .work-item { display: flex; gap: 48px; align-items: stretch; }
   .work-item.flip { flex-direction: row-reverse; }
   .frame {
-    flex: 1;
-    min-height: 300px;
+    flex: 1 1 42%;
+    min-width: 0;
+    min-height: 280px;
     border: 7px solid #101010;
     box-shadow: 12px 12px 0 #d2d2d2;
     background: #101010;
@@ -273,13 +277,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
   }
   .frame b {
     font-family: "Sofia Sans Condensed", system-ui, sans-serif;
-    font-size: 64px;
+    font-size: clamp(42px, 5vw, 64px);
     font-weight: 700;
     line-height: 0.9;
     letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
   }
   .frame span {
     font-family: "Spline Sans Mono", ui-monospace, monospace;
@@ -291,7 +297,7 @@
   .work-copy { flex: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
   .num {
     font-family: "Sofia Sans Condensed", system-ui, sans-serif;
-    font-size: 88px;
+    font-size: clamp(56px, 7vw, 88px);
     font-weight: 600;
     line-height: 0.8;
     color: transparent;
@@ -404,13 +410,10 @@
       background: color-mix(in lab, var(--bg) 88%, transparent);
       backdrop-filter: blur(12px);
     }
-    .rail { justify-content: flex-start; gap: 8px; }
-    .rail-links {
-      writing-mode: horizontal-tb; transform: none; flex-direction: row; margin-left: auto;
-    }
-    .rail-links a { padding: 8px 8px; font-size: 13px; }
-    .rail-links a::after { display: none; }
-    .rail-icons, .menu-btn { display: none; }
+    .rail { justify-content: space-between; }
+    .rail-links, .rail-icons { display: none; }
+    .menu-btn { display: grid; place-items: center; }
+    .band, .details { scroll-margin-top: 72px; }
     .intro, .details, footer { padding-left: 20px; padding-right: 20px; }
     .band { margin-left: 0; padding: 56px 20px 64px; }
     .work-item, .work-item.flip { flex-direction: column; }
@@ -444,7 +447,7 @@
   <nav class="rail-links" aria-label="Primary">
     <a href="#experience">Experience</a>
     <a href="#work">Projects</a>
-    <a href="#certs">Certifications</a>
+    <a href="#certs">Certs</a>
     <a href="#details">Details</a>
     <a href="resume.pdf">Resume</a>
     <a href="mailto:bannushashaik85@gmail.com">Contact</a>
@@ -458,6 +461,7 @@
 <nav class="sheet" id="sheet" data-open="false">
   <a href="#experience">Experience</a>
   <a href="#work">Projects</a>
+  <a href="#certs">Certs</a>
   <a href="#details">Details</a>
   <a href="resume.pdf">Resume</a>
   <a href="mailto:bannushashaik85@gmail.com">Contact</a>
@@ -469,7 +473,7 @@
       <p class="name" id="intro-title">Bannusha Shaik</p>
       <h1 class="role"><span class="role-word">Data Engineer</span></h1>
     </div>
-    <a class="scroll-cue" href="#work" aria-label="Scroll to projects"></a>
+    <a class="scroll-cue" href="#experience" aria-label="Scroll to experience"></a>
   </section>
 
   <section class="band" id="experience">
