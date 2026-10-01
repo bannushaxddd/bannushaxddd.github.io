@@ -100,10 +100,10 @@ def main():
     for s in doc.sections:
         s.page_width = Inches(8.5)
         s.page_height = Inches(11)
-        s.top_margin = Inches(0.38)
-        s.bottom_margin = Inches(0.28)
-        s.left_margin = Inches(0.55)
-        s.right_margin = Inches(0.55)
+        s.top_margin = Inches(0.35)
+        s.bottom_margin = Inches(0.22)
+        s.left_margin = Inches(0.5)
+        s.right_margin = Inches(0.5)
 
     header = doc.add_table(rows=1, cols=2)
     header.autofit = False
