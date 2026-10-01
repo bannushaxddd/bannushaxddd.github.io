@@ -153,7 +153,6 @@ def main():
         "Data Engineer Intern, SKF (Fortune 500 Industrial Technology)",
         "May 2026 – Present  |  Bangalore",
     )
-    loc_line(doc, "Microsoft Power Platform  ·  SharePoint  ·  Office 365  ·  Power BI  ·  factory operations")
     for t in [
         "Replaced paper 5S factory audits with an 11-screen production Power Apps system on the SKF Office 365 tenant; factory teams now capture scores, photo evidence, and actions as structured records instead of paper forms.",
         "Modeled audit drafts and zone lists with identity-aware, zone-scoped write-back into SharePoint, so each submitted audit is 1 queryable row rather than a file in email.",
@@ -164,7 +163,7 @@ def main():
     job_line(doc, "GenAI Data Analytics Job Simulation, Tata Group (Forage)", "2024")
     bullet(
         doc,
-        "Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take. Simulation, labeled as such.",
+        "Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take.",
     )
 
     heading(doc, "Projects")
