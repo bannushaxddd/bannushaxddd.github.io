@@ -61,22 +61,21 @@
   .skip:focus { clip: auto; height: auto; width: auto; }
 
   .rail {
-    position: sticky; top: 0; z-index: 40;
-    width: 100%; height: 64px;
-    display: flex; flex-direction: row; align-items: center; justify-content: space-between;
-    padding: 0 20px;
-    background: color-mix(in lab, var(--bg) 92%, transparent);
-    backdrop-filter: blur(12px);
+    position: fixed; z-index: 40;
+    top: var(--outer); left: var(--outer); bottom: var(--outer);
+    width: var(--rail);
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
   }
   .mark { width: 42px; height: 42px; color: var(--ink); position: relative; }
   .mark svg { width: 42px; height: 42px; }
   .mark .hi { fill: var(--cyan); opacity: 0; }
   .mark:hover .hi, .mark:focus-visible .hi { opacity: 1; }
   .rail-links {
-    display: flex; flex-direction: row; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: flex-end;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    writing-mode: vertical-rl; transform: rotate(180deg);
   }
   .rail-links a {
-    padding: 8px 10px; font-size: 0.92rem; font-weight: 500;
+    padding: 14px 10px; font-size: 0.95rem; font-weight: 500;
     color: var(--body); position: relative; line-height: 1;
   }
   .rail-links a::after {
@@ -86,7 +85,7 @@
   }
   .rail-links a:hover { color: var(--ink); }
   .rail-links a:hover::after { transform: scaleY(1); transform-origin: top; }
-  .rail-icons { display: none; }
+  .rail-icons { display: flex; flex-direction: column; gap: 2px; }
   .rail-icons a {
     width: 40px; height: 40px; display: grid; place-items: center; color: var(--mute);
   }
@@ -119,7 +118,7 @@
   .intro {
     min-height: 100vh; min-height: 100dvh;
     display: flex; align-items: center; justify-content: center;
-    padding: 48px 24px 72px;
+    padding: 80px 8vw 80px calc(var(--outer) + var(--rail) + 48px);
   }
   .intro-inner { width: min(100%, 980px); }
   .name {
@@ -222,7 +221,7 @@
 
   .details {
     display: flex; align-items: center; justify-content: center;
-    padding: 72px 24px 64px;
+    padding: 100px 8vw 80px calc(var(--outer) + var(--rail) + 48px);
   }
   .details-grid {
     width: min(100%, var(--max));
@@ -241,18 +240,16 @@
   .portrait { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 12%; }
 
   footer {
-    padding: 28px 24px 40px;
+    padding: 28px 8vw 40px calc(var(--outer) + var(--rail) + 48px);
     text-align: center; color: var(--mute); font-size: 0.875rem;
   }
   footer a { color: var(--cyan); }
 
-  .band, .details { scroll-margin-top: 24px; }
   .band {
     background: #f7f7f7;
     color: #101010;
-    margin: 0;
-    padding: 64px 24px 72px;
-    overflow: visible;
+    margin-left: calc(var(--outer) + var(--rail));
+    padding: 88px 64px 96px;
   }
   .band h2 {
     font-family: "Sofia Sans Condensed", system-ui, sans-serif;
@@ -263,30 +260,26 @@
     margin: 0 0 64px;
   }
   .work-list { display: flex; flex-direction: column; gap: 72px; }
-  .work-item { display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch; }
+  .work-item { display: flex; gap: 48px; align-items: stretch; }
   .work-item.flip { flex-direction: row-reverse; }
   .frame {
-    flex: 1 1 280px;
-    max-width: 100%;
-    min-width: 0;
-    min-height: 280px;
+    flex: 1;
+    min-height: 300px;
     border: 7px solid #101010;
-    box-shadow: 8px 8px 0 #d2d2d2;
+    box-shadow: 12px 12px 0 #d2d2d2;
     background: #101010;
     color: #f7f7f7;
     padding: 28px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden;
   }
   .frame b {
     font-family: "Sofia Sans Condensed", system-ui, sans-serif;
-    font-size: clamp(42px, 5vw, 64px);
+    font-size: 64px;
     font-weight: 700;
     line-height: 0.9;
     letter-spacing: -0.03em;
-    overflow-wrap: anywhere;
   }
   .frame span {
     font-family: "Spline Sans Mono", ui-monospace, monospace;
@@ -295,10 +288,10 @@
     text-transform: uppercase;
     color: #d2d2d2;
   }
-  .work-copy { flex: 1 1 280px; max-width: 100%; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .work-copy { flex: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
   .num {
     font-family: "Sofia Sans Condensed", system-ui, sans-serif;
-    font-size: clamp(56px, 7vw, 88px);
+    font-size: 88px;
     font-weight: 600;
     line-height: 0.8;
     color: transparent;
@@ -403,12 +396,27 @@
     100% { transform: translateY(8px); opacity: 0; }
   }
 
-  @media (max-width: 820px) {
-    .rail-links { display: none; }
-    .menu-btn { display: grid; place-items: center; }
+  @media (max-width: 900px) {
+    :root { --outer: 20px; }
+    .rail {
+      position: sticky; top: 0; left: 0; bottom: auto; width: 100%; height: 56px;
+      flex-direction: row; padding: 0 8px 0 16px;
+      background: color-mix(in lab, var(--bg) 88%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .rail { justify-content: flex-start; gap: 8px; }
+    .rail-links {
+      writing-mode: horizontal-tb; transform: none; flex-direction: row; margin-left: auto;
+    }
+    .rail-links a { padding: 8px 8px; font-size: 13px; }
+    .rail-links a::after { display: none; }
+    .rail-icons, .menu-btn { display: none; }
+    .intro, .details, footer { padding-left: 20px; padding-right: 20px; }
+    .band { margin-left: 0; padding: 56px 20px 64px; }
     .work-item, .work-item.flip { flex-direction: column; }
-    .frame { min-height: 160px; flex-basis: 100%; }
-    .band h2 { font-size: 48px; }
+    .num { font-size: 64px; }
+    .frame { min-height: 180px; }
+    .frame b { font-size: 42px; }
     .intro { min-height: calc(100dvh - 56px); }
     .name { letter-spacing: 0.14em; font-size: 0.82rem; }
     .role { font-size: clamp(2.4rem, 12vw, 3.4rem); flex-wrap: wrap; }
@@ -436,7 +444,7 @@
   <nav class="rail-links" aria-label="Primary">
     <a href="#experience">Experience</a>
     <a href="#work">Projects</a>
-    <a href="#certs">Certs</a>
+    <a href="#certs">Certifications</a>
     <a href="#details">Details</a>
     <a href="resume.pdf">Resume</a>
     <a href="mailto:bannushashaik85@gmail.com">Contact</a>
@@ -450,7 +458,6 @@
 <nav class="sheet" id="sheet" data-open="false">
   <a href="#experience">Experience</a>
   <a href="#work">Projects</a>
-  <a href="#certs">Certs</a>
   <a href="#details">Details</a>
   <a href="resume.pdf">Resume</a>
   <a href="mailto:bannushashaik85@gmail.com">Contact</a>
@@ -462,7 +469,7 @@
       <p class="name" id="intro-title">Bannusha Shaik</p>
       <h1 class="role"><span class="role-word">Data Engineer</span></h1>
     </div>
-    <a class="scroll-cue" href="#experience" aria-label="Scroll to experience"></a>
+    <a class="scroll-cue" href="#work" aria-label="Scroll to projects"></a>
   </section>
 
   <section class="band" id="experience">
@@ -477,7 +484,7 @@
         <div class="work-copy">
           <div class="num">01</div>
           <h3>Data Engineer Intern</h3>
-          <p>Paper 5S audits became a production system: 11 screens, one row per audit across five pillars. Drafts stay out of the trend. Write-back is limited to the zones an identity is allowed to touch. Plant leads read the score-card.</p>
+          <p>Paper 5S audits became a production system: 11 screens, one row per audit across five pillars. Drafts stay out of the trend. Write-back is limited to the zones an identity is allowed to touch.</p>
           <div class="tags"><span>Data modeling</span><span>SharePoint</span><span>Power Apps</span></div>
         </div>
       </article>
@@ -503,7 +510,7 @@
         <div class="work-copy">
           <div class="num">03</div>
           <h3>Technical Support</h3>
-          <p>College club role in the IEEE student branch. Supported technical sessions: setup, troubleshooting, and keeping events running for speakers and attendees.</p>
+          <p>College club role in the IEEE student branch. Supported technical sessions: setup, troubleshooting, and keeping events running.</p>
           <div class="tags"><span>IEEE</span><span>PES</span><span>Events</span></div>
         </div>
       </article>
