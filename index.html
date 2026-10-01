@@ -21,250 +21,453 @@
 <meta name="twitter:description" content="Data Engineer. Pipelines, warehouses, and the applications that sit on them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #111111;
-    --bg-2: #191919;
-    --ink: #f4f4f5;
-    --body: rgba(244,244,245,0.78);
-    --mute: rgba(244,244,245,0.52);
-    --line: rgba(244,244,245,0.14);
-    --cyan: #5ee7f0;
+    --bg: oklch(17.76% 0 0);
+    --bg-raised: oklch(21.78% 0 0);
+    --ink: oklch(100% 0 0);
+    --body: color-mix(in lab, white 80%, transparent);
+    --mute: color-mix(in lab, white 60%, transparent);
+    --cyan: oklch(84.42% 0.19 202.24);
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --outer: 64px;
+    --rail: 48px;
+    --max: 1096px;
+    --font: Manrope, system-ui, sans-serif;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; }
   html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
-    color: var(--ink);
-    font-family: Inter, system-ui, sans-serif;
-    font-size: 17px;
-    line-height: 1.55;
+    color: var(--body);
+    font-family: var(--font);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    min-height: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
-  a { color: inherit; }
-  nav {
-    position: sticky; top: 0; z-index: 10;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 36px;
-    background: rgba(17,17,17,0.9);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid transparent;
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; }
+  ::selection { background: var(--cyan); color: #000; }
+  :focus { outline: none; }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+  .skip {
+    position: absolute; left: 16px; top: 16px; z-index: 80;
+    padding: 8px 14px; background: var(--cyan); color: #111;
+    clip: rect(0 0 0 0); height: 1px; width: 1px; overflow: hidden;
   }
-  .mark {
-    font-weight: 600; letter-spacing: -0.04em; font-size: 18px;
-    text-decoration: none;
+  .skip:focus { clip: auto; height: auto; width: auto; }
+
+  .rail {
+    position: fixed; z-index: 40;
+    top: var(--outer); left: var(--outer); bottom: var(--outer);
+    width: var(--rail);
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
   }
-  .nav-links { display: flex; gap: 26px; }
-  .nav-links a {
-    color: var(--mute); text-decoration: none; font-size: 14px; font-weight: 500;
+  .mark { width: 42px; height: 42px; color: var(--ink); position: relative; }
+  .mark svg { width: 42px; height: 42px; }
+  .mark .hi { fill: var(--cyan); opacity: 0; }
+  .mark:hover .hi, .mark:focus-visible .hi { opacity: 1; }
+  .rail-links {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    writing-mode: vertical-rl; transform: rotate(180deg);
   }
-  .nav-links a:hover { color: var(--ink); }
+  .rail-links a {
+    padding: 14px 10px; font-size: 0.95rem; font-weight: 500;
+    color: var(--body); position: relative; line-height: 1;
+  }
+  .rail-links a::after {
+    content: ""; position: absolute; left: 6px; top: 12px; bottom: 12px; width: 3px;
+    background: var(--cyan); transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.4s var(--ease);
+  }
+  .rail-links a:hover { color: var(--ink); }
+  .rail-links a:hover::after { transform: scaleY(1); transform-origin: top; }
+  .rail-icons { display: flex; flex-direction: column; gap: 2px; }
+  .rail-icons a {
+    width: 40px; height: 40px; display: grid; place-items: center; color: var(--mute);
+  }
+  .rail-icons a:hover { color: var(--cyan); }
+  .rail-icons svg { width: 18px; height: 18px; fill: currentColor; }
+
+  .menu-btn {
+    display: none; width: 44px; height: 44px; border: 0; background: transparent;
+    color: var(--ink); cursor: pointer;
+  }
+  .menu-btn span, .menu-btn span::before, .menu-btn span::after {
+    display: block; width: 20px; height: 2px; background: currentColor; position: relative; margin: 0 auto;
+  }
+  .menu-btn span::before, .menu-btn span::after { content: ""; position: absolute; left: 0; }
+  .menu-btn span::before { top: -7px; }
+  .menu-btn span::after { top: 7px; }
+  .menu-btn[aria-expanded="true"] span { background: transparent; }
+  .menu-btn[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
+  .sheet {
+    display: none; position: fixed; inset: 0; z-index: 55;
+    background: color-mix(in lab, var(--bg) 92%, transparent);
+    backdrop-filter: blur(18px);
+    flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  }
+  .sheet[data-open="true"] { display: flex; }
+  .sheet a { font-size: 1.35rem; font-weight: 500; padding: 12px 20px; color: var(--body); }
+  .sheet a:hover { color: var(--ink); }
 
   .intro {
-    min-height: 86vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 7vw 72px;
+    min-height: 100vh; min-height: 100dvh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 80px 8vw 80px calc(var(--outer) + var(--rail) + 48px);
   }
-  .kicker { color: var(--cyan); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; }
-  h1 {
-    font-size: clamp(56px, 9vw, 128px);
-    font-weight: 500; letter-spacing: -0.055em; line-height: 0.92;
-    margin-top: 14px;
+  .intro-inner { width: min(100%, 980px); }
+  .name {
+    margin: 0 0 28px;
+    font-size: clamp(0.95rem, 1.6vw, 1.35rem);
+    font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--mute); line-height: 1.2;
   }
-  .roleline {
-    margin-top: 22px;
-    font-size: clamp(22px, 3vw, 40px);
-    font-weight: 500; letter-spacing: -0.03em; color: var(--body);
+  .role {
+    display: flex; align-items: center; gap: 22px; margin: 0;
+    font-size: clamp(2.7rem, 8.6vw, 8.4rem);
+    font-weight: 500; letter-spacing: -0.05em; line-height: 0.92; color: var(--ink);
   }
-  .roleline span { color: var(--ink); }
-  .scroll {
-    margin-top: 48px; color: var(--mute); text-decoration: none; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  .role-word { position: relative; display: inline-block; }
+  .role-word::after {
+    content: ""; position: absolute; inset: 8% -1% ; background: var(--cyan);
+    transform: scaleX(0); transform-origin: left; z-index: 1; pointer-events: none;
   }
+  .rule {
+    flex: 1; height: 2px; min-width: 64px;
+    background: color-mix(in lab, white 32%, transparent);
+    transform: scaleX(0); transform-origin: left;
+  }
+  .scroll-cue {
+    position: absolute; left: 50%; bottom: 36px; transform: translateX(-50%);
+    width: 26px; height: 38px; border: 2px solid color-mix(in lab, white 40%, transparent);
+    border-radius: 20px;
+  }
+  .scroll-cue::before {
+    content: ""; position: absolute; top: 6px; left: 50%; width: 2px; height: 7px;
+    margin-left: -1px; border-radius: 4px; background: color-mix(in lab, white 50%, transparent);
+  }
+  .intro { position: relative; }
 
   .project {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-    padding: 88px 7vw;
-    border-top: 1px solid var(--line);
+    min-height: 92vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 72px 8vw 72px calc(var(--outer) + var(--rail) + 48px);
   }
-  .project.alt { direction: rtl; }
-  .project.alt > * { direction: ltr; }
-  .idx {
-    display: flex; align-items: center; gap: 14px;
-    color: var(--mute); font-size: 13px; letter-spacing: 0.14em;
+  .project-grid {
+    width: min(100%, var(--max));
+    display: grid; grid-template-columns: 38% 1fr; column-gap: 56px; align-items: center;
   }
-  .idx i { display: block; width: 48px; height: 2px; background: var(--cyan); }
+  .project.alt .project-grid { grid-template-columns: 1fr 40%; }
+  .project.alt .copy { order: 2; }
+  .project.alt .stage { order: 1; }
+  .notch-row {
+    display: grid; grid-template-columns: 90px 1fr; gap: 14px; align-items: center; margin-bottom: 22px;
+  }
+  .notch { position: relative; height: 2px; background: var(--cyan); }
+  .notch::after {
+    content: ""; position: absolute; left: 0; top: 2px; width: 64px; height: 8px; background: var(--cyan);
+    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%, 10px 100%);
+  }
+  .idx { font-size: 0.875rem; font-weight: 500; color: var(--cyan); }
   .project h2 {
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 500; letter-spacing: -0.04em; line-height: 1.05;
-    margin-top: 14px;
+    font-size: clamp(1.85rem, 3vw, 2.375rem);
+    font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin-bottom: 16px;
   }
-  .project p { color: var(--body); margin-top: 16px; max-width: 460px; font-size: 18px; }
-  .meta { margin-top: 14px; color: var(--mute); font-size: 13px; letter-spacing: 0.04em; }
+  .lede { max-width: 38ch; margin-bottom: 14px; }
+  .tech { color: var(--mute); font-size: 0.95rem; margin-bottom: 26px; }
   .btn {
+    position: relative; isolation: isolate;
     display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 22px; padding: 12px 16px;
-    border: 1px solid var(--line); border-radius: 999px;
-    text-decoration: none; font-size: 14px; font-weight: 500;
+    height: 56px; padding: 0 22px; color: #111; font-size: 1.05rem; font-weight: 600;
   }
-  .btn:hover { border-color: var(--cyan); color: var(--cyan); }
-  .frame {
-    background: var(--bg-2);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    min-height: 320px;
-    padding: 22px;
-    position: relative;
-    overflow: hidden;
+  .btn::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; background: var(--cyan);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
   }
-  .frame::after {
-    content: "";
-    position: absolute; inset: auto -20% -30% 30%;
-    height: 180px;
-    background: radial-gradient(circle, rgba(94,231,240,0.16), transparent 70%);
-    pointer-events: none;
+  .btn svg { width: 18px; height: 18px; fill: currentColor; }
+  .btn:hover { transform: scale(1.03); }
+  .text-link {
+    margin-left: 16px; color: var(--cyan); font-weight: 600; font-size: 0.95rem;
+    border-bottom: 1px solid color-mix(in lab, var(--cyan) 45%, transparent); padding-bottom: 2px;
   }
-  .frame .label { color: var(--cyan); font-size: 11px; letter-spacing: 0.16em; }
-  .path { margin-top: 22px; display: grid; gap: 8px; }
-  .path span {
-    display: block; font-size: 14px; color: var(--body);
-    border-left: 2px solid var(--cyan); padding-left: 12px;
+  .actions { display: flex; align-items: center; flex-wrap: wrap; }
+  .panel {
+    background: var(--bg-raised);
+    border: 8px solid #111920; border-radius: 12px;
+    box-shadow: 0 28px 55px #0006;
+    padding: 28px 28px 24px;
   }
-  .stats { display: flex; gap: 18px; margin-top: 26px; }
-  .stats b { display: block; font-size: 28px; letter-spacing: -0.04em; font-weight: 500; }
-  .stats span { color: var(--mute); font-size: 12px; }
+  .panel-kicker {
+    display: flex; justify-content: space-between; gap: 12px; margin-bottom: 18px;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan);
+  }
+  .panel-kicker em { font-style: normal; color: var(--mute); letter-spacing: 0.12em; font-weight: 500; }
+  .steps { list-style: none; padding: 0; }
+  .steps li {
+    display: grid; grid-template-columns: 36px 1fr; gap: 12px;
+    padding: 12px 0; border-top: 1px solid color-mix(in lab, white 10%, transparent);
+  }
+  .step-n { color: var(--cyan); font-size: 0.75rem; font-weight: 700; padding-top: 3px; }
+  .step-name { display: block; color: var(--ink); font-weight: 600; font-size: 1.02rem; }
+  .step-note { display: block; margin-top: 2px; color: var(--mute); font-size: 0.9rem; }
+  .stats { display: flex; gap: 28px; margin-top: 22px; }
+  .stats b { display: block; font-size: 1.7rem; font-weight: 500; letter-spacing: -0.03em; color: var(--ink); line-height: 1; }
+  .stats span { display: block; margin-top: 4px; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
 
-  .about {
-    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px;
-    padding: 96px 7vw; border-top: 1px solid var(--line); align-items: center;
+  .details {
+    display: flex; align-items: center; justify-content: center;
+    padding: 100px 8vw 80px calc(var(--outer) + var(--rail) + 48px);
   }
-  .about h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 500; letter-spacing: -0.045em; }
-  .about p { color: var(--body); margin-top: 16px; font-size: 18px; max-width: 560px; }
-  .about strong { color: var(--ink); font-weight: 600; }
-  .about img {
-    width: min(100%, 380px); aspect-ratio: 3/4; object-fit: cover; object-position: center 12%;
-    border-radius: 18px; justify-self: end;
+  .details-grid {
+    width: min(100%, var(--max));
+    display: grid; grid-template-columns: 1fr 42%; column-gap: 56px; align-items: center;
   }
+  .details h2 {
+    font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 500; letter-spacing: -0.03em;
+    color: var(--ink); margin-bottom: 18px;
+  }
+  .details p { margin-bottom: 16px; max-width: 40em; }
+  .details strong { color: var(--ink); font-weight: 650; }
+  .about-tag {
+    display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: center; margin-bottom: 16px;
+  }
+  .about-tag span { color: var(--cyan); font-size: 0.875rem; font-weight: 600; }
+  .portrait { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 12%; }
+
   footer {
-    padding: 28px 7vw 40px; color: var(--mute); font-size: 13px;
-    border-top: 1px solid var(--line);
+    padding: 28px 8vw 40px calc(var(--outer) + var(--rail) + 48px);
+    text-align: center; color: var(--mute); font-size: 0.875rem;
   }
-  @media (max-width: 800px) {
-    nav { padding: 14px 16px; }
-    .nav-links { gap: 12px; }
-    .nav-links a { font-size: 13px; }
-    .intro { padding: 0 20px 48px; min-height: 78vh; }
-    .project, .about { grid-template-columns: 1fr; padding: 56px 20px; gap: 24px; }
-    .project.alt { direction: ltr; }
-    .about img { justify-self: start; width: 100%; max-width: 320px; }
-    .frame { min-height: 220px; }
+  footer a { color: var(--cyan); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .role-word::after { animation: wipe 1.4s var(--ease) 0.25s forwards; }
+    .rule { animation: rule 0.8s var(--ease) 0.9s forwards; }
+    .scroll-cue::before { animation: tick 2s ease infinite; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .role-word::after { display: none; }
+    .rule { transform: none; }
+  }
+  @keyframes wipe {
+    0% { transform: scaleX(0); transform-origin: left; }
+    45% { transform: scaleX(1); transform-origin: left; }
+    55% { transform: scaleX(1); transform-origin: right; }
+    100% { transform: scaleX(0); transform-origin: right; }
+  }
+  @keyframes rule { to { transform: scaleX(1); } }
+  @keyframes tick {
+    0% { transform: translateY(0); opacity: 0; }
+    30% { opacity: 1; }
+    100% { transform: translateY(8px); opacity: 0; }
+  }
+
+  @media (max-width: 900px) {
+    :root { --outer: 20px; }
+    .rail {
+      position: sticky; top: 0; left: 0; bottom: auto; width: 100%; height: 56px;
+      flex-direction: row; padding: 0 8px 0 16px;
+      background: color-mix(in lab, var(--bg) 88%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .rail { justify-content: flex-start; gap: 8px; }
+    .rail-links {
+      writing-mode: horizontal-tb; transform: none; flex-direction: row; margin-left: auto;
+    }
+    .rail-links a { padding: 8px 8px; font-size: 13px; }
+    .rail-links a::after { display: none; }
+    .rail-icons, .menu-btn { display: none; }
+    .intro, .project, .details, footer { padding-left: 20px; padding-right: 20px; }
+    .intro { min-height: calc(100dvh - 56px); }
+    .name { letter-spacing: 0.14em; font-size: 0.82rem; }
+    .role { font-size: clamp(2.4rem, 12vw, 3.4rem); flex-wrap: wrap; }
+    .rule { flex-basis: 72%; }
+    .project { min-height: 0; }
+    .project-grid, .project.alt .project-grid, .details-grid { grid-template-columns: 1fr; row-gap: 28px; }
+    .project.alt .copy, .project.alt .stage { order: unset; }
+    .stage { order: -1; }
+    .scroll-cue { display: none; }
+    .portrait { max-width: 320px; }
   }
 </style>
 </head>
 <body>
-<nav>
-  <a class="mark" href="#intro">BS</a>
-  <div class="nav-links">
+<a class="skip" href="#main">Skip to content</a>
+<header class="rail">
+  <a class="mark" href="#intro" aria-label="Bannusha Shaik">
+    <svg viewBox="0 0 42 42" aria-hidden="true">
+      <rect class="base" fill="currentColor" x="4" y="4" width="8" height="34"/>
+      <path class="base" fill="currentColor" d="M12 4h10.5a10 10 0 0 1 0 16H12V4zm0 18h12a8 8 0 0 1 0 16H12V22z"/>
+      <rect class="hi" x="4" y="4" width="8" height="34"/>
+      <path class="hi" d="M12 4h10.5a10 10 0 0 1 0 16H12V4zm0 18h12a8 8 0 0 1 0 16H12V22z"/>
+    </svg>
+  </a>
+  <nav class="rail-links" aria-label="Primary">
     <a href="#project-1">Projects</a>
     <a href="#details">Details</a>
     <a href="resume.pdf">Resume</a>
     <a href="mailto:bannushashaik85@gmail.com">Contact</a>
+  </nav>
+  <div class="rail-icons">
+    <a href="https://linkedin.com/in/bannushashaik400" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M4.7 3.3a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4zM3 9h3.4v12H3zM10 9h3.2v1.6h.1c.5-.9 1.6-1.8 3.3-1.8 3.5 0 4.2 2.3 4.2 5.3V21H17.4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H10z"/></svg></a>
+    <a href="https://github.com/bannushaxddd" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c2-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7 1 .7 2v2.6c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></a>
   </div>
+  <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sheet"><span></span></button>
+</header>
+<nav class="sheet" id="sheet" data-open="false">
+  <a href="#project-1">Projects</a>
+  <a href="#details">Details</a>
+  <a href="resume.pdf">Resume</a>
+  <a href="mailto:bannushashaik85@gmail.com">Contact</a>
 </nav>
 
-<header class="intro" id="intro">
-  <p class="kicker">Bangalore</p>
-  <h1>Bannusha<br>Shaik</h1>
-  <p class="roleline"><span>Data Engineer</span></p>
-  <a class="scroll" href="#project-1">Scroll to projects</a>
-</header>
+<main id="main">
+  <section class="intro" id="intro">
+    <div class="intro-inner">
+      <p class="name" id="intro-title">Bannusha Shaik</p>
+      <h1 class="role"><span class="role-word">Data Engineer</span><span class="rule" aria-hidden="true"></span></h1>
+    </div>
+    <a class="scroll-cue" href="#project-1" aria-label="Scroll to projects"></a>
+  </section>
 
-<section class="project" id="project-1">
-  <div>
-    <div class="idx"><i></i> 01</div>
-    <h2>NammaPulse</h2>
-    <p>Real-time Bengaluru intelligence from weather, air, and mobility feeds that do not share a clock, a schema, or a location model.</p>
-    <p class="meta">Python · PostgreSQL · PostGIS · Docker · FastAPI</p>
-    <a class="btn" href="https://github.com/bannushaxddd">Build spec →</a>
-  </div>
-  <div class="frame">
-    <div class="label">BENGALURU / DATA PATH</div>
-    <div class="path">
-      <span>01 Sources — IMD weather, CPCB air, BMTC / metro GTFS</span>
-      <span>02 Retain — raw payload kept intact</span>
-      <span>03 Model — facts and dimensions in PostgreSQL</span>
-      <span>04 Serve — one city view, freshness in seconds</span>
+  <section class="project" id="project-1">
+    <div class="project-grid">
+      <div class="copy">
+        <div class="notch-row" aria-hidden="true"><div class="notch"></div><span class="idx">01</span></div>
+        <h2>NammaPulse</h2>
+        <p class="lede">Bengaluru weather, air, and mobility, headed for one warehouse. Next build. Not shipped.</p>
+        <p class="tech">Python · PostgreSQL · PostGIS</p>
+        <div class="actions"><span class="btn">Next build</span></div>
+      </div>
+      <div class="stage">
+        <div class="panel">
+          <div class="panel-kicker">Path <em>Not live</em></div>
+          <ol class="steps">
+            <li><span class="step-n">01</span><span><span class="step-name">Sources</span><span class="step-note">Weather, air, mobility</span></span></li>
+            <li><span class="step-n">02</span><span><span class="step-name">Raw</span><span class="step-note">Payload kept intact</span></span></li>
+            <li><span class="step-n">03</span><span><span class="step-name">Reject</span><span class="step-note">Bad rows leave the fact</span></span></li>
+            <li><span class="step-n">04</span><span><span class="step-name">Serve</span><span class="step-note">Three marts, one city</span></span></li>
+          </ol>
+        </div>
+      </div>
     </div>
-    <div class="stats">
-      <div><b>3</b><span>Feeds</span></div>
-      <div><b>1</b><span>City model</span></div>
-      <div><b>0</b><span>Invented numbers</span></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="project alt" id="project-2">
-  <div>
-    <div class="idx"><i></i> 02</div>
-    <h2>Creator Lab</h2>
-    <p>A watchlist of 100 Indian creators, snapshotted over time, so a draft title can be scored against a table instead of a guess.</p>
-    <p class="meta">YouTube Data API · SQLite · Python · Streamlit · Live</p>
-    <a class="btn" href="https://know-stats.streamlit.app">View product →</a>
-  </div>
-  <div class="frame">
-    <div class="label">SNAPSHOT GRAIN</div>
-    <div class="path">
-      <span>API collect, keyed by video and time</span>
-      <span>Engagement = (likes + comments) / views</span>
-      <span>Outlier = this video vs that creator's median</span>
-      <span>Streamlit is the serving layer</span>
+  <section class="project alt" id="project-2">
+    <div class="project-grid">
+      <div class="copy">
+        <div class="notch-row" aria-hidden="true"><div class="notch"></div><span class="idx">02</span></div>
+        <h2>Creator Lab</h2>
+        <p class="lede">A watchlist of Indian creators, snapshotted so a draft can be scored against a table.</p>
+        <p class="tech">YouTube Data API · SQLite · Python · Streamlit</p>
+        <div class="actions">
+          <a class="btn" href="https://know-stats.streamlit.app">View product</a>
+          <a class="text-link" href="https://github.com/bannushaxddd/indian-creator-lab">Source</a>
+        </div>
+        <div class="stats">
+          <div><b>3,500</b><span>Videos</span></div>
+          <div><b>100</b><span>Creators</span></div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="panel">
+          <div class="panel-kicker">Grain <em>Live</em></div>
+          <ol class="steps">
+            <li><span class="step-n">01</span><span><span class="step-name">Collect</span><span class="step-note">Keyed by video and time</span></span></li>
+            <li><span class="step-n">02</span><span><span class="step-name">Engage</span><span class="step-note">(likes + comments) / views</span></span></li>
+            <li><span class="step-n">03</span><span><span class="step-name">Outlier</span><span class="step-note">This video vs that median</span></span></li>
+            <li><span class="step-n">04</span><span><span class="step-name">Serve</span><span class="step-note">Streamlit reads the mart</span></span></li>
+          </ol>
+        </div>
+      </div>
     </div>
-    <div class="stats">
-      <div><b>3,500</b><span>Videos</span></div>
-      <div><b>100</b><span>Creators</span></div>
-      <div><b>Live</b><span>App</span></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="project" id="project-3">
-  <div>
-    <div class="idx"><i></i> 03</div>
-    <h2>PlantLine</h2>
-    <p>The SKF 5S audit, modeled as a warehouse: paper in, one row per audit, a score-card a plant lead can defend.</p>
-    <p class="meta">In production · Fortune 500 · May 2026 – present</p>
-    <a class="btn" href="#details">The role →</a>
-  </div>
-  <div class="frame">
-    <div class="label">SKF / OPERATIONAL MODEL</div>
-    <div class="path">
-      <span>Paper audit → structured capture</span>
-      <span>Grain: 1 audit, 5 pillars</span>
-      <span>Drafts stay out of the trend</span>
-      <span>Write-back limited to allowed zones</span>
+  <section class="project" id="project-3">
+    <div class="project-grid">
+      <div class="copy">
+        <div class="notch-row" aria-hidden="true"><div class="notch"></div><span class="idx">03</span></div>
+        <h2>PlantLine</h2>
+        <p class="lede">The SKF 5S audit as a model: paper in, one row per audit, a score a plant lead can defend.</p>
+        <p class="tech">In production · May 2026 – present · Bangalore</p>
+        <div class="actions"><a class="btn" href="#details">The role</a></div>
+        <div class="stats">
+          <div><b>11</b><span>Screens</span></div>
+          <div><b>5</b><span>Pillars</span></div>
+          <div><b>Live</b><span>Factory teams</span></div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="panel">
+          <div class="panel-kicker">Model <em>SKF</em></div>
+          <ol class="steps">
+            <li><span class="step-n">01</span><span><span class="step-name">Capture</span><span class="step-note">Paper, then structured</span></span></li>
+            <li><span class="step-n">02</span><span><span class="step-name">Grain</span><span class="step-note">One audit, five pillars</span></span></li>
+            <li><span class="step-n">03</span><span><span class="step-name">Trend</span><span class="step-note">Drafts stay out</span></span></li>
+            <li><span class="step-n">04</span><span><span class="step-name">Write-back</span><span class="step-note">Allowed zones only</span></span></li>
+          </ol>
+        </div>
+      </div>
     </div>
-    <div class="stats">
-      <div><b>11</b><span>Screens</span></div>
-      <div><b>5</b><span>Pillars</span></div>
-      <div><b>Live</b><span>Factory teams</span></div>
+  </section>
+
+  <section class="details" id="details">
+    <div class="details-grid">
+      <div>
+        <h2>Hi there</h2>
+        <p>I am a <strong>Data Engineer</strong>. I build the path from a source system to a table someone can query, then the small application that makes that table usable.</p>
+        <p>I am a Data Engineer Intern at <strong>SKF</strong>. Factory audits used to live on paper. They are rows now.</p>
+        <p>The degree is Artificial Intelligence and Machine Learning, expected 2027. The job is data engineering.</p>
+        <a class="btn" href="mailto:bannushashaik85@gmail.com">Send a message</a>
+      </div>
+      <div>
+        <div class="about-tag" aria-hidden="true"><div class="notch"></div><span>About me</span></div>
+        <img class="portrait" src="photo.jpg" alt="Bannusha Shaik" width="420" height="560">
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="about" id="details">
-  <div>
-    <p class="kicker">About</p>
-    <h2>Hi there</h2>
-    <p>I am a <strong>Data Engineer</strong>. I build the path from a source system to a table someone can query, then the small application that makes that table usable.</p>
-    <p>I am a Data Engineer Intern at <strong>SKF</strong>, a Fortune 500 plant in Bangalore. Factory audits used to live on paper. They are rows now.</p>
-    <p>The degree is Artificial Intelligence and Machine Learning, expected 2027. The job is data engineering.</p>
-    <a class="btn" href="mailto:bannushashaik85@gmail.com">Send a message →</a>
-  </div>
-  <img src="photo.jpg" alt="Bannusha Shaik" width="380" height="506">
-</section>
-
+  </section>
+</main>
 <footer>© 2026 Bannusha Shaik · Bangalore · <a href="resume.pdf">Resume</a></footer>
+<script>
+(function () {
+  var btn = document.querySelector(".menu-btn");
+  var sheet = document.getElementById("sheet");
+  var nameEl = document.getElementById("intro-title");
+  var text = nameEl.textContent;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  btn.addEventListener("click", function () {
+    var open = sheet.getAttribute("data-open") === "true";
+    sheet.setAttribute("data-open", open ? "false" : "true");
+    btn.setAttribute("aria-expanded", open ? "false" : "true");
+  });
+  sheet.addEventListener("click", function (e) {
+    if (e.target.closest("a")) {
+      sheet.setAttribute("data-open", "false");
+      btn.setAttribute("aria-expanded", "false");
+    }
+  });
+  if (reduce) return;
+  var glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var start = performance.now();
+  function frame(now) {
+    var t = Math.min(1, (now - start) / 900);
+    var n = Math.floor(t * text.length);
+    var rest = "";
+    for (var i = n; i < text.length; i++) {
+      rest += text[i] === " " ? " " : glyphs[(Math.random() * glyphs.length) | 0];
+    }
+    nameEl.textContent = text.slice(0, n) + rest;
+    if (t < 1) requestAnimationFrame(frame);
+    else nameEl.textContent = text;
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
