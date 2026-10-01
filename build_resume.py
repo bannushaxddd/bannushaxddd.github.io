@@ -114,7 +114,7 @@ def main():
     sub = doc.add_paragraph()
     sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
     set_spacing(sub, before=0, after=2, line=200)
-    r = sub.add_run("Data Engineer  |  AI & Machine Learning  |  Python  ·  SQL  ·  ETL  ·  Data Modeling")
+    r = sub.add_run("Data Engineer  |  Python  ·  SQL  ·  ETL  ·  Data Modeling  ·  PostgreSQL")
     set_run_font(r, size=11)
 
     contact = doc.add_paragraph()
@@ -137,13 +137,13 @@ def main():
     sm = doc.add_paragraph()
     set_spacing(sm, before=3, after=2, line=216)
     r = sm.add_run(
-        "Data Engineer with a B.Tech in Artificial Intelligence & Machine Learning and hands-on "
-        "work building pipelines, data models, and the applications that sit on them. At SKF "
-        "(Fortune 500), turned paper factory audits into a production data system: SharePoint-backed "
-        "rows, zone-scoped write-back, and score-card views plant leads use. Independently built a "
-        "YouTube snapshot pipeline (100 creators, ~3,500 videos) and a schema-locked SQL generator "
-        "across 8 dialects with PostgreSQL history. Skilled in Python, SQL, PostgreSQL, data modeling, "
-        "APIs, and ETL. Seeking a Data Engineer role."
+        "Data Engineer building ETL pipelines, operational data models, and the tables downstream "
+        "teams query. At SKF (Fortune 500), replaced paper factory audits with an 11-screen production "
+        "system: each audit is 1 queryable row across 5 pillars, with zone-scoped write-back and "
+        "score-card views plant leads use. Independently shipped a YouTube ingestion pipeline "
+        "(100 creators, about 3,500 videos) and a schema-locked SQL generator across 8 dialects with "
+        "PostgreSQL query history. Skills: Python, SQL, PostgreSQL, pandas, data modeling, API ingestion, "
+        "ETL, and Power BI. Seeking a Data Engineer role."
     )
     set_run_font(r, size=10.5)
 
@@ -155,9 +155,9 @@ def main():
     )
     loc_line(doc, "Microsoft Power Platform  ·  SharePoint  ·  Office 365  ·  Power BI  ·  factory operations")
     for t in [
-        "Replaced paper 5S factory audits with a production 11-screen Power Apps system on the SKF Office 365 tenant; factory teams capture scores, photo evidence, and actions as structured records.",
-        "Modeled operational data (audit drafts, zone lists) with identity-aware, zone-scoped write-back into SharePoint so an audit is a queryable row, not a file in email.",
-        "Defined grain as one audit across five 5S pillars and served score-card and compliance-trend views: per-pillar totals, pass/fail against a qualifying bar, weakest pillar for plant leads.",
+        "Replaced paper 5S factory audits with an 11-screen production Power Apps system on the SKF Office 365 tenant; factory teams now capture scores, photo evidence, and actions as structured records instead of paper forms.",
+        "Modeled audit drafts and zone lists with identity-aware, zone-scoped write-back into SharePoint, so each submitted audit is 1 queryable row rather than a file in email.",
+        "Defined the grain as 1 audit across 5 pillars and served score-card views to plant leads: per-pillar totals, pass/fail against a qualifying bar, and the weakest pillar on every audit.",
     ]:
         bullet(doc, t)
 
@@ -175,8 +175,8 @@ def main():
     )
     loc_line(doc, "know-stats.streamlit.app  ·  github.com/bannushaxddd/indian-creator-lab")
     for t in [
-        "Ingested the YouTube Data API into SQLite for 100 Indian creators (~3,500 videos) using a video key and a snapshot grain so views, likes, and comments are a time series, not a one-time scrape.",
-        "Defined engagement as (likes + comments) / views and outlier as views / that creator’s median, then served a Streamlit app that scores a draft title and cut against the table and returns a view range plus nearest videos.",
+        "Ingested the YouTube Data API into SQLite for 100 Indian creators and about 3,500 videos, keyed by video and collect time, so views, likes, and comments are a time series rather than a one-time scrape.",
+        "Defined engagement as (likes + comments) / views and outlier as views versus that creator's median, then served a Streamlit app that scores a draft against the table.",
     ]:
         bullet(doc, t)
 
@@ -184,7 +184,7 @@ def main():
     loc_line(doc, "github.com/bannushaxddd/GETYOQUERY")
     bullet(
         doc,
-        "Built an English-to-SQL service across 8 dialects (PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, DuckDB) that accepts CREATE TABLE as a hard constraint, stores query history in PostgreSQL, and runs parameterized queries so generated SQL cannot invent column names.",
+        "Built an English-to-SQL service across 8 dialects (PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, DuckDB). CREATE TABLE is a hard allowlist, query history is stored in PostgreSQL, and execution is parameterized so generated SQL cannot invent column names.",
     )
 
     job_line(doc, "Pipeline observability  |  Prometheus, Grafana, Loki, Alertmanager, Docker", "")
@@ -194,21 +194,27 @@ def main():
         "Stood up a Docker Compose metrics and log stack: Prometheus, Loki, Alertmanager, database exporters, custom application /metrics, and Grafana boards for system, app, and database health.",
     )
 
-    heading(doc, "Technical Skills")
-    skill_line(doc, "Data engineering: ", "ETL, data modeling, snapshot pipelines, API ingestion, schema design, data quality constraints")
-    skill_line(doc, "SQL & databases: ", "SQL, PostgreSQL, MySQL, SQLite, joins, grain, parameterized queries, query history")
-    skill_line(doc, "Python: ", "Python, pandas, NumPy, API clients, feature tables, scikit-learn")
-    skill_line(doc, "Serve & operate: ", "Streamlit, Power BI, Grafana, Docker, Redis, Git")
-    skill_line(doc, "Also: ", "Power Apps, SharePoint, Office 365, Excel")
-
-    heading(doc, "Education & Certifications")
-    job_line(doc, "B.Tech, Artificial Intelligence & Machine Learning, PES College of Engineering", "Bangalore")
+    heading(doc, "Education")
+    job_line(
+        doc,
+        "B.Tech, Artificial Intelligence & Machine Learning, PES College of Engineering",
+        "2023 – Expected 2027",
+    )
+    loc_line(doc, "Bangalore, India")
     p = doc.add_paragraph()
     set_spacing(p, before=2, after=0, line=220)
-    r = p.add_run(
-        "Certifications: Generative AI Prompt Engineering Basics, IBM  ·  GenAI Powered Data Analytics, Tata Group (Forage)"
+    r = p.add_run("Certifications: ")
+    set_run_font(r, size=10.5, bold=True)
+    r2 = p.add_run(
+        "Generative AI: Prompt Engineering Basics, IBM  ·  GenAI Powered Data Analytics, Tata Group (Forage), 2024"
     )
-    set_run_font(r, size=10.5)
+    set_run_font(r2, size=10.5)
+
+    heading(doc, "Technical Skills")
+    skill_line(doc, "Data engineering: ", "ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality")
+    skill_line(doc, "SQL & databases: ", "SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries")
+    skill_line(doc, "Python: ", "Python, pandas, NumPy, API clients, scikit-learn")
+    skill_line(doc, "BI & tools: ", "Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Office 365")
 
     doc.save(OUT)
     print("Wrote", OUT)

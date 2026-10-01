@@ -4,686 +4,204 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bannusha Shaik — Data Engineer</title>
-<meta name="description" content="Data Engineer in Bangalore. Pipelines, Kimball models, PySpark, Databricks, and AWS. AI and Machine Learning background.">
+<meta name="description" content="Data Engineer in Bangalore. ETL, SQL, PostgreSQL, data modeling. SKF intern. Python pipelines.">
 <meta name="author" content="Bannusha Shaik">
-<meta name="theme-color" content="#0a0a0f">
+<meta name="theme-color" content="#f4f1ea">
 <link rel="canonical" href="https://bannusha.com/">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-
 <meta property="og:type" content="website">
-<meta property="og:locale" content="en_IN">
 <meta property="og:url" content="https://bannusha.com/">
 <meta property="og:title" content="Bannusha Shaik — Data Engineer">
-<meta property="og:description" content="Building data pipelines. Python, SQL, PySpark, Databricks, Delta Lake, AWS.">
+<meta property="og:description" content="Data Engineer. ETL, SQL, PostgreSQL, data modeling. Bangalore.">
 <meta property="og:image" content="https://bannusha.com/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="1200">
-<meta property="og:image:alt" content="Bannusha Shaik">
-
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bannusha Shaik — Data Engineer">
-<meta name="twitter:description" content="Building data pipelines. Python, SQL, PySpark, Databricks, Delta Lake, AWS.">
+<meta name="twitter:description" content="Data Engineer. ETL, SQL, PostgreSQL, data modeling. Bangalore.">
 <meta name="twitter:image" content="https://bannusha.com/og.jpg">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Bannusha Shaik",
-  "url": "https://bannusha.com",
-  "email": "bannushashaik85@gmail.com",
-  "telephone": "+918074671779",
-  "jobTitle": "Data Engineer",
-  "address": { "@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN" },
-  "sameAs": [
-    "https://github.com/bannushaxddd",
-    "https://www.linkedin.com/in/bannushashaik400"
-  ],
-  "knowsAbout": ["Python","SQL","PySpark","Databricks","Delta Lake","AWS","Kimball","PostgreSQL","ETL"]
-}
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0a0f;
-    --bg-2: #12121a;
-    --card: #141822;
-    --line: #2a2a3a;
-    --ink: #e4e4e7;
-    --body: #a1a1aa;
-    --mute: #71717a;
-    --cyan: #22d3ee;
-    --cyan-dim: rgba(34, 211, 238, 0.12);
-    --amber: #facc15;
-    --green: #22c55e;
-    --red: #ef4444;
-    --yellow: #eab308;
+    --paper: #f7f4ee;
+    --ink: #1c1a17;
+    --body: #3a342c;
+    --rule: #1c1a17;
+    --mute: #6d655c;
+    --link: #1a4f8b;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--bg);
+    background: #e7e1d6;
     color: var(--ink);
-    font-family: Inter, -apple-system, sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(600px 320px at 15% -10%, rgba(34, 211, 238, 0.08), transparent 60%),
-      radial-gradient(500px 280px at 90% 0%, rgba(250, 204, 21, 0.05), transparent 55%),
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: auto, auto, 48px 48px, 48px 48px;
-    pointer-events: none;
-    z-index: 0;
-  }
-  a { color: inherit; }
-  .wrap { position: relative; z-index: 1; }
-
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    padding: 14px 28px;
-    background: rgba(10, 10, 15, 0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
-  }
-  .logo {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    color: var(--cyan);
-    text-decoration: none;
-  }
-  .logo span { color: var(--mute); }
-  .nav-links { display: flex; gap: 22px; }
-  .nav-links a {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    color: var(--mute);
-    text-decoration: none;
-  }
-  .nav-links a:hover { color: var(--cyan); }
-
-  .hero {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 72px 24px 20px;
-    text-align: center;
-  }
-  .role-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    color: var(--cyan);
-    border: 1px solid rgba(34, 211, 238, 0.35);
-    background: var(--cyan-dim);
-    border-radius: 999px;
-    padding: 6px 12px;
-    margin-bottom: 18px;
-  }
-  .blink {
-    width: 8px; height: 14px; background: var(--cyan);
-    animation: blink 1s steps(1) infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-  h1 {
-    font-size: clamp(40px, 7vw, 68px);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.05;
-    background: linear-gradient(90deg, #67e8f9, #e4e4e7 45%, #fde047);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .tagline {
-    margin: 16px auto 0;
-    max-width: 640px;
-    font-size: clamp(18px, 2.4vw, 22px);
-    color: #d4d4d8;
-  }
-  .portrait {
-    width: 148px;
-    height: 178px;
-    object-fit: cover;
-    object-position: center 12%;
-    border-radius: 16px;
-    border: 1px solid rgba(34, 211, 238, 0.45);
-    box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.08), 0 16px 40px rgba(0, 0, 0, 0.4);
-    margin-bottom: 18px;
-  }
-  .cta { display: flex; justify-content: center; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    text-decoration: none; border-radius: 10px;
-    padding: 11px 18px; font-weight: 600; font-size: 14px;
-  }
-  .btn-primary { background: #0284c7; color: white; }
-  .btn-primary:hover { background: #0369a1; }
-  .btn-ghost { background: #1c1c27; color: white; border: 1px solid var(--line); }
-  .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
-
-  .stack {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
-    margin-top: 28px;
-  }
-  .stack span, .chips span {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--cyan);
-    background: var(--cyan-dim);
-    border: 1px solid rgba(34, 211, 238, 0.25);
-    border-radius: 999px;
-    padding: 5px 10px;
-  }
-
-  .about {
-    max-width: 980px;
-    margin: 28px auto 0;
-    padding: 0 24px;
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 18px;
-  }
-  .term, .codebox {
-    background: #0e1016;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    overflow: hidden;
-    text-align: left;
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.04), 0 20px 50px rgba(0,0,0,0.35);
-  }
-  .term-bar, .code-bar {
-    display: flex; align-items: center; gap: 6px;
-    padding: 10px 14px;
-    background: #16161f;
-    border-bottom: 1px solid var(--line);
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--mute);
-  }
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot.r { background: var(--red); }
-  .dot.y { background: var(--yellow); }
-  .dot.g { background: var(--green); }
-  pre {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12.5px;
-    line-height: 1.65;
-    padding: 16px 18px 18px;
-    color: #d4d4d8;
-    overflow-x: auto;
-  }
-  .cmt { color: #52525b; }
-  .key { color: #67e8f9; }
-  .str { color: #86efac; }
-  .kw { color: #7dd3fc; }
-  .fn { color: #fde047; }
-  .prompt { color: var(--green); }
-
-  section { max-width: 980px; margin: 0 auto; padding: 56px 24px 0; }
-  .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
-  .sec-head i { width: 36px; height: 3px; background: var(--cyan); border-radius: 99px; display: block; }
-  .sec-head h2 {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--mute);
-  }
-  .sec-head strong {
-    display: block;
-    font-family: Inter, sans-serif;
-    font-size: 28px;
-    letter-spacing: -0.03em;
-    text-transform: none;
-    color: var(--ink);
-    margin-top: 2px;
-  }
-
-  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .card {
-    position: relative;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 22px 22px 18px;
-  }
-  .card::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: 16px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(34,211,238,0.45), transparent 40%, rgba(250,204,21,0.35));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-  .badge {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--amber);
-  }
-  .card h3 { font-size: 22px; letter-spacing: -0.03em; margin-top: 6px; }
-  .sub { color: var(--mute); font-size: 13px; margin-top: 2px; }
-  .card p { color: var(--body); font-size: 14px; margin-top: 12px; }
-  .feats { list-style: none; margin-top: 14px; }
-  .feats li {
-    color: #d4d4d8;
-    font-size: 13.5px;
-    padding-left: 14px;
-    position: relative;
-    margin-bottom: 6px;
-  }
-  .feats li::before {
-    content: "";
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--cyan);
-    position: absolute; left: 0; top: 0.55em;
-  }
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    margin-top: 16px;
-  }
-  .stat {
-    background: #0e1016;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 8px 8px 7px;
-    text-align: center;
-  }
-  .stat b {
-    display: block;
+    font-family: "Source Sans 3", Calibri, sans-serif;
     font-size: 16px;
-    letter-spacing: -0.03em;
-    color: var(--cyan);
+    line-height: 1.45;
   }
-  .stat span { font-size: 10px; color: var(--mute); letter-spacing: 0.02em; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-  .links { display: flex; gap: 14px; margin-top: 14px; }
-  .links a { color: var(--cyan); font-weight: 600; font-size: 13.5px; text-decoration: none; }
-  .links a:hover { text-decoration: underline; }
-  .wide { grid-column: 1 / -1; }
-
-  .role-card {
-    position: relative;
-    background: linear-gradient(180deg, #161b27 0%, #12151c 100%);
-    border: 1px solid rgba(34, 211, 238, 0.45);
-    border-radius: 18px;
-    padding: 26px 26px 22px;
-    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.06), 0 24px 60px rgba(0, 0, 0, 0.35);
+  .sheet {
+    max-width: 820px;
+    margin: 28px auto 48px;
+    background: var(--paper);
+    padding: 42px 48px 48px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04), 0 18px 40px rgba(40, 30, 16, 0.08);
   }
-  .role-card.secondary {
-    margin-top: 14px;
-    border-color: var(--line);
-    background: var(--card);
-    box-shadow: none;
-    padding: 18px 22px;
+  header { text-align: center; padding-bottom: 10px; border-bottom: 1.5px solid var(--rule); }
+  .portrait {
+    width: 84px; height: 84px; object-fit: cover; object-position: center 12%;
+    border-radius: 50%; display: block; margin: 0 auto 10px;
   }
-  .role-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    align-items: flex-start;
+  h1 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 32px; font-weight: 650; letter-spacing: 0.04em;
   }
-  .when {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--cyan);
-    white-space: nowrap;
-    border: 1px solid rgba(34, 211, 238, 0.3);
-    background: var(--cyan-dim);
-    border-radius: 999px;
-    padding: 6px 10px;
+  .role { margin-top: 4px; font-weight: 600; font-size: 15px; }
+  .contact { margin-top: 6px; font-size: 13.5px; color: var(--body); }
+  .contact a { color: var(--link); text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+  nav { margin-top: 8px; font-size: 13px; }
+  nav a { color: var(--mute); text-decoration: none; margin: 0 8px; }
+  nav a:hover { color: var(--ink); }
+  section { margin-top: 18px; }
+  h2 {
+    font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px; margin-bottom: 8px;
   }
-  .role-lede { color: #d4d4d8; font-size: 15.5px; margin-top: 14px; max-width: 760px; }
-  .flow {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    margin-top: 18px;
-  }
-  .flow span {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12px;
-    color: var(--ink);
-    background: #0e1016;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 7px 10px;
-  }
-  .flow span.arr { background: none; border: 0; color: var(--cyan); padding: 0 2px; }
-  .exp-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 18px;
-  }
-  .exp-grid article {
-    background: #0e1016;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 12px 14px;
-  }
-  .exp-grid h3 {
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--cyan);
-  }
-  .exp-grid p { color: var(--body); font-size: 13.5px; margin-top: 4px; }
-
-  .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .skill {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 16px;
-  }
-  .skill h3 { font-size: 14px; margin-bottom: 8px; }
-  .skill p { color: var(--body); font-size: 13.5px; }
-
-  .edu {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 16px 18px;
-  }
-  .edu h3 { font-size: 16px; }
-  .edu p { color: var(--body); font-size: 13.5px; margin-top: 4px; }
-
+  .summary { font-size: 14.5px; color: var(--body); }
+  .job { margin-top: 11px; }
+  .job-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+  .job h3 { font-size: 15.5px; font-weight: 700; }
+  .when { font-size: 13.5px; white-space: nowrap; }
+  .org { font-size: 13.5px; font-style: italic; color: var(--body); }
+  ul { margin: 4px 0 0 18px; }
+  li { font-size: 14.5px; color: var(--body); margin: 2px 0; }
+  .skills p { font-size: 14.5px; margin: 3px 0; color: var(--body); }
+  .skills b { color: var(--ink); }
+  .edu-top { display: flex; justify-content: space-between; gap: 12px; }
+  .edu-top h3 { font-size: 15.5px; }
   footer {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 48px 24px 64px;
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    color: var(--mute);
+    margin-top: 22px; padding-top: 8px; border-top: 1px solid var(--rule);
+    text-align: center; font-size: 13px; color: var(--mute);
   }
-  footer a { color: var(--cyan); text-decoration: none; }
-  footer .prompt { color: var(--green); }
-
-  @media (max-width: 800px) {
-    nav { padding: 12px 16px; flex-wrap: wrap; }
-    .nav-links { gap: 14px; flex-wrap: wrap; }
-    .about, .cards, .skill-grid, .exp-grid { grid-template-columns: 1fr; }
-    .role-top { flex-direction: column; }
-    .stats { grid-template-columns: repeat(2, 1fr); }
-    .wide { grid-column: auto; }
+  footer a { color: var(--link); }
+  @media (max-width: 700px) {
+    .sheet { margin: 0; padding: 28px 18px 36px; }
+    .job-top, .edu-top { flex-direction: column; gap: 0; }
+    .when { white-space: normal; }
+    h1 { font-size: 26px; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <nav>
-    <a class="logo" href="#top"><span>~/</span>bannusha<span>/portfolio</span></a>
-    <div class="nav-links">
-      <a href="#experience">experience</a>
-      <a href="#projects">projects</a>
-      <a href="#stack">stack</a>
-      <a href="#contact">contact</a>
-      <a href="https://github.com/bannushaxddd" target="_blank" rel="noopener">github</a>
-    </div>
-  </nav>
-
-  <header class="hero" id="top">
-    <img class="portrait" src="photo.jpg" alt="Bannusha Shaik" width="148" height="178">
-    <div class="role-chip">Data Engineer <i class="blink"></i></div>
-    <h1>Bannusha Shaik</h1>
-    <p class="tagline">Building scalable data pipelines and turning raw data into tables people can query.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="#experience">Experience</a>
-      <a class="btn btn-ghost" href="mailto:bannushashaik85@gmail.com">Get in touch</a>
-    </div>
-    <div class="stack" aria-label="Stack">
-      <span>Python</span>
-      <span>SQL</span>
-      <span>PySpark</span>
-      <span>Databricks</span>
-      <span>Delta Lake</span>
-      <span>AWS S3</span>
-      <span>Kimball</span>
-      <span>PostgreSQL</span>
-      <span>Docker</span>
-      <span>Power BI</span>
-    </div>
+<main class="sheet">
+  <header>
+    <img class="portrait" src="photo.jpg" alt="Bannusha Shaik" width="84" height="84">
+    <h1>BANNUSHA SHAIK</h1>
+    <p class="role">Data Engineer | Python · SQL · ETL · Data Modeling · PostgreSQL</p>
+    <p class="contact">
+      <a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a>
+      · +91 8074671779 · Bangalore, India<br>
+      <a href="https://linkedin.com/in/bannushashaik400">LinkedIn</a>
+      · <a href="https://github.com/bannushaxddd">GitHub</a>
+      · <a href="https://bannusha.com">bannusha.com</a>
+    </p>
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="resume.pdf" download="Bannusha_Shaik_Data_Engineer.pdf">Resume</a>
+    </nav>
   </header>
 
-  <div class="about">
-    <div class="term">
-      <div class="term-bar"><i class="dot r"></i><i class="dot y"></i><i class="dot g"></i> bash — about.json</div>
-      <pre><span class="prompt">$</span> cat ./about.json
-{
-  <span class="key">"name"</span>:     <span class="str">"Bannusha Shaik"</span>,
-  <span class="key">"role"</span>:     <span class="str">"Data Engineer"</span>,
-  <span class="key">"focus"</span>:    <span class="str">"Pipelines | Warehouses | ETL"</span>,
-  <span class="key">"location"</span>: <span class="str">"Bangalore, India"</span>,
-  <span class="key">"base"</span>:     <span class="str">"AI &amp; Machine Learning"</span>
-}
-<span class="prompt">$</span> <span class="blink" style="display:inline-block;vertical-align:-2px"></span></pre>
-    </div>
-    <div class="codebox">
-      <div class="code-bar"><i class="dot r"></i><i class="dot y"></i><i class="dot g"></i> engineer.py</div>
-      <pre><span class="kw">class</span> <span class="fn">DataEngineer</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(self):
-        self.name = <span class="str">"Bannusha Shaik"</span>
-        self.role = <span class="str">"Data Engineer"</span>
-        self.skills = {
-            <span class="str">"languages"</span>: [<span class="str">"Python"</span>, <span class="str">"SQL"</span>],
-            <span class="str">"platforms"</span>: [<span class="str">"Databricks"</span>, <span class="str">"AWS"</span>],
-            <span class="str">"tools"</span>: [<span class="str">"PySpark"</span>, <span class="str">"Power BI"</span>]
-        }
-
-    <span class="kw">def</span> <span class="fn">build_pipeline</span>(self, data):
-        <span class="cmt"># bronze → silver → gold</span>
-        <span class="kw">return</span> self.load(data).model().serve()</pre>
-    </div>
-  </div>
+  <section id="summary">
+    <h2>SUMMARY</h2>
+    <p class="summary">Data Engineer building ETL pipelines, operational data models, and the tables downstream teams query. At SKF (Fortune 500), replaced paper factory audits with an 11-screen production system: each audit is 1 queryable row across 5 pillars, with zone-scoped write-back and score-card views plant leads use. Independently shipped a YouTube ingestion pipeline (100 creators, about 3,500 videos) and a schema-locked SQL generator across 8 dialects with PostgreSQL query history.</p>
+  </section>
 
   <section id="experience">
-    <div class="sec-head">
-      <i></i>
-      <h2>// experience<strong>The system a plant lead opens</strong></h2>
-    </div>
-    <article class="role-card">
-      <div class="role-top">
-        <div>
-          <div class="badge">CURRENT · IN PRODUCTION</div>
-          <h3>Data Engineer Intern, SKF</h3>
-          <p class="sub">Fortune 500 industrial · Bangalore</p>
-        </div>
-        <div class="when">May 2026 — Present</div>
+    <h2>PROFESSIONAL EXPERIENCE</h2>
+    <article class="job">
+      <div class="job-top">
+        <h3>Data Engineer Intern</h3>
+        <span class="when">May 2026 – Present | Bangalore</span>
       </div>
-      <p class="role-lede">Factory 5S audits lived on paper, so compliance could not be trended. I modeled them as operational data: one audit is a row, drafts stay out of the trend, and a user can write only the zones their identity is allowed to touch. Plant leads read the score-card. Factory teams use the app.</p>
-      <div class="flow" aria-label="Data path">
-        <span>Paper audit</span><span class="arr">→</span>
-        <span>Structured capture</span><span class="arr">→</span>
-        <span>SharePoint model</span><span class="arr">→</span>
-        <span>Score-card</span>
-      </div>
-      <div class="stats">
-        <div class="stat"><b>11</b><span>Screens in production</span></div>
-        <div class="stat"><b>5</b><span>Pillars in the grain</span></div>
-        <div class="stat"><b>1</b><span>Row per audit</span></div>
-        <div class="stat"><b>Live</b><span>Factory teams</span></div>
-      </div>
-      <div class="exp-grid">
-        <article>
-          <h3>Ingest</h3>
-          <p>Replaced a paper form with structured capture: scores, photo evidence, and actions, on the SKF Office 365 tenant.</p>
-        </article>
-        <article>
-          <h3>Model</h3>
-          <p>Grain is one audit across five 5S pillars. Drafts and submitted audits are different states. Only submitted rows enter the trend.</p>
-        </article>
-        <article>
-          <h3>Access</h3>
-          <p>Write-back is identity-aware and zone-scoped. A user updates the zones their role allows, not the whole plant list.</p>
-        </article>
-        <article>
-          <h3>Serve</h3>
-          <p>Score-card and compliance-trend views for plant leads: per-pillar totals, pass/fail against a qualifying bar, weakest pillar called out.</p>
-        </article>
-      </div>
-      <div class="chips">
-        <span>Data modeling</span><span>SharePoint</span><span>Power Apps</span><span>Power BI</span><span>Office 365</span>
-      </div>
+      <p class="org">SKF (Fortune 500 Industrial Technology)</p>
+      <ul>
+        <li>Replaced paper 5S factory audits with an 11-screen production Power Apps system on the SKF Office 365 tenant; factory teams now capture scores, photo evidence, and actions as structured records instead of paper forms.</li>
+        <li>Modeled audit drafts and zone lists with identity-aware, zone-scoped write-back into SharePoint, so each submitted audit is 1 queryable row rather than a file in email.</li>
+        <li>Defined the grain as 1 audit across 5 pillars and served score-card views to plant leads: per-pillar totals, pass/fail against a qualifying bar, and the weakest pillar on every audit.</li>
+      </ul>
     </article>
-    <article class="role-card secondary">
-      <div class="role-top">
-        <div>
-          <div class="badge">SIMULATION</div>
-          <h3>GenAI Data Analytics, Tata Group</h3>
-          <p class="sub">Forage job simulation · not employment</p>
-        </div>
-        <div class="when">2024</div>
+    <article class="job">
+      <div class="job-top">
+        <h3>GenAI Data Analytics Job Simulation</h3>
+        <span class="when">2024</span>
       </div>
-      <p class="role-lede">Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take.</p>
+      <p class="org">Tata Group (Forage) · simulation, not employment</p>
+      <ul>
+        <li>Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take.</li>
+      </ul>
     </article>
   </section>
 
   <section id="projects">
-    <div class="sec-head">
-      <i></i>
-      <h2>// projects<strong>Pipelines I built around the job</strong></h2>
-    </div>
-    <div class="cards">
-      <article class="card">
-        <div class="badge">PIPELINE</div>
+    <h2>PROJECTS</h2>
+    <article class="job">
+      <div class="job-top">
         <h3>Indian Creator Lab</h3>
-        <p class="sub">API ingest · snapshot grain · serving layer</p>
-        <p>YouTube Data API into a snapshot store, then a serving app. A one-time scrape cannot show a trend. Repeat collects can.</p>
-        <ul class="feats">
-          <li>Land raw API payloads, then type them</li>
-          <li>Grain is one snapshot of one video</li>
-          <li>Engagement and creator-median outlier on the table</li>
-          <li>Streamlit reads the mart — it is the consumer, not the pipeline</li>
-        </ul>
-        <div class="stats">
-          <div class="stat"><b>3,500</b><span>Videos</span></div>
-          <div class="stat"><b>100</b><span>Creators</span></div>
-          <div class="stat"><b>1</b><span>Snapshot key</span></div>
-          <div class="stat"><b>Live</b><span>Serving layer</span></div>
-        </div>
-        <div class="chips">
-          <span>Python</span><span>SQL</span><span>SQLite</span><span>pandas</span>
-        </div>
-        <div class="links">
-          <a href="https://know-stats.streamlit.app" target="_blank" rel="noopener">Live app ↗</a>
-          <a href="https://github.com/bannushaxddd/indian-creator-lab" target="_blank" rel="noopener">Repository</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="badge">QUERY SYSTEM</div>
+        <span class="when">Python · SQL · SQLite</span>
+      </div>
+      <p class="org"><a href="https://know-stats.streamlit.app">know-stats.streamlit.app</a> · <a href="https://github.com/bannushaxddd/indian-creator-lab">github.com/bannushaxddd/indian-creator-lab</a></p>
+      <ul>
+        <li>Ingested the YouTube Data API into SQLite for 100 Indian creators and about 3,500 videos, keyed by video and collect time, so views, likes, and comments are a time series rather than a one-time scrape.</li>
+        <li>Defined engagement as (likes + comments) / views and outlier as views versus that creator's median, then served a Streamlit app that scores a draft against the table.</li>
+      </ul>
+    </article>
+    <article class="job">
+      <div class="job-top">
         <h3>GETYOQUERY</h3>
-        <p class="sub">Schema allowlist · 8 dialects · query log</p>
-        <p>English in, SQL out. The schema is a constraint. Generated SQL may use only names that were provided.</p>
-        <ul class="feats">
-          <li>CREATE TABLE pasted in as the allowlist</li>
-          <li>Eight dialects, one generation path</li>
-          <li>Query history stored in PostgreSQL</li>
-          <li>Parameterized execution, JWT on the API</li>
-        </ul>
-        <div class="stats">
-          <div class="stat"><b>8</b><span>Dialects</span></div>
-          <div class="stat"><b>1</b><span>Allowlist</span></div>
-          <div class="stat"><b>PG</b><span>Query log</span></div>
-          <div class="stat"><b>JWT</b><span>Auth</span></div>
-        </div>
-        <div class="chips">
-          <span>SQL</span><span>PostgreSQL</span><span>Node.js</span><span>APIs</span>
-        </div>
-        <div class="links">
-          <a href="https://github.com/bannushaxddd/GETYOQUERY" target="_blank" rel="noopener">Repository ↗</a>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <section id="stack">
-    <div class="sec-head">
-      <i></i>
-      <h2>// stack<strong>Skills</strong></h2>
-    </div>
-    <div class="skill-grid">
-      <article class="skill">
-        <h3>Languages</h3>
-        <p>Python, SQL, PySpark. Window functions, grain, dedup, and the query that a timed screen actually asks for.</p>
-      </article>
-      <article class="skill">
-        <h3>Platforms</h3>
-        <p>Databricks, AWS S3, Delta Lake, PostgreSQL. Bronze lands raw. Silver types and rejects. Gold answers one question per table.</p>
-      </article>
-      <article class="skill">
-        <h3>Modeling</h3>
-        <p>Kimball star schema, surrogate keys, unknown member −1, SCD Type 2 when history matters, YAML-driven loads.</p>
-      </article>
-    </div>
-  </section>
-
-  <section>
-    <div class="sec-head">
-      <i></i>
-      <h2>// education<strong>Education</strong></h2>
-    </div>
-    <article class="edu">
-      <h3>B.Tech, Artificial Intelligence &amp; Machine Learning</h3>
-      <p>PES College of Engineering, Bangalore · Expected 2027</p>
-      <p>IBM Prompt Engineering · Tata GenAI Data Analytics</p>
+        <span class="when">SQL · PostgreSQL</span>
+      </div>
+      <p class="org"><a href="https://github.com/bannushaxddd/GETYOQUERY">github.com/bannushaxddd/GETYOQUERY</a></p>
+      <ul>
+        <li>Built an English-to-SQL service across 8 dialects (PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, DuckDB). CREATE TABLE is a hard allowlist, query history is stored in PostgreSQL, and execution is parameterized so generated SQL cannot invent column names.</li>
+      </ul>
+    </article>
+    <article class="job">
+      <div class="job-top">
+        <h3>Pipeline observability</h3>
+        <span class="when">Docker · Prometheus · Grafana</span>
+      </div>
+      <p class="org"><a href="https://github.com/bannushaxddd/prometheus-grafana-stack">github.com/bannushaxddd/prometheus-grafana-stack</a></p>
+      <ul>
+        <li>Stood up a Docker Compose metrics and log stack: Prometheus, Loki, Alertmanager, database exporters, custom application /metrics, and Grafana boards for system, app, and database health.</li>
+      </ul>
     </article>
   </section>
 
-  <section id="contact">
-    <div class="sec-head">
-      <i></i>
-      <h2>// contact<strong>Get in touch</strong></h2>
+  <section id="education">
+    <h2>EDUCATION</h2>
+    <div class="edu-top">
+      <h3>B.Tech, Artificial Intelligence &amp; Machine Learning</h3>
+      <span class="when">2023 – Expected 2027</span>
     </div>
-    <div class="skill-grid">
-      <article class="skill">
-        <h3>Email</h3>
-        <p><a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a></p>
-      </article>
-      <article class="skill">
-        <h3>GitHub</h3>
-        <p><a href="https://github.com/bannushaxddd" target="_blank" rel="noopener">github.com/bannushaxddd</a></p>
-      </article>
-      <article class="skill">
-        <h3>LinkedIn</h3>
-        <p><a href="https://linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">bannushashaik400</a></p>
-      </article>
-    </div>
+    <p class="org">PES College of Engineering, Bangalore</p>
+    <p class="summary" style="margin-top:6px"><b>Certifications:</b> Generative AI: Prompt Engineering Basics, IBM · GenAI Powered Data Analytics, Tata Group (Forage), 2024</p>
   </section>
 
-  <footer>
-    <span class="prompt">$</span> echo "Open to Data Engineer roles · Bangalore / hybrid / remote India"<br>
-    <a href="resume.pdf" download="Bannusha_Shaik_Data_Engineer.pdf">resume.pdf</a>
-    · <a href="https://github.com/bannushaxddd">@bannushaxddd</a>
-  </footer>
-</div>
+  <section class="skills" id="skills">
+    <h2>TECHNICAL SKILLS</h2>
+    <p><b>Data engineering:</b> ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality</p>
+    <p><b>SQL &amp; databases:</b> SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries</p>
+    <p><b>Python:</b> Python, pandas, NumPy, API clients, scikit-learn</p>
+    <p><b>BI &amp; tools:</b> Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Office 365</p>
+  </section>
+
+  <footer>Open to Data Engineer roles · Bangalore / hybrid / remote India · <a href="resume.pdf">Download resume</a></footer>
+</main>
 </body>
 </html>

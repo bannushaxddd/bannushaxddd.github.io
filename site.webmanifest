@@ -1,11 +1,11 @@
 {
   "name": "Bannusha Shaik",
   "short_name": "Bannusha",
-  "description": "Data Engineer in Bangalore. Pipelines, warehouses, ETL.",
+  "description": "Data Engineer in Bangalore. ETL, SQL, data modeling.",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#0a0a0f",
-  "theme_color": "#0a0a0f",
+  "background_color": "#f7f4ee",
+  "theme_color": "#f7f4ee",
   "icons": [
     {
       "src": "/apple-touch-icon.png",
