@@ -3,7 +3,7 @@ from pathlib import Path
 
 from reportlab.lib.colors import HexColor, black
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_RIGHT
-from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
@@ -20,25 +20,30 @@ RULE = HexColor("#222222")
 
 
 def styles():
+    # Type scale measured from Yassine_Erradouani_Data_Engineer.pdf (A4, Charter).
+    # Calibri is the installed face; sizes match his: name 25, role/sections 12, body 10.
     return {
-        "name": ParagraphStyle("name", fontName="CalB", fontSize=16, leading=19, alignment=TA_CENTER, textColor=INK, spaceAfter=2),
-        "title": ParagraphStyle("title", fontName="Cal", fontSize=9.5, leading=12, alignment=TA_CENTER, textColor=INK, spaceBefore=1),
-        "contact": ParagraphStyle("contact", fontName="Cal", fontSize=8.4, leading=11, alignment=TA_CENTER, textColor=INK, spaceBefore=1),
-        "sec": ParagraphStyle("sec", fontName="CalB", fontSize=10, leading=12, textColor=INK, spaceBefore=6, spaceAfter=1),
-        "job": ParagraphStyle("job", fontName="CalB", fontSize=9.4, leading=11.5, textColor=INK),
-        "date": ParagraphStyle("date", fontName="Cal", fontSize=9, leading=11.5, alignment=TA_RIGHT, textColor=INK),
-        "tools": ParagraphStyle("tools", fontName="CalI", fontSize=8.3, leading=10.6, textColor=INK, spaceBefore=1),
-        "body": ParagraphStyle("body", fontName="Cal", fontSize=8.8, leading=11.2, textColor=INK, alignment=TA_JUSTIFY),
-        "bullet": ParagraphStyle("bullet", fontName="Cal", fontSize=8.8, leading=11.1, textColor=INK, leftIndent=11, spaceBefore=0.6),
-        "skill": ParagraphStyle("skill", fontName="Cal", fontSize=8.8, leading=11.2, textColor=INK),
+        "name": ParagraphStyle("name", fontName="CalB", fontSize=25, leading=27, alignment=TA_CENTER, textColor=INK, spaceAfter=0),
+        "title": ParagraphStyle("title", fontName="CalB", fontSize=12, leading=14, alignment=TA_CENTER, textColor=INK, spaceBefore=1),
+        "contact": ParagraphStyle("contact", fontName="Cal", fontSize=10, leading=12, alignment=TA_CENTER, textColor=INK, spaceBefore=1),
+        "sec": ParagraphStyle("sec", fontName="CalB", fontSize=12, leading=14, textColor=INK, spaceBefore=6, spaceAfter=0),
+        "job": ParagraphStyle("job", fontName="CalB", fontSize=10, leading=12, textColor=INK),
+        "date": ParagraphStyle("date", fontName="Cal", fontSize=10, leading=12, alignment=TA_RIGHT, textColor=INK),
+        "tools": ParagraphStyle("tools", fontName="CalI", fontSize=10, leading=12, textColor=INK),
+        "body": ParagraphStyle("body", fontName="Cal", fontSize=10, leading=12.2, textColor=INK, alignment=TA_JUSTIFY),
+        "bullet": ParagraphStyle("bullet", fontName="Cal", fontSize=10, leading=12.2, textColor=INK, leftIndent=11),
+        "skill": ParagraphStyle("skill", fontName="Cal", fontSize=10, leading=12.2, textColor=INK),
     }
 
 
+CONTENT_W = 7.49 * inch  # A4 minus 0.38in margins
+
+
 def rule():
-    line = Table([[""]], colWidths=[7.5 * inch])
+    line = Table([[""]], colWidths=[CONTENT_W])
     line.setStyle(TableStyle([
-        ("LINEABOVE", (0, 0), (-1, -1), 0.7, RULE),
-        ("TOPPADDING", (0, 0), (-1, -1), 1),
+        ("LINEABOVE", (0, 0), (-1, -1), 0.6, RULE),
+        ("TOPPADDING", (0, 0), (-1, -1), 0),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
         ("RIGHTPADDING", (0, 0), (-1, -1), 0),
@@ -53,13 +58,13 @@ def section(s, title):
 def row(s, left, right):
     t = Table(
         [[Paragraph(left, s["job"]), Paragraph(right, s["date"])]],
-        colWidths=[5.35 * inch, 2.15 * inch],
+        colWidths=[5.05 * inch, 2.44 * inch],
     )
     t.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
         ("LEFTPADDING", (0, 0), (-1, -1), 0),
         ("RIGHTPADDING", (0, 0), (-1, -1), 0),
-        ("TOPPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 3),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
     ]))
     return t
@@ -79,7 +84,7 @@ def main():
 
     story += section(s, "SUMMARY")
     story.append(Paragraph(
-        "Data Engineer for operational models, pipelines, and the tables a team can query. Fortune 500 intern at SKF, Bangalore: paper 5S audits are now an 11-screen Power Apps and SharePoint system factory teams use, with Power BI score-cards that flag a result against a qualifying bar. Independently shipped a snapshot pipeline of 100 creators and about 3,500 videos, and an English-to-SQL service locked to the pasted schema. A city warehouse is in progress. Seeking a Data Engineer role.",
+        "Data Engineer for operational models, pipelines, and the tables a team can query. Fortune 500 intern at SKF, Bangalore: paper 5S audits are now an 11-screen Power Apps and SharePoint system factory teams use, with Power BI score-cards that flag a result against a qualifying bar. Independently shipped a snapshot pipeline of 100 creators and about 3,500 videos, and an English-to-SQL service locked to the pasted schema. A city warehouse is in progress.",
         s["body"],
     ))
 
@@ -89,8 +94,6 @@ def main():
     story.append(bullet(s, "Replaced paper 5S plant audits with an 11-screen Power Apps and SharePoint system. Factory teams use it for scores, photos, and actions, not files in email."))
     story.append(bullet(s, "Set the grain as one audit across five pillars. Write-back is identity-aware and zone-scoped, so a submitted audit is a row plant leads can review."))
     story.append(bullet(s, "Built the score-card and Power BI views: per-pillar totals, pass/fail against the qualifying bar, and the weakest pillar flagged for leadership."))
-    story.append(bullet(s, "Support daily and weekly reporting to plant operations: summarize issues and keep the capture rules aligned so the table stays accurate."))
-    story.append(bullet(s, "Run several workstreams at once — capture, modeling, score-cards, and user support — with written updates non-technical plant leads can use."))
 
     story.append(row(s, "GenAI Data Analytics Job Simulation, Tata Group (Forage)", "2024"))
     story.append(bullet(s, "Worked delinquency risk on structured financial datasets and wrote the next action a stakeholder could take, tied to the fields in the data. A job simulation, not employment."))
@@ -127,11 +130,11 @@ def main():
 
     doc = SimpleDocTemplate(
         str(OUT),
-        pagesize=letter,
-        leftMargin=0.5 * inch,
-        rightMargin=0.5 * inch,
-        topMargin=0.4 * inch,
-        bottomMargin=0.34 * inch,
+        pagesize=A4,
+        leftMargin=0.38 * inch,
+        rightMargin=0.38 * inch,
+        topMargin=0.26 * inch,
+        bottomMargin=0.26 * inch,
         title="Bannusha Shaik — Data Engineer",
         author="Bannusha Shaik",
     )
