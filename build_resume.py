@@ -183,7 +183,7 @@ def main():
     job_line(doc, "Technical Support, IEEE Student Branch, PES College of Engineering", "Aug 2023 – Sep 2024")
     bullet(
         doc,
-        "College club role. Supported technical sessions for the IEEE student branch: setup, troubleshooting, and keeping events running for speakers and attendees.",
+        "College club role. Supported technical sessions for the IEEE student branch: setup, troubleshooting, and keeping events running.",
     )
 
     heading(doc, "Projects")
@@ -216,7 +216,7 @@ def main():
     bullet(
         doc,
         "Stood up a Docker Compose stack a pipeline needs once it leaves a laptop: Prometheus for metrics, Loki for logs, Alertmanager for routing, and Grafana boards for system, application, and database health.",
-        "Added MySQL and Mongo exporters plus a demo API that exposes custom /metrics, so rows, failures, and latency are scraped numbers rather than something checked by opening a log file.",
+        "Added database exporters and a demo API that exposes custom /metrics, so failures and latency are scraped numbers rather than a log file.",
     )
 
 
