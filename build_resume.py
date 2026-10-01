@@ -166,10 +166,10 @@ def main():
         "Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take.",
     )
 
-    job_line(doc, "Technical Support Team, IEEE", "Aug 2023 – Sep 2024")
+    job_line(doc, "Technical Support, IEEE Student Branch, PES College of Engineering", "Aug 2023 – Sep 2024")
     bullet(
         doc,
-        "Supported technical sessions and event systems for the student branch: setup, troubleshooting, and keeping sessions running for speakers and attendees.",
+        "College club role. Supported technical sessions for the IEEE student branch: setup, troubleshooting, and keeping events running for speakers and attendees.",
     )
 
     heading(doc, "Projects")
