@@ -140,11 +140,8 @@ def main():
         "Data Engineer building ETL pipelines, operational data models, and the tables downstream "
         "teams query. At SKF (Fortune 500), replaced paper factory audits with an 11-screen production "
         "system: each audit is 1 queryable row across 5 pillars, with zone-scoped write-back and "
-        "score-card views plant leads use. Also supported technical sessions for the IEEE student branch "
-        "at PES, Aug 2023 to Sep 2024. Projects: NammaPulse, a Bengaluru weather, air, and mobility "
-        "warehouse, and Creator Lab, a snapshot pipeline of 100 creators and about 3,500 videos. "
-        "Skills: Python, SQL, PostgreSQL, pandas, data modeling, API ingestion, "
-        "ETL, and Power BI. Seeking a Data Engineer role."
+        "score-card views plant leads use. Skills: Python, SQL, PostgreSQL, pandas, data modeling, "
+        "API ingestion, ETL, and Power BI. Seeking a Data Engineer role."
     )
     set_run_font(r, size=10.5)
 
@@ -177,16 +174,16 @@ def main():
     job_line(doc, "Creator Lab  |  Python, SQLite, YouTube Data API, Streamlit", "Live")
     loc_line(doc, "know-stats.streamlit.app  ·  github.com/bannushaxddd/indian-creator-lab")
     for t in [
-        "Built a YouTube Data API pipeline into SQLite for 100 Indian creators (50 tech, 50 fashion) and about 3,500 videos, stored as snapshots so views, likes, and comments are a time series rather than a one-time scrape.",
-        "Defined engagement as (likes + comments) / views and outlier as views versus that creator's own median, so a small channel is not ranked against a large one.",
-        "Shipped a public Streamlit app that scores a draft title and cut against that table and returns a view range plus the nearest videos already stored.",
+        "Ingested the YouTube Data API v3 into SQLite for 100 Indian creators (50 tech, 50 fashion and beauty) and about 3,500 videos. Grain is one snapshot of one video, so views, likes, and comments can be collected again instead of overwritten.",
+        "Defined engagement as (likes + comments) / views, because public YouTube does not expose shares. Defined outlier as this video's views divided by that creator's own median, so a small channel is not ranked against a large one.",
+        "Built a feature table for duration buckets, Shorts versus long-form, title hooks, and publish hour, then shipped a public Streamlit app that scores a draft title and cut and returns a view range, an engagement rate, and the nearest videos already in the table.",
     ]:
         bullet(doc, t)
 
     job_line(doc, "NammaPulse  |  Python, PostgreSQL, PostGIS", "In progress")
     for t in [
-        "Building a Bengaluru warehouse for weather, air, and mobility feeds that do not share a schema, a clock, or a location model.",
-        "Landing each pull as a raw payload, writing invalid rows to a reject table, and modeling ward, station, and date dimensions in PostgreSQL and PostGIS.",
+        "Designing a Bengaluru warehouse for weather, air, and mobility feeds that do not share a schema, a clock, or a location model. Each pull lands as an untouched raw payload before any cleaning.",
+        "Invalid rows — a missing timestamp, a missing location, or a value outside a declared range — go to a reject table with the rule that failed. Ward, station, and date are dimensions in PostgreSQL and PostGIS. An unknown location is surrogate key -1, not a dropped row.",
     ]:
         bullet(doc, t)
 
@@ -194,14 +191,16 @@ def main():
     loc_line(doc, "github.com/bannushaxddd/GETYOQUERY")
     bullet(
         doc,
-        "Built an English-to-SQL service across 8 dialects (PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, DuckDB). CREATE TABLE is a hard allowlist, query history is stored in PostgreSQL, and execution is parameterized so generated SQL cannot invent column names.",
+        "Built an English-to-SQL service across 8 dialects: PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, and DuckDB. A pasted CREATE TABLE is the allowlist, so generation may use only those table and column names.",
+        "Stored query history in PostgreSQL, put JWT on the API, and ran execution with parameterized queries so a generated statement cannot invent a column or concatenate user input into SQL.",
     )
 
     job_line(doc, "Pipeline observability  |  Prometheus, Grafana, Loki, Docker", "")
     loc_line(doc, "github.com/bannushaxddd/prometheus-grafana-stack")
     bullet(
         doc,
-        "Stood up a Docker Compose metrics and log stack: Prometheus, Loki, Alertmanager, database exporters, custom application /metrics, and Grafana boards for system, app, and database health.",
+        "Stood up a Docker Compose stack a pipeline needs once it leaves a laptop: Prometheus for metrics, Loki for logs, Alertmanager for routing, and Grafana boards for system, application, and database health.",
+        "Added MySQL and Mongo exporters plus a demo API that exposes custom /metrics, so rows, failures, and latency are scraped numbers rather than something checked by opening a log file.",
     )
 
 
