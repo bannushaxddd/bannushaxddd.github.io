@@ -50,7 +50,7 @@ def add_bottom_border(p, size="12", color="000000"):
 
 def heading(doc, text):
     p = doc.add_paragraph()
-    set_spacing(p, before=5, after=1, line=200)
+    set_spacing(p, before=4, after=1, line=190)
     add_bottom_border(p, "8", "000000")
     r = p.add_run(text.upper())
     set_run_font(r, size=11, bold=True)
@@ -70,7 +70,7 @@ def bullet(doc, text, num_id=1):
 
 def job_line(doc, left, right):
     p = doc.add_paragraph()
-    set_spacing(p, before=4, after=0, line=210)
+    set_spacing(p, before=3, after=0, line=200)
     p.paragraph_format.tab_stops.add_tab_stop(Inches(7.3), WD_TAB_ALIGNMENT.RIGHT)
     r = p.add_run(left)
     set_run_font(r, size=11, bold=True)
@@ -101,7 +101,7 @@ def main():
         s.page_width = Inches(8.5)
         s.page_height = Inches(11)
         s.top_margin = Inches(0.38)
-        s.bottom_margin = Inches(0.32)
+        s.bottom_margin = Inches(0.28)
         s.left_margin = Inches(0.55)
         s.right_margin = Inches(0.55)
 
