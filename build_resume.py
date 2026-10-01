@@ -1,246 +1,173 @@
-"""One-page Data Engineer resume. Photo header, summary under the title, education after skills."""
+"""One-page resume in the Yassine layout: serif header, photo, ruled sections."""
 from pathlib import Path
 
-from docx import Document
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING, WD_TAB_ALIGNMENT
-from docx.oxml import OxmlElement
-from docx.oxml.ns import qn
-from docx.shared import Inches, Pt, RGBColor, Emu
+from PIL import Image
+from reportlab.lib.colors import Color, HexColor, black, white
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_RIGHT
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.units import inch
+from reportlab.platypus import (
+    Image as RLImage,
+    Paragraph,
+    SimpleDocTemplate,
+    Spacer,
+    Table,
+    TableStyle,
+)
 
-OUT = Path(__file__).resolve().parent / "Bannusha_Shaik_Data_Engineer.docx"
-
-
-def set_run_font(run, name="Calibri", size=11, bold=False, color=None):
-    run.bold = bold
-    run.font.name = name
-    run.font.size = Pt(size)
-    r = run._element
-    rPr = r.get_or_add_rPr()
-    rFonts = rPr.find(qn("w:rFonts"))
-    if rFonts is None:
-        rFonts = OxmlElement("w:rFonts")
-        rPr.append(rFonts)
-    rFonts.set(qn("w:ascii"), name)
-    rFonts.set(qn("w:hAnsi"), name)
-    rFonts.set(qn("w:eastAsia"), name)
-    rFonts.set(qn("w:cs"), name)
-    if color:
-        run.font.color.rgb = RGBColor(*color)
+ROOT = Path(__file__).resolve().parent
+OUT = ROOT / "resume.pdf"
+PHOTO = ROOT / "photo.jpg"
+CROP = ROOT / "_photo_crop.jpg"
+BLUE = HexColor("#1A5276")
+RULE = HexColor("#222222")
+MUTED = HexColor("#333333")
 
 
-def set_spacing(p, before=0, after=0, line=240):
-    pf = p.paragraph_format
-    pf.space_before = Pt(before)
-    pf.space_after = Pt(after)
-    pf.line_spacing = line / 240.0
-    pf.line_spacing_rule = WD_LINE_SPACING.MULTIPLE
+def crop_photo():
+    im = Image.open(PHOTO).convert("RGB")
+    w, h = im.size
+    side_w, side_h = 820, 980
+    cx, cy = int(w * 0.56), int(h * 0.28)
+    left = max(0, min(w - side_w, cx - side_w // 2))
+    top = max(0, min(h - side_h, cy - int(side_h * 0.38)))
+    im.crop((left, top, left + side_w, top + side_h)).save(CROP, quality=90)
 
 
-def add_bottom_border(p, size="12", color="000000"):
-    pPr = p._p.get_or_add_pPr()
-    pBdr = OxmlElement("w:pBdr")
-    bottom = OxmlElement("w:bottom")
-    bottom.set(qn("w:val"), "single")
-    bottom.set(qn("w:sz"), size)
-    bottom.set(qn("w:space"), "1")
-    bottom.set(qn("w:color"), color)
-    pBdr.append(bottom)
-    pPr.append(pBdr)
+def styles():
+    return {
+        "name": ParagraphStyle("name", fontName="Times-Bold", fontSize=22, leading=24, alignment=TA_CENTER, textColor=black),
+        "role": ParagraphStyle("role", fontName="Times-Roman", fontSize=12, leading=14, alignment=TA_CENTER, textColor=black),
+        "contact": ParagraphStyle("contact", fontName="Times-Roman", fontSize=9, leading=12, alignment=TA_CENTER, textColor=MUTED),
+        "section": ParagraphStyle("section", fontName="Times-Bold", fontSize=11, leading=12, textColor=black, spaceBefore=5, spaceAfter=0),
+        "job": ParagraphStyle("job", fontName="Times-Bold", fontSize=10, leading=12, textColor=BLUE),
+        "date": ParagraphStyle("date", fontName="Times-Roman", fontSize=9.5, leading=12, alignment=TA_RIGHT, textColor=black),
+        "sub": ParagraphStyle("sub", fontName="Times-Italic", fontSize=9, leading=11, textColor=MUTED),
+        "body": ParagraphStyle("body", fontName="Times-Roman", fontSize=9, leading=11, textColor=black, alignment=TA_JUSTIFY),
+        "bullet": ParagraphStyle("bullet", fontName="Times-Roman", fontSize=9, leading=11, textColor=black, leftIndent=11, bulletIndent=0),
+        "tech": ParagraphStyle("tech", fontName="Times-Roman", fontSize=9, leading=11.2, textColor=black),
+    }
 
 
-def heading(doc, text):
-    p = doc.add_paragraph()
-    set_spacing(p, before=4, after=1, line=190)
-    add_bottom_border(p, "8", "000000")
-    r = p.add_run(text.upper())
-    set_run_font(r, size=11, bold=True)
-    return p
+def rule():
+    line = Table([[""]], colWidths=[7.5 * inch])
+    line.setStyle(TableStyle([
+        ("LINEBELOW", (0, 0), (-1, -1), 0.6, RULE),
+        ("TOPPADDING", (0, 0), (-1, -1), 0),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 1),
+    ]))
+    return line
 
 
-def bullet(doc, text, num_id=1):
-    p = doc.add_paragraph(style="List Bullet")
-    set_spacing(p, before=0, after=0, line=208)
-    p.clear()
-    r = p.add_run(text)
-    set_run_font(r, size=10.5)
-    p.paragraph_format.left_indent = Inches(0.25)
-    p.paragraph_format.first_line_indent = Inches(-0.15)
-    return p
+def section(s, title):
+    return [Paragraph(title, s["section"]), rule()]
 
 
-def job_line(doc, left, right):
-    p = doc.add_paragraph()
-    set_spacing(p, before=3, after=0, line=200)
-    p.paragraph_format.tab_stops.add_tab_stop(Inches(7.3), WD_TAB_ALIGNMENT.RIGHT)
-    r = p.add_run(left)
-    set_run_font(r, size=11, bold=True)
-    r2 = p.add_run("\t" + right)
-    set_run_font(r2, size=10.5)
+def job_row(s, left, right):
+    t = Table(
+        [[Paragraph(left, s["job"]), Paragraph(right, s["date"])]],
+        colWidths=[5.5 * inch, 2.0 * inch],
+    )
+    t.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+        ("TOPPADDING", (0, 0), (-1, -1), 4),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+    ]))
+    return t
 
 
-def loc_line(doc, text):
-    p = doc.add_paragraph()
-    set_spacing(p, before=0, after=2, line=200)
-    r = p.add_run(text)
-    set_run_font(r, size=10)
-    r.italic = True
+def bullet(s, text):
+    return Paragraph("•  " + text, s["bullet"])
 
 
-def skill_line(doc, label, rest):
-    p = doc.add_paragraph()
-    set_spacing(p, before=0, after=0, line=210)
-    r = p.add_run(label)
-    set_run_font(r, size=10.5, bold=True)
-    r2 = p.add_run(rest)
-    set_run_font(r2, size=10.5)
+def header(s):
+    photo = RLImage(str(CROP), width=0.92 * inch, height=1.1 * inch)
+    text = [
+        Paragraph("Bannusha SHAIK", s["name"]),
+        Paragraph("Data Engineer", s["role"]),
+        Spacer(1, 3),
+        Paragraph("Bangalore &nbsp;&nbsp;|&nbsp;&nbsp; +91 8074671779 &nbsp;&nbsp;|&nbsp;&nbsp; bannushashaik85@gmail.com", s["contact"]),
+        Paragraph("GitHub &nbsp;&nbsp;|&nbsp;&nbsp; LinkedIn &nbsp;&nbsp;|&nbsp;&nbsp; bannusha.com", s["contact"]),
+    ]
+    block = Table([[text, photo]], colWidths=[6.4 * inch, 1.1 * inch])
+    block.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("ALIGN", (1, 0), (1, 0), "RIGHT"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 0),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+        ("TOPPADDING", (0, 0), (-1, -1), 0),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
+    ]))
+    return block
 
 
 def main():
-    doc = Document()
-    for s in doc.sections:
-        s.page_width = Inches(8.5)
-        s.page_height = Inches(11)
-        s.top_margin = Inches(0.35)
-        s.bottom_margin = Inches(0.22)
-        s.left_margin = Inches(0.5)
-        s.right_margin = Inches(0.5)
+    crop_photo()
+    s = styles()
+    story = [header(s), Spacer(1, 6)]
 
-    header = doc.add_table(rows=1, cols=2)
-    header.autofit = False
-    tbl = header._tbl
-    tblPr = tbl.tblPr if tbl.tblPr is not None else OxmlElement("w:tblPr")
-    borders = OxmlElement("w:tblBorders")
-    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
-        el = OxmlElement(f"w:{edge}")
-        el.set(qn("w:val"), "nil")
-        borders.append(el)
-    tblPr.append(borders)
-    header.columns[0].width = Inches(6.15)
-    header.columns[1].width = Inches(1.25)
-    left = header.cell(0, 0).paragraphs[0]
-    left.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(left, before=0, after=0, line=200)
-    r = left.add_run("BANNUSHA SHAIK")
-    set_run_font(r, size=18, bold=True)
+    story += section(s, "Summary")
+    story.append(Paragraph(
+        "Data Engineer who would rather own the table than the chart on top of it. At SKF, a Fortune 500 plant in Bangalore, paper factory audits are a production system plant leads use: 11 screens, one row per audit across five pillars, and a score-card. Independently built Creator Lab, a snapshot pipeline of 100 creators and about 3,500 videos, and GETYOQUERY, schema-locked SQL across 8 dialects.",
+        s["body"],
+    ))
 
-    sub = header.cell(0, 0).add_paragraph()
-    sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(sub, before=1, after=1, line=200)
-    r = sub.add_run("Data Engineer")
-    set_run_font(r, size=12)
+    story += section(s, "Professional Experience")
+    story.append(job_row(s, "SKF — Data Engineer Intern", "May 2026 – Present"))
+    story.append(Paragraph("Fortune 500 industrial &nbsp;·&nbsp; Bangalore", s["sub"]))
+    story.append(bullet(s, "Replaced paper 5S factory audits with an 11-screen production Power Apps system on the SKF Office 365 tenant. Factory teams capture scores, photo evidence, and actions as structured records."))
+    story.append(bullet(s, "Modeled audit drafts and zone lists with identity-aware, zone-scoped write-back into SharePoint, so each submitted audit is 1 queryable row rather than a file in email."))
+    story.append(bullet(s, "Defined the grain as 1 audit across 5 pillars and served score-card views to plant leads: per-pillar totals, pass/fail against a qualifying bar, and the weakest pillar."))
 
-    contact = header.cell(0, 0).add_paragraph()
-    contact.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(contact, before=1, after=0, line=190)
-    r = contact.add_run("Bangalore  |  +91 8074671779  |  bannushashaik85@gmail.com")
-    set_run_font(r, size=9)
-    links = header.cell(0, 0).add_paragraph()
-    links.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_spacing(links, before=0, after=0, line=190)
-    r = links.add_run("GitHub  |  LinkedIn  |  bannusha.com")
-    set_run_font(r, size=9)
+    story.append(job_row(s, "Tata Group (Forage) — GenAI Data Analytics", "2024"))
+    story.append(bullet(s, "Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take. A job simulation."))
 
-    photo_p = header.cell(0, 1).paragraphs[0]
-    photo_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    set_spacing(photo_p, before=0, after=0, line=200)
-    run = photo_p.add_run()
-    run.add_picture(str(Path(__file__).resolve().parent / "photo.jpg"), width=Inches(0.95), height=Inches(1.15))
+    story.append(job_row(s, "IEEE Student Branch, PES — Technical Support", "Aug 2023 – Sep 2024"))
+    story.append(bullet(s, "College club role. Supported technical sessions: setup, troubleshooting, and keeping events running."))
 
-    rule = doc.add_paragraph()
-    set_spacing(rule, before=2, after=2, line=80)
-    add_bottom_border(rule, "12", "000000")
+    story += section(s, "Key Projects")
+    story.append(job_row(s, "Creator Lab", "Live"))
+    story.append(Paragraph("know-stats.streamlit.app", s["sub"]))
+    story.append(bullet(s, "Ingested the YouTube Data API into SQLite for 100 Indian creators and about 3,500 videos. Grain is one snapshot of one video, so views, likes, and comments are a time series rather than a one-time scrape."))
+    story.append(bullet(s, "Defined engagement as (likes + comments) / views and outlier as views versus that creator's own median, then shipped a public app that scores a draft and returns a view range plus the nearest videos in the table."))
+    story.append(Paragraph("<b>Technologies:</b> Python, SQLite, YouTube Data API, pandas, Streamlit", s["tech"]))
 
-    heading(doc, "Summary")
-    sm = doc.add_paragraph()
-    set_spacing(sm, before=2, after=1, line=210)
-    r = sm.add_run(
-        "Data Engineer who would rather own the table than the chart on top of it. At SKF, a Fortune 500 "
-        "plant in Bangalore, paper audits are a production system: 11 screens, one row per audit across "
-        "five pillars, and a score-card plant leads use. Independently built Creator Lab, 100 creators "
-        "and about 3,500 videos snapshotted over time, and GETYOQUERY, schema-locked SQL across 8 dialects."
+    story.append(job_row(s, "GETYOQUERY", "GitHub"))
+    story.append(Paragraph("github.com/bannushaxddd/GETYOQUERY", s["sub"]))
+    story.append(bullet(s, "Built an English-to-SQL service across 8 dialects. A pasted CREATE TABLE is the allowlist, so generation may use only those names. Query history is stored in PostgreSQL and execution is parameterized."))
+    story.append(Paragraph("<b>Technologies:</b> SQL, PostgreSQL, Node.js, JWT", s["tech"]))
+
+    story += section(s, "Technical Skills")
+    story.append(Paragraph("<b>Data engineering:</b> ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality", s["tech"]))
+    story.append(Paragraph("<b>SQL &amp; databases:</b> SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries", s["tech"]))
+    story.append(Paragraph("<b>Python:</b> Python, pandas, NumPy, API clients, scikit-learn", s["tech"]))
+    story.append(Paragraph("<b>Tools:</b> Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint", s["tech"]))
+
+    story += section(s, "Education")
+    story.append(job_row(s, "B.Tech, Artificial Intelligence &amp; Machine Learning", "2023 – Expected 2027"))
+    story.append(Paragraph("PES College of Engineering, Bangalore", s["sub"]))
+
+    story += section(s, "Certifications")
+    story.append(job_row(s, "Machine Learning Specialization", "Coursera"))
+    story.append(Paragraph("coursera.org/account/accomplishments/specialization/F97RXO11QI47", s["sub"]))
+    story.append(Paragraph("Generative AI: Prompt Engineering Basics, IBM &nbsp;·&nbsp; GenAI Powered Data Analytics, Tata Group (Forage), 2024", s["tech"]))
+
+    doc = SimpleDocTemplate(
+        str(OUT),
+        pagesize=letter,
+        leftMargin=0.5 * inch,
+        rightMargin=0.5 * inch,
+        topMargin=0.32 * inch,
+        bottomMargin=0.26 * inch,
+        title="Bannusha Shaik — Data Engineer",
+        author="Bannusha Shaik",
     )
-    set_run_font(r, size=10.5)
-
-    heading(doc, "Professional Experience")
-    job_line(
-        doc,
-        "Data Engineer Intern, SKF (Fortune 500 Industrial Technology)",
-        "May 2026 – Present  |  Bangalore",
-    )
-    for t in [
-        "Replaced paper 5S factory audits with an 11-screen production Power Apps system on the SKF Office 365 tenant; factory teams now capture scores, photo evidence, and actions as structured records instead of paper forms.",
-        "Modeled audit drafts and zone lists with identity-aware, zone-scoped write-back into SharePoint, so each submitted audit is 1 queryable row rather than a file in email.",
-        "Defined the grain as 1 audit across 5 pillars and served score-card views to plant leads: per-pillar totals, pass/fail against a qualifying bar, and the weakest pillar on every audit.",
-    ]:
-        bullet(doc, t)
-
-    job_line(doc, "GenAI Data Analytics Job Simulation, Tata Group (Forage)", "2024")
-    bullet(
-        doc,
-        "Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take.",
-    )
-
-    job_line(doc, "Technical Support, IEEE Student Branch, PES College of Engineering", "Aug 2023 – Sep 2024")
-    bullet(
-        doc,
-        "College club role. Supported technical sessions for the IEEE student branch: setup, troubleshooting, and keeping events running.",
-    )
-
-    heading(doc, "Projects")
-    job_line(doc, "Creator Lab  |  Python, SQLite, YouTube Data API, Streamlit", "Live")
-    loc_line(doc, "know-stats.streamlit.app  ·  github.com/bannushaxddd/indian-creator-lab")
-    for t in [
-        "Ingested the YouTube Data API v3 into SQLite for 100 Indian creators (50 tech, 50 fashion and beauty) and about 3,500 videos. Grain is one snapshot of one video, so views, likes, and comments can be collected again instead of overwritten.",
-        "Defined engagement as (likes + comments) / views, because public YouTube does not expose shares. Defined outlier as this video's views divided by that creator's own median, so a small channel is not ranked against a large one.",
-        "Built a feature table for duration buckets, Shorts versus long-form, title hooks, and publish hour, then shipped a public Streamlit app that scores a draft title and cut and returns a view range, an engagement rate, and the nearest videos already in the table.",
-    ]:
-        bullet(doc, t)
-
-    job_line(doc, "NammaPulse  |  Python, PostgreSQL, PostGIS", "In progress")
-    for t in [
-        "Designing a Bengaluru warehouse for weather, air, and mobility feeds that do not share a schema, a clock, or a location model. Each pull lands as an untouched raw payload before any cleaning.",
-        "Invalid rows — a missing timestamp, a missing location, or a value outside a declared range — go to a reject table with the rule that failed. Ward, station, and date are dimensions in PostgreSQL and PostGIS. An unknown location is surrogate key -1, not a dropped row.",
-    ]:
-        bullet(doc, t)
-
-    job_line(doc, "GETYOQUERY  |  SQL, PostgreSQL, 8 dialects", "")
-    loc_line(doc, "github.com/bannushaxddd/GETYOQUERY")
-    bullet(
-        doc,
-        "Built an English-to-SQL service across 8 dialects: PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, and DuckDB. A pasted CREATE TABLE is the allowlist, so generation may use only those table and column names.",
-        "Stored query history in PostgreSQL, put JWT on the API, and ran execution with parameterized queries so a generated statement cannot invent a column or concatenate user input into SQL.",
-    )
-
-    job_line(doc, "Pipeline observability  |  Prometheus, Grafana, Loki, Docker", "")
-    loc_line(doc, "github.com/bannushaxddd/prometheus-grafana-stack")
-    bullet(
-        doc,
-        "Stood up a Docker Compose stack a pipeline needs once it leaves a laptop: Prometheus for metrics, Loki for logs, Alertmanager for routing, and Grafana boards for system, application, and database health.",
-        "Added database exporters and a demo API that exposes custom /metrics, so failures and latency are scraped numbers rather than a log file.",
-    )
-
-
-
-    heading(doc, "Technical Skills")
-    skill_line(doc, "Data engineering: ", "ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality")
-    skill_line(doc, "SQL & databases: ", "SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries")
-    skill_line(doc, "Python: ", "Python, pandas, NumPy, API clients, scikit-learn")
-    skill_line(doc, "BI & tools: ", "Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Office 365")
-
-    heading(doc, "Education")
-    job_line(
-        doc,
-        "B.Tech, Artificial Intelligence & Machine Learning, PES College of Engineering",
-        "2023 – Expected 2027",
-    )
-    loc_line(doc, "Bangalore, India")
-
-    heading(doc, "Certifications")
-    job_line(doc, "Machine Learning Specialization, Coursera", "")
-    loc_line(doc, "coursera.org/account/accomplishments/specialization/F97RXO11QI47")
-    skill_line(doc, "Also: ", "Generative AI: Prompt Engineering Basics, IBM  ·  GenAI Powered Data Analytics, Tata Group (Forage), 2024")
-
-    doc.save(OUT)
+    doc.build(story)
+    if CROP.exists():
+        CROP.unlink()
     print("Wrote", OUT)
 
 
