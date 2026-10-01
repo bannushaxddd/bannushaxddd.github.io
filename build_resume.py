@@ -97,7 +97,7 @@ def main():
 
     story += section(s, "SUMMARY")
     story.append(Paragraph(
-        "Data Engineer for operational models, pipelines, and the tables a team can query. Fortune 500 intern at SKF, Bangalore: paper 5S audits are now an 11-screen Power Apps and SharePoint system factory teams use, with Power BI score-cards that flag a result against a qualifying bar. Independently shipped a snapshot pipeline of 100 creators and about 3,500 videos, and an English-to-SQL service locked to the pasted schema. A city warehouse is in progress.",
+        "Data Engineer. The work is the grain, the pipeline, and a table someone else can query. At SKF, a Fortune 500 plant in Bangalore, paper 5S audits are one row per audit across five pillars: write-back is limited to the zones an identity can touch, and the Power BI score-card marks pass or fail against a qualifying bar. Independently shipped a snapshot pipeline of 100 creators and about 3,500 videos, and an English-to-SQL service that will not generate a column outside the pasted schema. A city warehouse is in progress: each raw payload is kept, and a row that fails a rule goes to a reject table.",
         s["body"],
     ))
 
