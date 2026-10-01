@@ -17,6 +17,7 @@ pdfmetrics.registerFont(TTFont("CalI", r"C:\Windows\Fonts\calibrii.ttf"))
 OUT = Path(__file__).resolve().parent / "resume.pdf"
 INK = HexColor("#111111")
 RULE = HexColor("#222222")
+LINK = "#111111"
 
 
 def styles():
@@ -74,12 +75,24 @@ def bullet(s, text):
     return Paragraph("•  " + text, s["bullet"])
 
 
+def href(label, url):
+    return f'<link href="{url}" color="{LINK}"><u>{label}</u></link>'
+
+
 def main():
     s = styles()
     story = [
         Paragraph("BANNUSHA SHAIK", s["name"]),
         Paragraph("Data Engineer &nbsp;|&nbsp; Python · SQL · ETL · Data Modeling · PostgreSQL", s["title"]),
-        Paragraph("Bangalore, India · +91 8074671779 · bannushashaik85@gmail.com · linkedin.com/in/bannushashaik400 · bannusha.com", s["contact"]),
+        Paragraph(
+            "Bangalore, India · +91 8074671779 · "
+            + href("bannushashaik85@gmail.com", "mailto:bannushashaik85@gmail.com")
+            + " · "
+            + href("linkedin.com/in/bannushashaik400", "https://linkedin.com/in/bannushashaik400")
+            + " · "
+            + href("bannusha.com", "https://bannusha.com"),
+            s["contact"],
+        ),
     ]
 
     story += section(s, "SUMMARY")
@@ -102,13 +115,13 @@ def main():
     story.append(bullet(s, "College club. Setup and troubleshooting for technical sessions so the room was ready before the talk started."))
 
     story += section(s, "PROJECTS")
-    story.append(row(s, "Creator Lab &nbsp;|&nbsp; snapshot pipeline and scoring table", "know-stats.streamlit.app"))
+    story.append(row(s, href("Creator Lab", "https://know-stats.streamlit.app") + " &nbsp;|&nbsp; snapshot pipeline and scoring table", ""))
     story.append(Paragraph("Python · SQLite · YouTube Data API · pandas · scikit-learn · Streamlit · 100 creators · about 3,500 videos", s["tools"]))
     story.append(bullet(s, "Pulled the YouTube Data API into SQLite. Grain is one snapshot of one video, across 100 Indian creators (50 tech, 50 fashion) and about 3,500 videos."))
     story.append(bullet(s, "Engagement is (likes + comments) / views. Outlier is views divided by that creator's own median, so a small channel is not ranked against a large one."))
     story.append(bullet(s, "Streamlit scores a draft and returns a view range plus the nearest videos already stored. pandas and scikit-learn sit on the feature table."))
 
-    story.append(row(s, "Schema-Locked SQL &nbsp;|&nbsp; English to SQL across 8 dialects", "github.com/bannushaxddd/GETYOQUERY"))
+    story.append(row(s, href("Schema-Locked SQL", "https://github.com/bannushaxddd/GETYOQUERY") + " &nbsp;|&nbsp; English to SQL across 8 dialects", ""))
     story.append(Paragraph("Node.js · PostgreSQL · parameterized execution · JWT · 8 SQL dialects", s["tools"]))
     story.append(bullet(s, "English to SQL for PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, and DuckDB. A pasted CREATE TABLE is the allowlist, so generation cannot invent a column."))
     story.append(bullet(s, "Query history is stored in PostgreSQL. Execution is parameterized, and the API sits behind JWT, so a generated statement cannot invent a column or concatenate input into SQL."))
@@ -126,7 +139,14 @@ def main():
 
     story += section(s, "EDUCATION &amp; CERTIFICATIONS")
     story.append(row(s, "B.Tech, Artificial Intelligence &amp; Machine Learning, PES College of Engineering", "2023 – Expected 2027"))
-    story.append(Paragraph("Machine Learning Specialization, Coursera · IBM Generative AI Prompt Engineering · Tata Group GenAI Data Analytics (Forage), 2024", s["tools"]))
+    story.append(Paragraph(
+        href("Machine Learning Specialization, Coursera", "https://www.coursera.org/account/accomplishments/specialization/F97RXO11QI47")
+        + " · IBM Generative AI Prompt Engineering"
+        + " · "
+        + href("Tata Group GenAI Data Analytics (Forage)", "https://www.theforage.com/simulations/tata/data-analytics-t3zr")
+        + ", 2024",
+        s["tools"],
+    ))
 
     doc = SimpleDocTemplate(
         str(OUT),
