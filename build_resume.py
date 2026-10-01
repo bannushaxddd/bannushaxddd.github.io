@@ -140,9 +140,9 @@ def main():
         "Data Engineer building ETL pipelines, operational data models, and the tables downstream "
         "teams query. At SKF (Fortune 500), replaced paper factory audits with an 11-screen production "
         "system: each audit is 1 queryable row across 5 pillars, with zone-scoped write-back and "
-        "score-card views plant leads use. Independently shipped a YouTube ingestion pipeline "
-        "(100 creators, about 3,500 videos) and a schema-locked SQL generator across 8 dialects with "
-        "PostgreSQL query history. Skills: Python, SQL, PostgreSQL, pandas, data modeling, API ingestion, "
+        "score-card views plant leads use. Projects: NammaPulse, a Bengaluru weather, air, and mobility "
+        "warehouse; Creator Lab, a snapshot pipeline of 100 creators and about 3,500 videos; PlantLine, "
+        "the production audit model. Skills: Python, SQL, PostgreSQL, pandas, data modeling, API ingestion, "
         "ETL, and Power BI. Seeking a Data Engineer role."
     )
     set_run_font(r, size=10.5)
@@ -167,30 +167,23 @@ def main():
     )
 
     heading(doc, "Projects")
-    job_line(
+    job_line(doc, "NammaPulse  |  Python, PostgreSQL, PostGIS", "In progress")
+    bullet(
         doc,
-        "Indian Creator Lab  |  YouTube Data API, SQLite, pandas, scikit-learn, Streamlit",
-        "Live",
+        "Bengaluru weather, air, and mobility feeds that do not share a schema, a clock, or a location. Raw payload kept, bad rows rejected, three marts served.",
     )
+
+    job_line(doc, "Creator Lab  |  Python, SQLite, YouTube Data API, Streamlit", "Live")
     loc_line(doc, "know-stats.streamlit.app  ·  github.com/bannushaxddd/indian-creator-lab")
-    for t in [
-        "Ingested the YouTube Data API into SQLite for 100 Indian creators and about 3,500 videos, keyed by video and collect time, so views, likes, and comments are a time series rather than a one-time scrape.",
-        "Defined engagement as (likes + comments) / views and outlier as views versus that creator's median, then served a Streamlit app that scores a draft against the table.",
-    ]:
-        bullet(doc, t)
-
-    job_line(doc, "GETYOQUERY  |  SQL, PostgreSQL, 8 dialects, schema-locked generation", "")
-    loc_line(doc, "github.com/bannushaxddd/GETYOQUERY")
     bullet(
         doc,
-        "Built an English-to-SQL service across 8 dialects (PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, DuckDB). CREATE TABLE is a hard allowlist, query history is stored in PostgreSQL, and execution is parameterized so generated SQL cannot invent column names.",
+        "A watchlist of 100 Indian creators and about 3,500 videos, snapshotted over time, so a draft title can be scored against a table instead of a one-time scrape.",
     )
 
-    job_line(doc, "Pipeline observability  |  Prometheus, Grafana, Loki, Alertmanager, Docker", "")
-    loc_line(doc, "github.com/bannushaxddd/prometheus-grafana-stack")
+    job_line(doc, "PlantLine  |  Data modeling, SharePoint, Power Apps", "In production")
     bullet(
         doc,
-        "Stood up a Docker Compose metrics and log stack: Prometheus, Loki, Alertmanager, database exporters, custom application /metrics, and Grafana boards for system, app, and database health.",
+        "Paper 5S audits became a row a plant lead can query. Drafts stay out of the trend. Write-back is limited to the zones an identity is allowed to touch.",
     )
 
     heading(doc, "Education")
