@@ -28,7 +28,7 @@ def set_run_font(run, name="Calibri", size=11, bold=False, color=None):
         run.font.color.rgb = RGBColor(*color)
 
 
-def set_spacing(p, before=0, after=0, line=230):
+def set_spacing(p, before=0, after=0, line=240):
     pf = p.paragraph_format
     pf.space_before = Pt(before)
     pf.space_after = Pt(after)
@@ -50,7 +50,7 @@ def add_bottom_border(p, size="12", color="000000"):
 
 def heading(doc, text):
     p = doc.add_paragraph()
-    set_spacing(p, before=7, after=3, line=200)
+    set_spacing(p, before=5, after=1, line=200)
     add_bottom_border(p, "8", "000000")
     r = p.add_run(text.upper())
     set_run_font(r, size=11, bold=True)
@@ -59,7 +59,7 @@ def heading(doc, text):
 
 def bullet(doc, text, num_id=1):
     p = doc.add_paragraph(style="List Bullet")
-    set_spacing(p, before=0, after=1, line=210)
+    set_spacing(p, before=0, after=0, line=208)
     p.clear()
     r = p.add_run(text)
     set_run_font(r, size=10.5)
@@ -70,7 +70,7 @@ def bullet(doc, text, num_id=1):
 
 def job_line(doc, left, right):
     p = doc.add_paragraph()
-    set_spacing(p, before=6, after=0, line=220)
+    set_spacing(p, before=4, after=0, line=210)
     p.paragraph_format.tab_stops.add_tab_stop(Inches(7.3), WD_TAB_ALIGNMENT.RIGHT)
     r = p.add_run(left)
     set_run_font(r, size=11, bold=True)
@@ -88,7 +88,7 @@ def loc_line(doc, text):
 
 def skill_line(doc, label, rest):
     p = doc.add_paragraph()
-    set_spacing(p, before=1, after=1, line=220)
+    set_spacing(p, before=0, after=0, line=210)
     r = p.add_run(label)
     set_run_font(r, size=10.5, bold=True)
     r2 = p.add_run(rest)
@@ -100,10 +100,10 @@ def main():
     for s in doc.sections:
         s.page_width = Inches(8.5)
         s.page_height = Inches(11)
-        s.top_margin = Inches(0.5)
-        s.bottom_margin = Inches(0.5)
-        s.left_margin = Inches(0.6)
-        s.right_margin = Inches(0.6)
+        s.top_margin = Inches(0.38)
+        s.bottom_margin = Inches(0.32)
+        s.left_margin = Inches(0.55)
+        s.right_margin = Inches(0.55)
 
     name = doc.add_paragraph()
     name.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -135,7 +135,7 @@ def main():
 
     heading(doc, "Summary")
     sm = doc.add_paragraph()
-    set_spacing(sm, before=3, after=2, line=216)
+    set_spacing(sm, before=2, after=1, line=210)
     r = sm.add_run(
         "Data Engineer building ETL pipelines, operational data models, and the tables downstream "
         "teams query. At SKF (Fortune 500), replaced paper factory audits with an 11-screen production "
@@ -189,6 +189,20 @@ def main():
         "Landing each pull as a raw payload, writing invalid rows to a reject table, and modeling ward, station, and date dimensions in PostgreSQL and PostGIS.",
     ]:
         bullet(doc, t)
+
+    job_line(doc, "GETYOQUERY  |  SQL, PostgreSQL, 8 dialects", "")
+    loc_line(doc, "github.com/bannushaxddd/GETYOQUERY")
+    bullet(
+        doc,
+        "Built an English-to-SQL service across 8 dialects (PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, DuckDB). CREATE TABLE is a hard allowlist, query history is stored in PostgreSQL, and execution is parameterized so generated SQL cannot invent column names.",
+    )
+
+    job_line(doc, "Pipeline observability  |  Prometheus, Grafana, Loki, Docker", "")
+    loc_line(doc, "github.com/bannushaxddd/prometheus-grafana-stack")
+    bullet(
+        doc,
+        "Stood up a Docker Compose metrics and log stack: Prometheus, Loki, Alertmanager, database exporters, custom application /metrics, and Grafana boards for system, app, and database health.",
+    )
 
 
 
