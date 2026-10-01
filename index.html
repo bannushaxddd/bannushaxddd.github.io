@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Data Engineer. Pipelines, warehouses, and the applications that sit on them.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Sofia+Sans+Condensed:wght@400;600;700&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: oklch(17.76% 0 0);
@@ -245,6 +245,134 @@
   }
   footer a { color: var(--cyan); }
 
+  .band {
+    background: #f7f7f7;
+    color: #101010;
+    margin-left: calc(var(--outer) + var(--rail));
+    padding: 88px 64px 96px;
+  }
+  .band h2 {
+    font-family: "Sofia Sans Condensed", system-ui, sans-serif;
+    font-size: clamp(48px, 10vw, 96px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin: 0 0 64px;
+  }
+  .work-list { display: flex; flex-direction: column; gap: 72px; }
+  .work-item { display: flex; gap: 48px; align-items: stretch; }
+  .work-item.flip { flex-direction: row-reverse; }
+  .frame {
+    flex: 1;
+    min-height: 300px;
+    border: 7px solid #101010;
+    box-shadow: 12px 12px 0 #d2d2d2;
+    background: #101010;
+    color: #f7f7f7;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .frame b {
+    font-family: "Sofia Sans Condensed", system-ui, sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+  .frame span {
+    font-family: "Spline Sans Mono", ui-monospace, monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #d2d2d2;
+  }
+  .work-copy { flex: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  .num {
+    font-family: "Sofia Sans Condensed", system-ui, sans-serif;
+    font-size: 88px;
+    font-weight: 600;
+    line-height: 0.8;
+    color: transparent;
+    -webkit-text-stroke: 2px #d2d2d2;
+  }
+  .work-copy h3 {
+    font-family: "Sofia Sans Condensed", system-ui, sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.15;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    font-family: "Sofia Sans Condensed", system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid #101010;
+    padding: 4px 8px;
+  }
+  .work-copy p {
+    font-family: "Spline Sans Mono", ui-monospace, monospace;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #606060;
+    margin: 0;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tags span {
+    font-family: "Sofia Sans Condensed", system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1.5px solid #d2d2d2;
+    padding: 8px 14px;
+  }
+  .view {
+    align-self: flex-start;
+    font-family: "Sofia Sans Condensed", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #101010;
+    border: 2px solid #101010;
+    padding: 14px 28px;
+    text-decoration: none;
+  }
+  .view:hover { background: #fff; color: #101010; }
+  .certs { border-top: 1px solid #101010; margin-top: 8px; }
+  .certs a, .certs div.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 0;
+    border-bottom: 1px solid #101010;
+    color: #101010;
+    text-decoration: none;
+  }
+  .certs span {
+    font-family: "Sofia Sans Condensed", system-ui, sans-serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 400;
+    line-height: 1.1;
+    transition: transform 200ms cubic-bezier(0.2, 0, 0, 1);
+  }
+  .certs i {
+    font-style: normal;
+    font-size: 24px;
+    transition: transform 200ms cubic-bezier(0.2, 0, 0, 1);
+  }
+  .certs a:hover span, .certs div.row:hover span { transform: translateX(8px); }
+  .certs a:hover i, .certs div.row:hover i { transform: translateX(8px); }
+
   @media (prefers-reduced-motion: no-preference) {
     .role-word::after { animation: wipe 1.4s var(--ease) 0.25s forwards; }
     .rule { animation: rule 0.8s var(--ease) 0.9s forwards; }
@@ -283,7 +411,12 @@
     .rail-links a { padding: 8px 8px; font-size: 13px; }
     .rail-links a::after { display: none; }
     .rail-icons, .menu-btn { display: none; }
-    .intro, .project, .details, footer { padding-left: 20px; padding-right: 20px; }
+    .intro, .details, footer { padding-left: 20px; padding-right: 20px; }
+    .band { margin-left: 0; padding: 56px 20px 64px; }
+    .work-item, .work-item.flip { flex-direction: column; }
+    .num { font-size: 64px; }
+    .frame { min-height: 180px; }
+    .frame b { font-size: 42px; }
     .intro { min-height: calc(100dvh - 56px); }
     .name { letter-spacing: 0.14em; font-size: 0.82rem; }
     .role { font-size: clamp(2.4rem, 12vw, 3.4rem); flex-wrap: wrap; }
@@ -309,7 +442,8 @@
     </svg>
   </a>
   <nav class="rail-links" aria-label="Primary">
-    <a href="#project-1">Projects</a>
+    <a href="#work">Projects</a>
+    <a href="#certs">Certifications</a>
     <a href="#details">Details</a>
     <a href="resume.pdf">Resume</a>
     <a href="mailto:bannushashaik85@gmail.com">Contact</a>
@@ -321,7 +455,7 @@
   <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sheet"><span></span></button>
 </header>
 <nav class="sheet" id="sheet" data-open="false">
-  <a href="#project-1">Projects</a>
+  <a href="#work">Projects</a>
   <a href="#details">Details</a>
   <a href="resume.pdf">Resume</a>
   <a href="mailto:bannushashaik85@gmail.com">Contact</a>
@@ -333,87 +467,61 @@
       <p class="name" id="intro-title">Bannusha Shaik</p>
       <h1 class="role"><span class="role-word">Data Engineer</span><span class="rule" aria-hidden="true"></span></h1>
     </div>
-    <a class="scroll-cue" href="#project-1" aria-label="Scroll to projects"></a>
+    <a class="scroll-cue" href="#work" aria-label="Scroll to projects"></a>
   </section>
 
-  <section class="project" id="project-1">
-    <div class="project-grid">
-      <div class="copy">
-        <div class="notch-row" aria-hidden="true"><div class="notch"></div><span class="idx">01</span></div>
-        <h2>NammaPulse</h2>
-        <p class="lede">Bengaluru weather, air, and mobility, headed for one warehouse. Next build. Not shipped.</p>
-        <p class="tech">Python · PostgreSQL · PostGIS</p>
-        <div class="actions"><span class="btn">Next build</span></div>
-      </div>
-      <div class="stage">
-        <div class="panel">
-          <div class="panel-kicker">Path <em>Not live</em></div>
-          <ol class="steps">
-            <li><span class="step-n">01</span><span><span class="step-name">Sources</span><span class="step-note">Weather, air, mobility</span></span></li>
-            <li><span class="step-n">02</span><span><span class="step-name">Raw</span><span class="step-note">Payload kept intact</span></span></li>
-            <li><span class="step-n">03</span><span><span class="step-name">Reject</span><span class="step-note">Bad rows leave the fact</span></span></li>
-            <li><span class="step-n">04</span><span><span class="step-name">Serve</span><span class="step-note">Three marts, one city</span></span></li>
-          </ol>
+  <section class="band" id="work">
+    <h2>Projects</h2>
+    <div class="work-list">
+      <article class="work-item">
+        <div class="frame">
+          <span>Bengaluru · next build</span>
+          <b>Weather<br>Air<br>Mobility</b>
+          <span>One city model</span>
         </div>
-      </div>
+        <div class="work-copy">
+          <div class="num">01</div>
+          <h3>NammaPulse <span class="pill">In progress</span></h3>
+          <p>Bengaluru weather, air, and mobility feeds that do not share a schema, a clock, or a location. Raw payload kept, bad rows rejected, three marts served.</p>
+          <div class="tags"><span>Python</span><span>PostgreSQL</span><span>PostGIS</span></div>
+        </div>
+      </article>
+      <article class="work-item flip">
+        <div class="frame">
+          <span>Live · snapshot grain</span>
+          <b>3,500<br>videos</b>
+          <span>100 creators</span>
+        </div>
+        <div class="work-copy">
+          <div class="num">02</div>
+          <h3>Creator Lab</h3>
+          <p>A watchlist of Indian creators, snapshotted over time, so a draft title can be scored against a table instead of a one-time scrape.</p>
+          <div class="tags"><span>Python</span><span>SQLite</span><span>YouTube API</span><span>Streamlit</span></div>
+          <a class="view" href="https://know-stats.streamlit.app">View project ↗</a>
+        </div>
+      </article>
+      <article class="work-item">
+        <div class="frame">
+          <span>SKF · in production</span>
+          <b>11 screens<br>5 pillars</b>
+          <span>One row per audit</span>
+        </div>
+        <div class="work-copy">
+          <div class="num">03</div>
+          <h3>PlantLine</h3>
+          <p>Paper 5S audits became a row a plant lead can query. Drafts stay out of the trend. Write-back is limited to the zones an identity is allowed to touch.</p>
+          <div class="tags"><span>Data modeling</span><span>SharePoint</span><span>Power Apps</span></div>
+          <a class="view" href="#details">The role ↗</a>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section class="project alt" id="project-2">
-    <div class="project-grid">
-      <div class="copy">
-        <div class="notch-row" aria-hidden="true"><div class="notch"></div><span class="idx">02</span></div>
-        <h2>Creator Lab</h2>
-        <p class="lede">A watchlist of Indian creators, snapshotted so a draft can be scored against a table.</p>
-        <p class="tech">YouTube Data API · SQLite · Python · Streamlit</p>
-        <div class="actions">
-          <a class="btn" href="https://know-stats.streamlit.app">View product</a>
-          <a class="text-link" href="https://github.com/bannushaxddd/indian-creator-lab">Source</a>
-        </div>
-        <div class="stats">
-          <div><b>3,500</b><span>Videos</span></div>
-          <div><b>100</b><span>Creators</span></div>
-        </div>
-      </div>
-      <div class="stage">
-        <div class="panel">
-          <div class="panel-kicker">Grain <em>Live</em></div>
-          <ol class="steps">
-            <li><span class="step-n">01</span><span><span class="step-name">Collect</span><span class="step-note">Keyed by video and time</span></span></li>
-            <li><span class="step-n">02</span><span><span class="step-name">Engage</span><span class="step-note">(likes + comments) / views</span></span></li>
-            <li><span class="step-n">03</span><span><span class="step-name">Outlier</span><span class="step-note">This video vs that median</span></span></li>
-            <li><span class="step-n">04</span><span><span class="step-name">Serve</span><span class="step-note">Streamlit reads the mart</span></span></li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="project" id="project-3">
-    <div class="project-grid">
-      <div class="copy">
-        <div class="notch-row" aria-hidden="true"><div class="notch"></div><span class="idx">03</span></div>
-        <h2>PlantLine</h2>
-        <p class="lede">The SKF 5S audit as a model: paper in, one row per audit, a score a plant lead can defend.</p>
-        <p class="tech">In production · May 2026 – present · Bangalore</p>
-        <div class="actions"><a class="btn" href="#details">The role</a></div>
-        <div class="stats">
-          <div><b>11</b><span>Screens</span></div>
-          <div><b>5</b><span>Pillars</span></div>
-          <div><b>Live</b><span>Factory teams</span></div>
-        </div>
-      </div>
-      <div class="stage">
-        <div class="panel">
-          <div class="panel-kicker">Model <em>SKF</em></div>
-          <ol class="steps">
-            <li><span class="step-n">01</span><span><span class="step-name">Capture</span><span class="step-note">Paper, then structured</span></span></li>
-            <li><span class="step-n">02</span><span><span class="step-name">Grain</span><span class="step-note">One audit, five pillars</span></span></li>
-            <li><span class="step-n">03</span><span><span class="step-name">Trend</span><span class="step-note">Drafts stay out</span></span></li>
-            <li><span class="step-n">04</span><span><span class="step-name">Write-back</span><span class="step-note">Allowed zones only</span></span></li>
-          </ol>
-        </div>
-      </div>
+  <section class="band" id="certs" style="padding-top:0">
+    <h2>Certifications</h2>
+    <div class="certs">
+      <div class="row"><span>IBM : Generative AI Prompt Engineering Basics</span><i>→</i></div>
+      <div class="row"><span>Tata Group : GenAI Powered Data Analytics, 2024</span><i>→</i></div>
     </div>
   </section>
 
