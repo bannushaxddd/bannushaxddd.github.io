@@ -96,6 +96,24 @@
   }
   .rail-links a:hover { color: var(--ink); }
   .rail-links a:hover::after { transform: scaleY(1); transform-origin: top; }
+  .rail-links a.ask {
+    color: var(--cyan);
+    animation: ask 2.4s ease-in-out infinite;
+  }
+  .rail { overflow: visible; }
+  .ask-note {
+    position: fixed;
+    z-index: 41;
+    left: 86px;
+    top: 50%;
+    margin-top: 8px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: lowercase;
+    color: var(--cyan);
+    pointer-events: none;
+    animation: ask 2.4s ease-in-out infinite;
+  }
   .rail-icons { display: flex; flex-direction: column; gap: 2px; }
   .rail-icons a {
     width: 40px; height: 40px; display: grid; place-items: center; color: var(--mute);
@@ -393,6 +411,13 @@
     html { scroll-behavior: auto; }
     .role-word::after { display: none; }
     .rule { transform: none; }
+    .rail-links a.ask { animation: none; opacity: 1; }
+    .snake, .ask-note { display: none; }
+  }
+  .snake {
+    position: fixed; left: 0; top: 0; z-index: 70;
+    width: 100%; height: 100%;
+    pointer-events: none;
   }
   @keyframes wipe {
     0% { transform: scaleX(0); transform-origin: left; }
@@ -405,6 +430,10 @@
     0% { transform: translateY(0); opacity: 0; }
     30% { opacity: 1; }
     100% { transform: translateY(8px); opacity: 0; }
+  }
+  @keyframes ask {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
   }
 
   @media (max-width: 900px) {
@@ -420,7 +449,7 @@
       writing-mode: horizontal-tb; transform: none; flex-direction: row; margin-left: auto;
     }
     .rail-links a { padding: 8px 8px; font-size: 13px; }
-    .rail-links a::after { display: none; }
+    .rail-links a::after, .rail-links a.ask::before { display: none; }
     .rail-icons, .menu-btn { display: none; }
     .intro, .details, footer { padding-left: 20px; padding-right: 20px; }
     .band { margin-left: 0; padding: 56px 20px 64px; }
@@ -436,12 +465,13 @@
     .project-grid, .project.alt .project-grid, .details-grid { grid-template-columns: 1fr; row-gap: 28px; }
     .project.alt .copy, .project.alt .stage { order: unset; }
     .stage { order: -1; }
-    .scroll-cue { display: none; }
+    .scroll-cue, .ask-note { display: none; }
     .portrait { max-width: 320px; }
   }
 </style>
 </head>
 <body>
+<canvas class="snake" id="snake" aria-hidden="true"></canvas>
 <a class="skip" href="#main">Skip to content</a>
 <header class="rail">
   <a class="mark" href="#intro" aria-label="Bannusha Shaik">
@@ -452,10 +482,11 @@
       <path class="hi" d="M12 4h10.5a10 10 0 0 1 0 16H12V4zm0 18h12a8 8 0 0 1 0 16H12V22z"/>
     </svg>
   </a>
+  <span class="ask-note">open me</span>
   <nav class="rail-links" aria-label="Primary">
     <a href="#experience">Experience</a>
     <a href="#work">Projects</a>
-    <a href="#details">Details</a>
+    <a class="ask" href="#details">Details</a>
     <a href="resume.pdf">Resume</a>
     <a href="mailto:bannushashaik85@gmail.com">Contact</a>
   </nav>
@@ -500,25 +531,12 @@
       </article>
       <article class="work-item flip">
         <div class="frame">
-          <span>2024 · simulation</span>
-          <b>Tata</b>
-          <span>Forage</span>
-        </div>
-        <div class="work-copy">
-          <div class="num">02</div>
-          <h3>GenAI Data Analytics</h3>
-          <p>Modeled delinquency risk on structured financial datasets and wrote the next action a stakeholder could take. A job simulation, not employment.</p>
-          <div class="tags"><span>Python</span><span>SQL</span><span>Forage</span></div>
-        </div>
-      </article>
-      <article class="work-item">
-        <div class="frame">
           <span>Aug 2023 – Sep 2024</span>
           <b>IEEE</b>
           <span>College club · PES</span>
         </div>
         <div class="work-copy">
-          <div class="num">03</div>
+          <div class="num">02</div>
           <h3>Technical Support</h3>
           <p>College club role in the IEEE student branch. Supported technical sessions: setup, troubleshooting, and keeping events running.</p>
           <div class="tags"><span>IEEE</span><span>PES</span><span>Events</span></div>
@@ -572,7 +590,7 @@
     <div class="details-grid">
       <div>
         <h2>About</h2>
-        <p>Data Engineer Intern at <strong>SKF</strong>, a Fortune 500 plant in Bangalore. Paper 5S audits are a production system: 11 screens, one row per audit across five pillars, write-back limited to the zones an identity is allowed to touch. Plant leads read the score-card.</p>
+        <p>Data engineer with an AI/ML foundation building ETL/ELT pipelines in Python and SQL, and the data models behind them. At <strong>SKF</strong> (Fortune 500), I replaced paper 5S shop-floor audits with a Power Apps and SharePoint system in daily factory use, and built the Power BI scorecards that grade each audit pass/fail against its qualifying threshold. Independently, I shipped a Python snapshot pipeline covering 100 creators and 3,500 videos, also an English to SQL service that constrains LLM output to the schema it is given, across 8 dialects.</p>
         <p>B.Tech, Artificial Intelligence and Machine Learning, PES College of Engineering. Expected 2027.</p>
         <a class="btn" href="mailto:bannushashaik85@gmail.com">Send a message</a>
       </div>
@@ -591,6 +609,17 @@
   var nameEl = document.getElementById("intro-title");
   var text = nameEl.textContent;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ask = document.querySelector(".rail-links a.ask");
+  var note = document.querySelector(".ask-note");
+  function placeNote() {
+    if (!ask || !note || window.innerWidth <= 900) return;
+    var r = ask.getBoundingClientRect();
+    note.style.top = (r.top + r.height / 2) + "px";
+    note.style.marginTop = "0";
+    note.style.transform = "translateY(-50%)";
+  }
+  placeNote();
+  window.addEventListener("resize", placeNote);
   btn.addEventListener("click", function () {
     var open = sheet.getAttribute("data-open") === "true";
     sheet.setAttribute("data-open", open ? "false" : "true");
@@ -617,6 +646,55 @@
     else nameEl.textContent = text;
   }
   requestAnimationFrame(frame);
+})();
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+  var canvas = document.getElementById("snake");
+  var ctx = canvas.getContext("2d");
+  var n = 14;
+  var trail = [];
+  var i;
+  for (i = 0; i < n; i++) trail.push({ x: -40, y: -40 });
+  var target = { x: -40, y: -40 };
+  var seen = false;
+  function size() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  size();
+  window.addEventListener("resize", size);
+  window.addEventListener("pointermove", function (e) {
+    target.x = e.clientX;
+    target.y = e.clientY;
+    seen = true;
+  });
+  function draw() {
+    if (seen) {
+      trail[0].x += (target.x - trail[0].x) * 0.35;
+      trail[0].y += (target.y - trail[0].y) * 0.35;
+      for (i = 1; i < n; i++) {
+        trail[i].x += (trail[i - 1].x - trail[i].x) * 0.38;
+        trail[i].y += (trail[i - 1].y - trail[i].y) * 0.38;
+      }
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (seen) {
+      ctx.lineCap = "round";
+      ctx.strokeStyle = "rgba(125, 232, 230, 0.55)";
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(trail[0].x, trail[0].y);
+      for (i = 1; i < n; i++) ctx.lineTo(trail[i].x, trail[i].y);
+      ctx.stroke();
+      ctx.fillStyle = "oklch(84% 0.19 202)";
+      ctx.beginPath();
+      ctx.arc(trail[0].x, trail[0].y, 2.4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
 })();
 </script>
 </body>
