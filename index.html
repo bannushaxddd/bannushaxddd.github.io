@@ -412,33 +412,43 @@
     .role-word::after { display: none; }
     .rule { transform: none; }
     .rail-links a.ask { animation: none; opacity: 1; }
-    .snake, .ask-note, .pops { display: none; }
+    .snake, .ask-note, .pink { display: none; }
   }
   .snake {
     position: fixed; left: 0; top: 0; z-index: 70;
     width: 100%; height: 100%;
     pointer-events: none;
   }
-  .pops {
+  .pink {
     position: fixed; inset: 0; z-index: 1;
     pointer-events: none; overflow: hidden;
   }
-  .pop {
+  .pink svg {
     position: absolute;
-    width: 148px; height: 148px;
-    object-fit: cover;
-    border-radius: 4px;
+    width: 92px; height: 92px;
     opacity: 0;
-    filter: saturate(0.85);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
-    animation: pop 2s ease-in-out both;
+    overflow: visible;
+    animation: pink-in 2.2s ease-in-out both;
   }
-  @keyframes pop {
-    0% { opacity: 0; transform: translateY(8px) scale(0.96); }
-    18% { opacity: 0.78; transform: none; }
-    72% { opacity: 0.78; transform: none; }
-    100% { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  .pink .draw {
+    fill: none;
+    stroke: #f4a6c8;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 160;
+    stroke-dashoffset: 160;
+    animation: pink-draw 1.1s ease forwards 0.15s;
   }
+  .pink .node { fill: #f4a6c8; opacity: 0; animation: pink-node 0.4s ease forwards 0.7s; }
+  @keyframes pink-in {
+    0% { opacity: 0; }
+    16% { opacity: 0.9; }
+    74% { opacity: 0.9; }
+    100% { opacity: 0; }
+  }
+  @keyframes pink-draw { to { stroke-dashoffset: 0; } }
+  @keyframes pink-node { to { opacity: 1; } }
   @keyframes wipe {
     0% { transform: scaleX(0); transform-origin: left; }
     45% { transform: scaleX(1); transform-origin: left; }
@@ -485,14 +495,14 @@
     .project-grid, .project.alt .project-grid, .details-grid { grid-template-columns: 1fr; row-gap: 28px; }
     .project.alt .copy, .project.alt .stage { order: unset; }
     .stage { order: -1; }
-    .scroll-cue, .ask-note, .pops { display: none; }
+    .scroll-cue, .ask-note, .pink { display: none; }
     .portrait { max-width: 320px; }
   }
 </style>
 </head>
 <body>
 <canvas class="snake" id="snake" aria-hidden="true"></canvas>
-<div class="pops" id="pops" aria-hidden="true"></div>
+<div class="pink" id="pink" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
 <header class="rail">
   <a class="mark" href="#intro" aria-label="Bannusha Shaik">
@@ -720,26 +730,29 @@
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (window.matchMedia("(max-width: 900px)").matches) return;
-  var root = document.getElementById("pops");
-  var shots = ["pops/creator.jpg", "pops/pipeline.jpg", "pops/network.jpg", "pops/language.jpg", "pops/sql.jpg", "pops/score.jpg"];
-  var spots = [
-    [8, 10], [78, 8], [72, 62], [6, 68], [82, 36], [18, 38]
+  var root = document.getElementById("pink");
+  var marks = [
+    '<svg viewBox="0 0 92 92"><path class="draw" d="M14 62h18v-16h28v16h18"/><path class="draw" d="M32 46V28h28v18"/><circle class="node" cx="46" cy="22" r="3"/></svg>',
+    '<svg viewBox="0 0 92 92"><path class="draw" d="M18 28h14M32 28l12 18M44 46l12-18M56 28h14M18 64h14M32 64l12-18M44 46l12 18M56 64h14"/><circle class="node" cx="46" cy="46" r="3.2"/></svg>',
+    '<svg viewBox="0 0 92 92"><path class="draw" d="M16 24h60M16 40h60M16 56h60M16 72h60M30 16v64M52 16v64"/><rect class="node" x="31" y="41" width="20" height="14" rx="1"/></svg>',
+    '<svg viewBox="0 0 92 92"><path class="draw" d="M18 46h8l6-14 8 28 7-20 6 10h21"/><circle class="node" cx="74" cy="50" r="3"/></svg>',
+    '<svg viewBox="0 0 92 92"><path class="draw" d="M22 30h48M22 46h34M22 62h22"/><circle class="node" cx="68" cy="46" r="3"/><circle class="node" cx="50" cy="62" r="2.4"/></svg>'
   ];
+  var spots = [[7, 12], [80, 9], [74, 64], [5, 66], [81, 38]];
   var i = 0;
   function show() {
-    var img = document.createElement("img");
-    img.className = "pop";
-    img.alt = "";
-    img.src = shots[i % shots.length];
+    var hold = document.createElement("div");
+    hold.innerHTML = marks[i % marks.length];
+    var svg = hold.firstChild;
     var spot = spots[i % spots.length];
-    img.style.left = spot[0] + "%";
-    img.style.top = spot[1] + "%";
-    root.appendChild(img);
-    setTimeout(function () { img.remove(); }, 2000);
+    svg.style.left = spot[0] + "%";
+    svg.style.top = spot[1] + "%";
+    root.appendChild(svg);
+    setTimeout(function () { svg.remove(); }, 2200);
     i += 1;
   }
-  setTimeout(show, 700);
-  setInterval(show, 2600);
+  setTimeout(show, 600);
+  setInterval(show, 2500);
 })();
 </script>
 </body>
