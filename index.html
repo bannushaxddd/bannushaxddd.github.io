@@ -54,15 +54,16 @@
     background: color-mix(in srgb, var(--bg) 86%, transparent);
     backdrop-filter: blur(14px);
   }
-  .nav b { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 34px; }
+  .nav b { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 22px; }
   .nav nav { display: flex; gap: 18px; font-size: 14px; color: var(--body); }
   .nav nav a:hover { color: var(--ink); }
 
-  .hero { padding: 28px 0 8px; display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 36px; align-items: end; }
-  .kicker { color: var(--clay); font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
+  .hero { padding: 36px 0 8px; }
+  .name { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: clamp(42px, 5vw, 64px); letter-spacing: -0.03em; line-height: 1; }
+  .kicker { color: var(--clay); font-size: 22px; letter-spacing: 0.12em; text-transform: uppercase; margin: 16px 0 18px; }
   h1 {
     font-family: "Instrument Serif", Georgia, serif;
-    font-weight: 400; font-size: clamp(32px, 4.2vw, 52px);
+    font-weight: 400; font-size: clamp(28px, 3.6vw, 46px);
     line-height: 1.05; letter-spacing: -0.03em; white-space: nowrap;
   }
   h1 em { font-style: italic; }
@@ -73,8 +74,8 @@
   .solid:hover { background: var(--clay); }
   .ghost { border: 1px solid var(--line); }
   .ghost:hover { border-color: var(--clay); color: var(--clay); }
-  .aside { border-top: 1px solid var(--line); padding-top: 16px; }
-  .aside p { color: var(--mute); font-size: 14px; margin-top: 8px; }
+  .aside { margin-top: 28px; color: var(--mute); font-size: 16px; line-height: 1.7; }
+  .aside a { color: var(--ink); }
   .note {
     margin: 28px 0 8px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
   }
@@ -117,7 +118,8 @@
     .nav nav { display: none; }
     .hero, .look, .about, .metrics { grid-template-columns: 1fr; }
     .about img { width: 140px; height: 176px; }
-    h1 { font-size: 28px; white-space: normal; }
+    .name { font-size: 40px; }
+    h1 { font-size: 26px; white-space: normal; }
   }
 </style>
 </head>
@@ -134,19 +136,16 @@
     </header>
 
     <section class="hero">
-      <div>
-        <p class="kicker">Data Engineer · SKF · Bengaluru</p>
-        <h1>From analysis <em>to the visual.</em></h1>
-        <p class="lede">Coursework in artificial intelligence and machine learning, specialising in data modeling and warehouse design across SQL, Python, Power BI, Snowflake, Databricks, and Microsoft Fabric.</p>
-        <div class="actions">
-          <a class="solid" href="resume.pdf">Resume</a>
-          <a class="ghost" href="https://www.linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="ghost" href="https://github.com/bannushaxddd" target="_blank" rel="noopener">GitHub</a>
-        </div>
+      <p class="name">Bannusha Shaik</p>
+      <p class="kicker">Data Engineer intern at SKF · Bengaluru</p>
+      <h1>From analysis to the visual.</h1>
+      <p class="lede">Coursework in artificial intelligence and machine learning, specialising in data modeling and warehouse design across SQL, Python, Power BI, Snowflake, Databricks, and Microsoft Fabric.</p>
+      <div class="actions">
+        <a class="solid" href="resume.pdf">Resume</a>
+        <a class="ghost" href="https://www.linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="ghost" href="https://github.com/bannushaxddd" target="_blank" rel="noopener">GitHub</a>
       </div>
-      <aside class="aside">
-        <p>Contact me at <a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a> or +91 8074671779.</p>
-      </aside>
+      <p class="aside">Contact me at<br><a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a><br>+91 8074671779</p>
     </section>
     <p class="note">Selected work</p>
 
