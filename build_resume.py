@@ -134,7 +134,7 @@ def main():
     story += section(s, "TECHNICAL SKILLS")
     story.append(Paragraph("<b>Data engineering:</b> data modeling, grain, measures, SharePoint lists, Excel sources, data quality", s["skill"]))
     story.append(Paragraph("<b>BI &amp; apps:</b> Power BI, DAX, semantic models, Power Apps, scorecards, Office 365", s["skill"]))
-    story.append(Paragraph("<b>SQL &amp; Python:</b> PostgreSQL, MySQL, SQLite, pandas, Snowflake, dbt, Apache Airflow, Kafka, Delta Lake, Apache Iceberg", s["skill"]))
+    story.append(Paragraph("<b>SQL &amp; Python:</b> PostgreSQL, MySQL, SQLite, pandas, Snowflake, Databricks, Microsoft Fabric, dbt, Apache Airflow, Kafka, Delta Lake, Apache Iceberg", s["skill"]))
     story.append(Paragraph("<b>Plant metrics:</b> lead time, on-time completion, scrap value, reason codes, 5S scores", s["skill"]))
 
     story += section(s, "EDUCATION &amp; CERTIFICATIONS")
