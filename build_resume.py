@@ -98,7 +98,7 @@ def main():
 
     story += section(s, "SUMMARY")
     story.append(Paragraph(
-        "Data Engineer intern at SKF, with a B.Tech in AI and Machine Learning. Stack: SQL, Python, pandas, Power BI, DAX, SharePoint, Power Apps, Snowflake, Databricks, Microsoft Fabric, dbt, Apache Airflow, Kafka, Delta Lake, and Apache Iceberg. At SKF I ship semantic models for project lead time and scrap value, and an 11-screen audit app.",
+        "Coursework in artificial intelligence and machine learning, specialising in data modeling and warehouse design across SQL, Python, Power BI, Snowflake, Databricks, and Microsoft Fabric. At SKF I ship semantic models for project lead time and scrap value, and an 11-screen audit app.",
         s["body"],
     ))
 
