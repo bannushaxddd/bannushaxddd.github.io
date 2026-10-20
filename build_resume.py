@@ -105,9 +105,8 @@ def main():
     story += section(s, "PROFESSIONAL EXPERIENCE")
     story.append(row(s, "Data Engineer Intern, SKF (Fortune 500 Industrial)", "May 2026 – Present | Bangalore"))
     story.append(Paragraph("Power BI · SharePoint · Power Apps · Excel · DAX · data modeling · Office 365", s["tools"]))
-    story.append(bullet(s, "Shipped the Elgin-GTCI Industrial Project Tracker: 100 completed activities, 8 under feedback, a 17.8-day average lead time, and a 5-day median."))
-    story.append(bullet(s, "Designed average and P90 lead time by task category, product family, and assignee. On-time completion runs from 83% on Tooling Design to 40% on Product Design."))
-    story.append(bullet(s, "Shipped Finance Scrap Analysis on Raw Dump.xlsx in the Mysuru factory SharePoint library: 6.72M scrap value, 6.13M production scrap, 294 items, 2,780 posting lines through 17 September 2026."))
+    story.append(bullet(s, "Shipped an industrial project tracker: one row per activity, average beside P90, and on-time by task category, product family, and assignee."))
+    story.append(bullet(s, "Shipped a finance scrap model on the raw posting workbook, not the year-to-date summary. Grain is one line. A visual ships only if the file can support it."))
     story.append(bullet(s, "Replaced paper 5S audits with an 11-screen Power Apps and SharePoint system. Grain is one audit across five pillars, with identity-aware, zone-scoped write-back and pillar scorecards."))
 
     story.append(row(s, "GenAI Data Analytics Job Simulation, Tata Group (Forage)", "2024"))
@@ -123,9 +122,9 @@ def main():
     story.append(bullet(s, "Filters for input date, product family, task category, priority, and assignee keep a plant review on one page."))
 
     story.append(row(s, "Finance Scrap Analysis", "SKF · SharePoint Excel"))
-    story.append(Paragraph("Raw Dump.xlsx only · Mysuru factory · one row per posting", s["tools"]))
-    story.append(bullet(s, "Finance model on the raw posting dump, not the year-to-date summary file. Cards, daily scrap, reasons, material mix, and scrap by item."))
-    story.append(bullet(s, "Daily posting view replaces a month chart the dump cannot support, so the report stays aligned to the source file."))
+    story.append(Paragraph("SharePoint workbook · one row per posting · reason, material, item, day", s["tools"]))
+    story.append(bullet(s, "Finance model on the raw posting file, not a summary workbook. Cards, daily scrap, reasons, material mix, and scrap by item."))
+    story.append(bullet(s, "A posting-day view replaces a month chart the file cannot support, so the report stays aligned to the source."))
 
     story.append(row(s, "5S Audit Management", "SKF · Power Apps"))
     story.append(Paragraph("SharePoint lists · 11 screens · identity-aware write-back · Power BI scorecards", s["tools"]))
@@ -135,7 +134,7 @@ def main():
     story += section(s, "TECHNICAL SKILLS")
     story.append(Paragraph("<b>Data engineering:</b> data modeling, grain, measures, SharePoint lists, Excel sources, data quality", s["skill"]))
     story.append(Paragraph("<b>BI &amp; apps:</b> Power BI, DAX, semantic models, Power Apps, scorecards, Office 365", s["skill"]))
-    story.append(Paragraph("<b>SQL &amp; Python:</b> PostgreSQL, MySQL, SQLite, pandas, source reconciliation", s["skill"]))
+    story.append(Paragraph("<b>SQL &amp; Python:</b> PostgreSQL, MySQL, SQLite, pandas, Snowflake, dbt, Apache Airflow, Kafka, Delta Lake, Apache Iceberg", s["skill"]))
     story.append(Paragraph("<b>Plant metrics:</b> lead time, on-time completion, scrap value, reason codes, 5S scores", s["skill"]))
 
     story += section(s, "EDUCATION &amp; CERTIFICATIONS")
