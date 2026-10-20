@@ -54,16 +54,16 @@
     background: color-mix(in srgb, var(--bg) 86%, transparent);
     backdrop-filter: blur(14px);
   }
-  .nav b { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 22px; }
+  .nav b { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 34px; }
   .nav nav { display: flex; gap: 18px; font-size: 14px; color: var(--body); }
   .nav nav a:hover { color: var(--ink); }
 
   .hero { padding: 28px 0 8px; display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 36px; align-items: end; }
-  .kicker { color: var(--clay); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
+  .kicker { color: var(--clay); font-size: 18px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
   h1 {
     font-family: "Instrument Serif", Georgia, serif;
-    font-weight: 400; font-size: clamp(52px, 8vw, 92px);
-    line-height: 0.88; letter-spacing: -0.03em;
+    font-weight: 400; font-size: clamp(32px, 4.2vw, 52px);
+    line-height: 1.05; letter-spacing: -0.03em; white-space: nowrap;
   }
   h1 em { font-style: italic; }
   .lede { margin-top: 18px; max-width: 58ch; color: var(--body); font-size: 17px; }
@@ -117,7 +117,7 @@
     .nav nav { display: none; }
     .hero, .look, .about, .metrics { grid-template-columns: 1fr; }
     .about img { width: 140px; height: 176px; }
-    h1 { font-size: 52px; }
+    h1 { font-size: 28px; white-space: normal; }
   }
 </style>
 </head>
@@ -136,7 +136,7 @@
     <section class="hero">
       <div>
         <p class="kicker">Data Engineer · SKF · Bengaluru</p>
-        <h1>From analysis<br><em>to the visual.</em></h1>
+        <h1>From analysis <em>to the visual.</em></h1>
         <p class="lede">Coursework in artificial intelligence and machine learning, specialising in data modeling and warehouse design across SQL, Python, Power BI, Snowflake, Databricks, and Microsoft Fabric.</p>
         <div class="actions">
           <a class="solid" href="resume.pdf">Resume</a>
