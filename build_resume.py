@@ -86,7 +86,7 @@ def main():
         Paragraph("BANNUSHA SHAIK", s["name"]),
         Paragraph("Data Engineer &nbsp;|&nbsp; Power BI · SharePoint · Power Apps · Data Modeling", s["title"]),
         Paragraph(
-            "Bangalore, India · +91 8074671779 · "
+            "Bangalore, India · "
             + href("bannushashaik85@gmail.com", "mailto:bannushashaik85@gmail.com")
             + " · "
             + href("linkedin.com/in/bannushashaik400", "https://linkedin.com/in/bannushashaik400")

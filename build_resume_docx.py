@@ -199,7 +199,7 @@ def main():
     contact = doc.add_paragraph()
     contact.alignment = WD_ALIGN_PARAGRAPH.CENTER
     tighten(contact, before=1, after=0, exact=12)
-    add_text(contact, "Bangalore, India  ·  +91 8074671779  ·  ", 10)
+    add_text(contact, "Bangalore, India  ·  ", 10)
     add_link(contact, "bannushashaik85@gmail.com", "mailto:bannushashaik85@gmail.com", 10)
     add_text(contact, "  ·  ", 10)
     add_link(contact, "linkedin.com/in/bannushashaik400", "https://linkedin.com/in/bannushashaik400", 10)
