@@ -10,9 +10,10 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
-pdfmetrics.registerFont(TTFont("Cal", r"C:\Windows\Fonts\calibri.ttf"))
-pdfmetrics.registerFont(TTFont("CalB", r"C:\Windows\Fonts\calibrib.ttf"))
-pdfmetrics.registerFont(TTFont("CalI", r"C:\Windows\Fonts\calibrii.ttf"))
+FONT_DIR = Path("/System/Library/Fonts/Supplemental")
+pdfmetrics.registerFont(TTFont("Cal", str(FONT_DIR / "Arial.ttf")))
+pdfmetrics.registerFont(TTFont("CalB", str(FONT_DIR / "Arial Bold.ttf")))
+pdfmetrics.registerFont(TTFont("CalI", str(FONT_DIR / "Arial Italic.ttf")))
 
 OUT = Path(__file__).resolve().parent / "resume.pdf"
 INK = HexColor("#111111")
@@ -83,7 +84,7 @@ def main():
     s = styles()
     story = [
         Paragraph("BANNUSHA SHAIK", s["name"]),
-        Paragraph("Data Engineer &nbsp;|&nbsp; Python · SQL · ETL · Data Modeling · PostgreSQL", s["title"]),
+        Paragraph("Data Engineer &nbsp;|&nbsp; Power BI · SharePoint · Power Apps · Data Modeling", s["title"]),
         Paragraph(
             "Bangalore, India · +91 8074671779 · "
             + href("bannushashaik85@gmail.com", "mailto:bannushashaik85@gmail.com")
@@ -97,16 +98,17 @@ def main():
 
     story += section(s, "SUMMARY")
     story.append(Paragraph(
-        "Data Engineer. The work is the grain, the pipeline, and a table someone else can query. At SKF, a Fortune 500 plant in Bangalore, paper 5S audits are one row per audit across five pillars: write-back is limited to the zones an identity can touch, and the Power BI score-card marks pass or fail against a qualifying bar. Independently shipped a snapshot pipeline of 100 creators and about 3,500 videos, and an English-to-SQL service that will not generate a column outside the pasted schema. A city warehouse is in progress: each raw payload is kept, and a row that fails a rule goes to a reject table.",
+        "Data Engineer intern at SKF, a Fortune 500 manufacturer in Bengaluru. I build the data layer plant and finance teams use: SharePoint models, Power Apps capture, and Power BI for project lead time, scrap value, and 5S audits. Grain and measures are set before a visual ships, so a number in a review can be traced to a row.",
         s["body"],
     ))
 
     story += section(s, "PROFESSIONAL EXPERIENCE")
     story.append(row(s, "Data Engineer Intern, SKF (Fortune 500 Industrial)", "May 2026 – Present | Bangalore"))
-    story.append(Paragraph("SQL · data modeling · ETL · data pipelines · schema design · data quality · Power BI", s["tools"]))
-    story.append(bullet(s, "Replaced paper 5S plant audits with an 11-screen Power Apps and SharePoint system. Factory teams use it for scores, photos, and actions, not files in email."))
-    story.append(bullet(s, "Set the grain as one audit across five pillars. Write-back is identity-aware and zone-scoped, so a submitted audit is a row plant leads can review."))
-    story.append(bullet(s, "Built the score-card and Power BI views: per-pillar totals, pass/fail against the qualifying bar, and the weakest pillar flagged for leadership."))
+    story.append(Paragraph("Power BI · SharePoint · Power Apps · Excel · DAX · data modeling · Office 365", s["tools"]))
+    story.append(bullet(s, "Shipped the Elgin-GTCI Industrial Project Tracker: 100 completed activities, 8 under feedback, a 17.8-day average lead time, and a 5-day median."))
+    story.append(bullet(s, "Designed average and P90 lead time by task category, product family, and assignee. On-time completion runs from 83% on Tooling Design to 40% on Product Design."))
+    story.append(bullet(s, "Shipped Finance Scrap Analysis on Raw Dump.xlsx in the Mysuru factory SharePoint library: 6.72M scrap value, 6.13M production scrap, 294 items, 2,780 posting lines through 17 September 2026."))
+    story.append(bullet(s, "Replaced paper 5S audits with an 11-screen Power Apps and SharePoint system. Grain is one audit across five pillars, with identity-aware, zone-scoped write-back and pillar scorecards."))
 
     story.append(row(s, "GenAI Data Analytics Job Simulation, Tata Group (Forage)", "2024"))
     story.append(bullet(s, "Worked delinquency risk on structured financial datasets and wrote the next action a stakeholder could take, tied to the fields in the data. A job simulation, not employment."))
@@ -115,27 +117,26 @@ def main():
     story.append(bullet(s, "College club. Setup and troubleshooting for technical sessions so the room was ready before the talk started."))
 
     story += section(s, "PROJECTS")
-    story.append(row(s, href("Creator Lab", "https://know-stats.streamlit.app") + " &nbsp;|&nbsp; snapshot pipeline and scoring table", ""))
-    story.append(Paragraph("Python · SQLite · YouTube Data API · pandas · scikit-learn · Streamlit · 100 creators · about 3,500 videos", s["tools"]))
-    story.append(bullet(s, "Pulled the YouTube Data API into SQLite. Grain is one snapshot of one video, across 100 Indian creators (50 tech, 50 fashion) and about 3,500 videos."))
-    story.append(bullet(s, "Engagement is (likes + comments) / views. Outlier is views divided by that creator's own median, so a small channel is not ranked against a large one."))
-    story.append(bullet(s, "Streamlit scores a draft and returns a view range plus the nearest videos already stored. pandas and scikit-learn sit on the feature table."))
+    story.append(row(s, "Elgin-GTCI Industrial Project Tracker", "SKF · Power BI"))
+    story.append(Paragraph("Semantic model · task category · product family · priority · assignee", s["tools"]))
+    story.append(bullet(s, "Operating report for the industrial project queue. Average and P90 sit side by side so one long job cannot hide inside the mean."))
+    story.append(bullet(s, "Filters for input date, product family, task category, priority, and assignee keep a plant review on one page."))
 
-    story.append(row(s, href("Schema-Locked SQL", "https://github.com/bannushaxddd/GETYOQUERY") + " &nbsp;|&nbsp; English to SQL across 8 dialects", ""))
-    story.append(Paragraph("Node.js · PostgreSQL · parameterized execution · JWT · 8 SQL dialects", s["tools"]))
-    story.append(bullet(s, "English to SQL for PostgreSQL, MySQL, SQLite, SQL Server, BigQuery, Snowflake, Oracle, and DuckDB. A pasted CREATE TABLE is the allowlist, so generation cannot invent a column."))
-    story.append(bullet(s, "Query history is stored in PostgreSQL. Execution is parameterized, and the API sits behind JWT, so a generated statement cannot invent a column or concatenate input into SQL."))
+    story.append(row(s, "Finance Scrap Analysis", "SKF · SharePoint Excel"))
+    story.append(Paragraph("Raw Dump.xlsx only · Mysuru factory · one row per posting", s["tools"]))
+    story.append(bullet(s, "Finance model on the raw posting dump, not the year-to-date summary file. Cards, daily scrap, reasons, material mix, and scrap by item."))
+    story.append(bullet(s, "Daily posting view replaces a month chart the dump cannot support, so the report stays aligned to the source file."))
 
-    story.append(row(s, "Bengaluru Urban Warehouse &nbsp;|&nbsp; city feeds into one model", "In progress"))
-    story.append(Paragraph("Python · PostgreSQL · PostGIS · weather, air, and mobility", s["tools"]))
-    story.append(bullet(s, "Not shipped. Three public feeds — weather, air, and mobility — that do not share a schema, a clock, or a location. Each raw payload is kept."))
-    story.append(bullet(s, "Invalid rows go to a reject table with the rule that failed. Ward, station, and date are dimensions in PostgreSQL and PostGIS. An unknown location is surrogate key −1, not a dropped row."))
+    story.append(row(s, "5S Audit Management", "SKF · Power Apps"))
+    story.append(Paragraph("SharePoint lists · 11 screens · identity-aware write-back · Power BI scorecards", s["tools"]))
+    story.append(bullet(s, "Paper checklists became queryable rows: scores, photo evidence, and corrective actions across five pillars."))
+    story.append(bullet(s, "Drafts stay out of the trend. Write-back is limited to the zones an identity is allowed to touch. Scorecards flag the weakest pillar."))
 
     story += section(s, "TECHNICAL SKILLS")
-    story.append(Paragraph("<b>Data engineering:</b> ETL, data pipelines, data modeling, API ingestion, schema design, snapshot tables, data quality", s["skill"]))
-    story.append(Paragraph("<b>SQL &amp; databases:</b> SQL, PostgreSQL, MySQL, SQLite, joins, window functions, parameterized queries", s["skill"]))
-    story.append(Paragraph("<b>Python:</b> pandas, NumPy, API clients, scikit-learn", s["skill"]))
-    story.append(Paragraph("<b>Serve &amp; plant:</b> Power BI, Streamlit, Grafana, Docker, Git, Power Apps, SharePoint, Microsoft 365", s["skill"]))
+    story.append(Paragraph("<b>Data engineering:</b> data modeling, grain, measures, SharePoint lists, Excel sources, data quality", s["skill"]))
+    story.append(Paragraph("<b>BI &amp; apps:</b> Power BI, DAX, semantic models, Power Apps, scorecards, Office 365", s["skill"]))
+    story.append(Paragraph("<b>SQL &amp; Python:</b> PostgreSQL, MySQL, SQLite, pandas, source reconciliation", s["skill"]))
+    story.append(Paragraph("<b>Plant metrics:</b> lead time, on-time completion, scrap value, reason codes, 5S scores", s["skill"]))
 
     story += section(s, "EDUCATION &amp; CERTIFICATIONS")
     story.append(row(s, "B.Tech, Artificial Intelligence &amp; Machine Learning, PES College of Engineering", "2023 – Expected 2027"))
