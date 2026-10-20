@@ -4,329 +4,238 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bannusha Shaik — Data Engineer</title>
-<meta name="description" content="Bannusha Shaik, Data Engineer at SKF. Three live systems: Elgin-GTCI lead time, finance scrap from Raw Dump, and a 5S audit app.">
+<meta name="description" content="Bannusha Shaik, Data Engineer at SKF. Three plant systems: project lead time, scrap value, and 5S audits. Sample figures, not client extracts.">
 <meta name="author" content="Bannusha Shaik">
-<meta name="theme-color" content="#0c0f0e">
+<meta name="theme-color" content="#14110e">
 <meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://bannusha.com/">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta property="og:title" content="Bannusha Shaik — Data Engineer at SKF">
-<meta property="og:description" content="Elgin-GTCI, Finance Scrap, and 5S Audit Management. Open the model.">
+<meta property="og:title" content="Bannusha Shaik — Data Engineer">
+<meta property="og:description" content="Project lead time, scrap value, and 5S audits. Sample figures for the public page.">
 <meta property="og:image" content="https://bannusha.com/og.jpg">
 <meta property="og:url" content="https://bannusha.com/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bannusha Shaik — Data Engineer at SKF">
-<meta name="twitter:description" content="Elgin-GTCI, Finance Scrap, and 5S Audit Management. Open the model.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Bannusha Shaik",
-  "url": "https://bannusha.com",
-  "email": "bannushashaik85@gmail.com",
-  "jobTitle": "Data Engineer",
-  "worksFor": { "@type": "Organization", "name": "SKF" }
-}
+{"@context":"https://schema.org","@type":"Person","name":"Bannusha Shaik","url":"https://bannusha.com","jobTitle":"Data Engineer","worksFor":{"@type":"Organization","name":"SKF"}}
 </script>
 <style>
   :root {
-    --bg: #0c0f0e;
-    --win: #141916;
-    --inset: #0e1210;
-    --ink: #f3efe6;
-    --body: #c9c3b6;
-    --mute: #8d978f;
-    --line: #2a332e;
-    --green: #b7d7c3;
+    --bg: #14110e;
+    --ink: #f6f0e6;
+    --body: #d9d0c3;
+    --mute: #9c9286;
+    --line: #3a332c;
+    --clay: #c4a484;
+    --card: #1c1814;
   }
   * { box-sizing: border-box; margin: 0; }
-  html, body { min-height: 100%; }
   body {
-    background:
-      radial-gradient(900px 420px at 80% -10%, #1c2820 0%, transparent 60%),
-      var(--bg);
+    background: var(--bg);
     color: var(--ink);
-    font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+    font-family: Outfit, "Segoe UI", sans-serif;
     font-size: 16px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
-  .page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 22px 0 48px; }
+  a:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+  .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
 
-  .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; gap: 16px; }
-  .who { display: flex; flex-direction: column; }
-  .who b { font-weight: 600; letter-spacing: -0.02em; }
-  .who span { color: var(--mute); font-size: 13px; font-family: "IBM Plex Mono", monospace; }
-  .links { display: flex; gap: 8px; }
-  .links a {
-    height: 34px; padding: 0 12px; display: inline-flex; align-items: center;
-    border: 1px solid var(--line); border-radius: 8px; font-size: 13px; color: var(--body);
+  .nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0; position: sticky; top: 0; z-index: 4;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(14px);
   }
-  .links a:hover { border-color: var(--green); color: var(--ink); }
-  .links .go { background: var(--ink); color: #121614; border-color: var(--ink); font-weight: 500; }
-  .links .go:hover { background: var(--green); border-color: var(--green); color: #121614; }
+  .nav b { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 22px; }
+  .nav nav { display: flex; gap: 18px; font-size: 14px; color: var(--body); }
+  .nav nav a:hover { color: var(--ink); }
 
-  .win {
-    background: var(--win);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 30px 80px #0008;
+  .hero { padding: 28px 0 8px; display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 36px; align-items: end; }
+  .kicker { color: var(--clay); font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; }
+  h1 {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-weight: 400; font-size: clamp(52px, 8vw, 92px);
+    line-height: 0.88; letter-spacing: -0.03em;
   }
-  .chrome {
-    display: flex; align-items: center; gap: 14px;
-    padding: 12px 14px; border-bottom: 1px solid var(--line);
+  h1 em { font-style: italic; }
+  .lede { margin-top: 18px; max-width: 42ch; color: var(--body); font-size: 17px; }
+  .actions { display: flex; gap: 10px; margin-top: 22px; }
+  .actions a { height: 38px; padding: 0 14px; display: inline-flex; align-items: center; border-radius: 999px; font-size: 14px; }
+  .solid { background: var(--ink); color: #14110e; font-weight: 500; }
+  .solid:hover { background: var(--clay); }
+  .ghost { border: 1px solid var(--line); }
+  .ghost:hover { border-color: var(--clay); color: var(--clay); }
+  .aside { border-top: 1px solid var(--line); padding-top: 16px; }
+  .aside p { color: var(--mute); font-size: 14px; margin-top: 8px; }
+  .note {
+    margin: 28px 0 8px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
   }
-  .dots { display: flex; gap: 6px; }
-  .dots i { width: 9px; height: 9px; border-radius: 50%; background: #3a433d; display: block; }
-  .crumbs { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--mute); }
-  .crumbs strong { color: var(--body); font-weight: 500; }
 
-  .tabs {
-    display: flex; gap: 6px; padding: 12px 14px 0;
-    overflow-x: auto;
-  }
-  .tabs button {
-    appearance: none; border: 0; cursor: pointer;
-    background: transparent; color: var(--mute);
-    font: 500 14px/1 "IBM Plex Sans", sans-serif;
-    padding: 8px 12px; border-radius: 8px 8px 0 0;
-  }
-  .tabs button[aria-selected="true"] { background: var(--inset); color: var(--ink); }
-  .tabs button:hover { color: var(--ink); }
+  section { padding: 42px 0 8px; }
+  .look { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 28px; align-items: start; padding: 28px 0; border-top: 1px solid var(--line); }
+  .look:last-of-type { border-bottom: 1px solid var(--line); }
+  .idx { font-family: "Instrument Serif", Georgia, serif; font-size: 18px; color: var(--clay); }
+  h2 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 40px; letter-spacing: -0.03em; line-height: 1; margin: 6px 0 8px; }
+  .stack { color: var(--clay); font-size: 13px; }
+  .copy p { margin-top: 10px; color: var(--body); max-width: 52ch; }
+  .use { margin-top: 14px; color: var(--ink); }
 
-  .panel { display: none; padding: 22px 22px 26px; background: var(--inset); }
-  .panel[data-open="true"] { display: block; }
-  .head { display: flex; justify-content: space-between; gap: 16px; align-items: end; margin-bottom: 18px; }
-  h1 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.035em; font-weight: 600; line-height: 1; }
-  .meta { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--mute); margin-top: 8px; }
-  .lede { max-width: 62ch; color: var(--body); margin-top: 10px; }
+  .stage { background: var(--card); border-radius: 18px; padding: 16px; border: 1px solid var(--line); }
+  .stage small { display: block; color: var(--mute); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .metrics div { background: #12100e; border-radius: 12px; padding: 12px; }
+  .metrics b { display: block; font-family: "Instrument Serif", Georgia, serif; font-size: 32px; font-weight: 400; line-height: 1; }
+  .metrics span { display: block; margin-top: 4px; color: var(--mute); font-size: 12px; }
+  .bars { margin-top: 12px; }
+  .bar { display: grid; grid-template-columns: 92px 1fr 36px; gap: 8px; align-items: center; margin-top: 7px; font-size: 12px; color: var(--body); }
+  .track { height: 7px; background: #2a241f; border-radius: 99px; overflow: hidden; }
+  .fill { height: 100%; background: var(--clay); }
+  .days { display: flex; align-items: end; gap: 6px; height: 92px; margin-top: 8px; }
+  .days i { display: block; flex: 1; background: linear-gradient(#e7d3be, #c4a484); border-radius: 5px 5px 2px 2px; }
+  .days span { display: block; text-align: center; color: var(--mute); font-size: 10px; margin-top: 4px; }
+  .pillars { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .pillars div { text-align: center; font-size: 11px; color: var(--body); }
+  .pillars b { display: block; height: 54px; border-radius: 8px 8px 3px 3px; background: linear-gradient(#e7d3be, #8a6a4d); margin-bottom: 6px; }
 
-  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .card { background: #171d19; border: 1px solid var(--line); border-radius: 12px; padding: 14px 14px 12px; }
-  .card b {
-    display: block; font-family: "IBM Plex Mono", monospace;
-    font-size: 28px; font-weight: 500; letter-spacing: -0.04em; line-height: 1;
-  }
-  .card span { display: block; margin-top: 6px; color: var(--mute); font-size: 12px; }
-
-  .split { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; margin-top: 16px; }
-  .block { background: #171d19; border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
-  .block h2 { font-size: 13px; font-weight: 500; color: var(--mute); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 12px; }
-  .bar { display: grid; grid-template-columns: 118px 1fr 42px; gap: 8px; align-items: center; margin: 8px 0; font-size: 13px; }
-  .track { height: 8px; background: #0c0f0e; border-radius: 99px; overflow: hidden; }
-  .fill { height: 100%; background: var(--green); border-radius: 99px; }
-  .bar em { font-style: normal; font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--green); text-align: right; }
-  ul.plain { list-style: none; }
-  ul.plain li {
-    display: flex; justify-content: space-between; gap: 12px;
-    padding: 9px 0; border-top: 1px solid var(--line); font-size: 14px;
-  }
-  ul.plain li:first-child { border-top: 0; padding-top: 0; }
-  ul.plain em { font-style: normal; font-family: "IBM Plex Mono", monospace; color: var(--green); font-size: 12px; }
-
-  .about { display: grid; grid-template-columns: 180px 1fr; gap: 22px; align-items: start; }
-  .about img { width: 180px; height: 230px; object-fit: cover; object-position: center 12%; border-radius: 12px; }
-  .about p { color: var(--body); margin-top: 8px; max-width: 62ch; }
+  .about { display: grid; grid-template-columns: 220px 1fr; gap: 28px; align-items: center; }
+  .about img { width: 220px; height: 280px; object-fit: cover; object-position: center 15%; border-radius: 16px; }
+  .about p { color: var(--body); margin-top: 10px; max-width: 58ch; }
   .about strong { color: var(--ink); font-weight: 600; }
-
-  footer { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; color: var(--mute); font-size: 13px; }
-  footer a { color: var(--body); }
-  footer a:hover { color: var(--ink); }
+  footer { display: flex; justify-content: space-between; gap: 12px; padding: 28px 0 40px; color: var(--mute); font-size: 14px; }
+  footer a { color: var(--ink); }
+  footer a:hover { color: var(--clay); }
 
   @media (max-width: 800px) {
-    .page { width: min(100% - 24px, 1120px); }
-    .cards, .split, .about { grid-template-columns: 1fr; }
-    .about img { width: 120px; height: 150px; }
-    .top { align-items: flex-start; }
-    .links { flex-wrap: wrap; justify-content: flex-end; }
+    .nav nav { display: none; }
+    .hero, .look, .about, .metrics { grid-template-columns: 1fr; }
+    .about img { width: 140px; height: 176px; }
+    h1 { font-size: 52px; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
-  <div class="page">
-    <header class="top">
-      <div class="who">
-        <b>Bannusha Shaik</b>
-        <span>Data Engineer · SKF · Bengaluru</span>
-      </div>
-      <nav class="links" aria-label="Contact">
-        <a class="go" href="resume.pdf">Resume</a>
-        <a href="https://www.linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/bannushaxddd" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:bannushashaik85@gmail.com">Email</a>
+  <div class="wrap">
+    <header class="nav">
+      <b>Bannusha Shaik</b>
+      <nav aria-label="Page">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="resume.pdf">Resume</a>
+        <a href="mailto:bannushashaik85@gmail.com">Contact</a>
       </nav>
     </header>
 
-    <main class="win">
-      <div class="chrome">
-        <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
-        <p class="crumbs">My workspace / <strong>Plant systems</strong></p>
+    <section class="hero">
+      <div>
+        <p class="kicker">Data Engineer · SKF · Bengaluru</p>
+        <h1>Three systems.<br><em>One review.</em></h1>
+        <p class="lede">I turn factory files into models plant and finance teams can open: project lead time, scrap value, and 5S audits.</p>
+        <div class="actions">
+          <a class="solid" href="resume.pdf">Resume</a>
+          <a class="ghost" href="https://www.linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="ghost" href="https://github.com/bannushaxddd" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
-      <div class="tabs" role="tablist" aria-label="Systems">
-        <button role="tab" id="tab-elgin" aria-controls="panel-elgin" aria-selected="true" type="button">Elgin-GTCI</button>
-        <button role="tab" id="tab-scrap" aria-controls="panel-scrap" aria-selected="false" type="button">Finance scrap</button>
-        <button role="tab" id="tab-audit" aria-controls="panel-audit" aria-selected="false" type="button">5S audits</button>
-        <button role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false" type="button">About</button>
+      <aside class="aside">
+        <p>Sample figures below are drafted for this page. They show the shape of each model. They are not an extract from SKF.</p>
+      </aside>
+    </section>
+    <p class="note">Selected work · sample metrics</p>
+
+    <div id="work">
+      <article class="look">
+        <div class="copy">
+          <p class="idx">01</p>
+          <h2>Project lead time</h2>
+          <p class="stack">Power BI · one row per activity</p>
+          <p>An industrial queue was living in lists. I modeled each activity with family, category, priority, owner, and dates, then put average next to P90 so one long job cannot hide inside the mean.</p>
+          <p class="use">Useful because a review can see which category is late, and which owner is carrying the wait, without opening the source list.</p>
+        </div>
+        <div class="stage">
+          <small>Sample cut · not client data</small>
+          <div class="metrics">
+            <div><b>86</b><span>closed this quarter</span></div>
+            <div><b>12d</b><span>median lead time</span></div>
+            <div><b>19d</b><span>average, P90 at 41d</span></div>
+            <div><b>71%</b><span>closed on time</span></div>
+          </div>
+          <div class="bars" aria-hidden="true">
+            <div class="bar"><span>Tooling</span><div class="track"><div class="fill" style="width:88%"></div></div><span>88</span></div>
+            <div class="bar"><span>Change</span><div class="track"><div class="fill" style="width:74%"></div></div><span>74</span></div>
+            <div class="bar"><span>Design</span><div class="track"><div class="fill" style="width:46%"></div></div><span>46</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="look">
+        <div class="copy">
+          <p class="idx">02</p>
+          <h2>Scrap value</h2>
+          <p class="stack">SharePoint workbook · one posting line</p>
+          <p>Finance had a raw dump and a summary file. I bound the model to the dump only, set the grain at one posting, and dropped any chart the file could not support.</p>
+          <p class="use">Useful because a card can be traced to a line: reason, material, item, and day. A summary workbook cannot hide a posting.</p>
+        </div>
+        <div class="stage">
+          <small>Sample month · not client data</small>
+          <div class="metrics">
+            <div><b>4.2</b><span>scrap value, sample units</span></div>
+            <div><b>3.6</b><span>of that, production</span></div>
+            <div><b>140</b><span>items in the mix</span></div>
+            <div><b>900</b><span>posting lines</span></div>
+          </div>
+          <div class="days" aria-hidden="true">
+            <div><i style="height:40%"></i><span>W1</span></div>
+            <div><i style="height:78%"></i><span>W2</span></div>
+            <div><i style="height:55%"></i><span>W3</span></div>
+            <div><i style="height:92%"></i><span>W4</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="look">
+        <div class="copy">
+          <p class="idx">03</p>
+          <h2>5S audits</h2>
+          <p class="stack">Power Apps · SharePoint · scorecards</p>
+          <p>Paper checklists became one row per audit, across five pillars, with photos and actions. Write-back is limited to the zones an identity may touch. Drafts stay out of the trend.</p>
+          <p class="use">Useful because a lead sees the weakest pillar against a qualifying bar, instead of a folder of scanned sheets.</p>
+        </div>
+        <div class="stage">
+          <small>Sample scorecard · not a plant result</small>
+          <div class="pillars" aria-hidden="true">
+            <div><b></b>Sort</div>
+            <div><b style="height:40px"></b>Set</div>
+            <div><b style="height:62px"></b>Shine</div>
+            <div><b style="height:34px"></b>Standard</div>
+            <div><b style="height:50px"></b>Sustain</div>
+          </div>
+          <div class="metrics" style="margin-top:12px">
+            <div><b>11</b><span>screens in the app</span></div>
+            <div><b>5</b><span>pillars on every row</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <section class="about" id="about">
+      <img src="photo.jpg" alt="Bannusha Shaik" width="220" height="280">
+      <div>
+        <h2>About</h2>
+        <p>Data Engineer intern at <strong>SKF</strong>. The job is the model: a stated grain, named measures, and a visual that matches the file.</p>
+        <p>B.Tech, Artificial Intelligence and Machine Learning, PES College of Engineering. Expected 2027. Open to Data Engineer roles in Bengaluru, hybrid, or remote in India.</p>
+        <p><a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a> · +91 8074671779</p>
       </div>
-
-      <section class="panel" id="panel-elgin" role="tabpanel" aria-labelledby="tab-elgin" data-open="true">
-        <div class="head">
-          <div>
-            <h1>Project tracker</h1>
-            <p class="meta">SKF · Power BI · updated 14 Oct 2026</p>
-            <p class="lede">The industrial project queue. Average and P90 sit side by side so one long job cannot hide inside the mean.</p>
-          </div>
-        </div>
-        <div class="cards">
-          <div class="card"><b>100</b><span>completed</span></div>
-          <div class="card"><b>8</b><span>under feedback</span></div>
-          <div class="card"><b>17.8d</b><span>average lead time</span></div>
-          <div class="card"><b>5d</b><span>median</span></div>
-        </div>
-        <div class="split">
-          <div class="block">
-            <h2>On-time by task category</h2>
-            <div class="bar"><span>Tooling Design</span><div class="track"><div class="fill" style="width:83%"></div></div><em>83%</em></div>
-            <div class="bar"><span>MoC</span><div class="track"><div class="fill" style="width:79%"></div></div><em>79%</em></div>
-            <div class="bar"><span>PINQ</span><div class="track"><div class="fill" style="width:70%"></div></div><em>70%</em></div>
-            <div class="bar"><span>NPA</span><div class="track"><div class="fill" style="width:54%"></div></div><em>54%</em></div>
-            <div class="bar"><span>Product Design</span><div class="track"><div class="fill" style="width:40%"></div></div><em>40%</em></div>
-          </div>
-          <div class="block">
-            <h2>Average lead time</h2>
-            <ul class="plain">
-              <li>Aravind Raj B <em>27.2d</em></li>
-              <li>Praveen Kumar P R <em>21.6d</em></li>
-              <li>Preetam Kulkarni <em>7.1d</em></li>
-              <li>Matthew L Milani <em>2.3d</em></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel" id="panel-scrap" role="tabpanel" aria-labelledby="tab-scrap" hidden>
-        <div class="head">
-          <div>
-            <h1>Finance scrap</h1>
-            <p class="meta">Raw Dump.xlsx · Mysuru factory · through 17 Sep 2026</p>
-            <p class="lede">One posting line is the grain. This is the raw dump, not the year-to-date summary file.</p>
-          </div>
-        </div>
-        <div class="cards">
-          <div class="card"><b>6.72M</b><span>total scrap value</span></div>
-          <div class="card"><b>6.13M</b><span>production scrap</span></div>
-          <div class="card"><b>294</b><span>distinct items</span></div>
-          <div class="card"><b>2,780</b><span>posting lines</span></div>
-        </div>
-        <div class="split">
-          <div class="block">
-            <h2>Reasons driving value</h2>
-            <ul class="plain">
-              <li>SCRMYS · production <em>6.13M</em></li>
-              <li>SCPURG · injection <em>0.40M</em></li>
-              <li>DESTBT · bond test <em>0.08M</em></li>
-              <li>777 · resetting <em>0.08M</em></li>
-            </ul>
-          </div>
-          <div class="block">
-            <h2>Where it sits</h2>
-            <ul class="plain">
-              <li>MYSWIP <em>6.71M</em></li>
-              <li>Rubber compounds <em>2.48M</em></li>
-              <li>Top item · FKM 486 <em>0.56M</em></li>
-              <li>Peak day · 4 Sep <em>0.94M</em></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel" id="panel-audit" role="tabpanel" aria-labelledby="tab-audit" hidden>
-        <div class="head">
-          <div>
-            <h1>5S audit management</h1>
-            <p class="meta">Power Apps · SharePoint · Office 365 · in factory use</p>
-            <p class="lede">Paper checklists became queryable rows. Write-back is limited to the zones an identity is allowed to touch.</p>
-          </div>
-        </div>
-        <div class="cards">
-          <div class="card"><b>11</b><span>screens in the app</span></div>
-          <div class="card"><b>5</b><span>pillars per audit</span></div>
-          <div class="card"><b>1</b><span>row per audit</span></div>
-          <div class="card"><b>0</b><span>drafts in the trend</span></div>
-        </div>
-        <div class="split">
-          <div class="block">
-            <h2>What a row holds</h2>
-            <ul class="plain">
-              <li>Scores <em>five pillars</em></li>
-              <li>Evidence <em>photos</em></li>
-              <li>Follow-up <em>actions</em></li>
-              <li>Scope <em>plant zone</em></li>
-            </ul>
-          </div>
-          <div class="block">
-            <h2>What leads see</h2>
-            <ul class="plain">
-              <li>Pillar totals <em>scorecard</em></li>
-              <li>Qualifying bar <em>pass / fail</em></li>
-              <li>Bottleneck <em>weakest pillar</em></li>
-              <li>Write-back <em>zone scoped</em></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
-        <div class="about">
-          <img src="photo.jpg" alt="Bannusha Shaik" width="180" height="230">
-          <div>
-            <h1>About</h1>
-            <p class="meta">Data Engineer intern · May 2026 – present</p>
-            <p>I build the data layer <strong>SKF</strong> plant and finance teams open. SharePoint and Excel files become a model with a stated grain. Power BI and Power Apps sit on that model.</p>
-            <p>B.Tech, Artificial Intelligence and Machine Learning, PES College of Engineering. Expected 2027. Open to Data Engineer roles in Bengaluru, hybrid, or remote in India.</p>
-            <p>IBM Generative AI Prompt Engineering. Tata Group GenAI Data Analytics, Forage, 2024.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
+    </section>
     <footer>
-      <a href="mailto:bannushashaik85@gmail.com">bannushashaik85@gmail.com</a>
-      <span>+91 8074671779</span>
+      <span>Sample figures are drafted for the public page.</span>
+      <a href="https://www.linkedin.com/in/bannushashaik400" target="_blank" rel="noopener">LinkedIn</a>
     </footer>
   </div>
-<script>
-(function () {
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
-  function open(tab) {
-    tabs.forEach(function (t) {
-      var on = t === tab;
-      t.setAttribute("aria-selected", on ? "true" : "false");
-      var panel = document.getElementById(t.getAttribute("aria-controls"));
-      panel.hidden = !on;
-      panel.setAttribute("data-open", on ? "true" : "false");
-    });
-  }
-  tabs.forEach(function (tab, i) {
-    tab.addEventListener("click", function () { open(tab); });
-    tab.addEventListener("keydown", function (e) {
-      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
-      e.preventDefault();
-      var next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
-      next.focus();
-      open(next);
-    });
-  });
-})();
-</script>
 </body>
 </html>
